@@ -1,0 +1,8 @@
+.video-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+video {
+  object-fit: cover;
+}

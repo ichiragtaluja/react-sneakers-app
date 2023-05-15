@@ -1,0 +1,10 @@
+.categories-container {
+  display: flex;
+  width: 100%;
+  /* border: 3px solid black; */
+  justify-content: space-between;
+}
+
+.category-card  img{
+    width: 33.33vw;
+}

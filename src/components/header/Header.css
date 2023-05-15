@@ -1,0 +1,52 @@
+nav {
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+.nav-link-container {
+  display: none;
+}
+.nav-link-container > * {
+  margin-right: 1em;
+  position: relative;
+}
+
+.nav-link-container-mobile {
+  position: absolute;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 50vw;
+  right: 0;
+  height: 80vh;
+  justify-content: space-evenly;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  z-index: 1;
+  
+}
+
+.cross-tab-icon{
+  z-index: 1;
+  color: red;
+}
+
+.cart-count {
+  position: absolute;
+  right: 0.05em;
+  bottom: 0.5em;
+  background-color: rgb(255, 128, 128);
+}
+
+@media (min-width: 768px) {
+  .hamburger-icon {
+    display: none;
+  }
+  .nav-link-container {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}

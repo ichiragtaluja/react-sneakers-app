@@ -1,0 +1,15 @@
+.product-card-container {
+  border: 1px solid black;
+}
+
+.product-card {
+  border: 1px solid black;
+}
+
+datalist {
+  display: flex;
+}
+
+datalist > * {
+  margin-right: 2em;
+}
