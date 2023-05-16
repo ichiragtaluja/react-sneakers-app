@@ -2,26 +2,14 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 
 import { getAllCategories } from "../services/services";
 import { getAllProducts } from "../services/services";
+import { dataReducer, initialState } from "../dataReducer/dataReducer";
 
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
-  const initialState = {
-    allProductsFromApi: [],
-    allCategories: [],
-  };
-
-  const dataReducer = (state, action) => {
-    switch (action.type) {
-      case "GET_ALL_PRODUCTS_FROM_API":
-        return { ...state, allProductsFromApi: action.payload };
-      case "GET_ALL_CATEGORIES":
-        return { ...state, allCategories: action.payload };
-      default:
-        return state;
-    }
-  };
   const [state, dispatch] = useReducer(dataReducer, initialState);
+
+  console.log(state.filters.categories)
 
   const getAllSneakers = async () => {
     try {
@@ -59,7 +47,9 @@ export function DataProvider({ children }) {
   }, []);
 
   return (
-    <DataContext.Provider value={{ state }}>{children}</DataContext.Provider>
+    <DataContext.Provider value={{ state, dispatch }}>
+      {children}
+    </DataContext.Provider>
   );
 }
 

@@ -1,15 +1,14 @@
-.product-card-container {
-  border: 1px solid black;
-}
+@media (min-width: 768px) {
+  .page-container {
+    display: flex;
+  }
 
-.product-card {
-  border: 1px solid black;
-}
+  /* .filters {
+    position: relative;
+  } */
 
-datalist {
-  display: flex;
-}
-
-datalist > * {
-  margin-right: 2em;
+  .products-container {
+    flex-grow: 1;
+    border: 1px solid black;
+  }
 }

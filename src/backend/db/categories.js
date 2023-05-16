@@ -43,7 +43,7 @@ export const categories = [
 
   {
     _id: uuid(),
-    categoryName: "kids",
+    categoryName: "kid",
     img: "/assets/images/category-images/hero-image-kids-1.png",
   },
 ];

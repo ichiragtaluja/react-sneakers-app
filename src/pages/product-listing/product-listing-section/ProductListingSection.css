@@ -1,0 +1,8 @@
+.product-card-container {
+    padding: 1em;
+  display: flex;
+  border: 5px solid yellow;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+
+}

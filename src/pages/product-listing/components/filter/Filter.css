@@ -1,0 +1,125 @@
+.filter-container-mobile-closed {
+  border: 2px solid green;
+  padding: 1.5em;
+  /* height: 100vh; */
+}
+
+.filter-container-mobile-open {
+  border: 2px solid green;
+  padding: 1.5em;
+  height: 100vh;
+}
+
+/* -------filter-header---------- */
+
+.filter-header {
+  display: none;
+}
+
+.filter-header-mobile-open {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3em;
+}
+
+.filter-header-mobile-closed {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.3em;
+}
+.filter-header-mobile-closed > h2 {
+  /* border: 1px solid black; */
+  flex-grow: 1;
+  margin-left: 1em;
+}
+
+.filter-header-mobile-closed > span {
+  /* border: 1px solid black; */
+  margin-top: 0.2em;
+}
+
+/* --------filter-body--------- */
+
+.filter-types-container {
+  display: none;
+}
+
+.filter-types-container-mobile {
+  display: flex;
+  flex-flow: column nowrap;
+  border: 1px solid black;
+  margin-top: 1em;
+  height: 82vh;
+}
+
+/* -------price------------- */
+
+/* .price-container {
+  display: none;
+}
+
+.price-container-mobile {
+  display: flex;
+  border: 1px solid rgb(255, 0, 0);
+  flex-flow: column nowrap;
+} */
+
+datalist {
+  display: flex;
+}
+
+datalist > * {
+  margin-right: 2.7em;
+}
+
+@media (min-width: 768px) {
+  /* .filter-parent {
+    height: 100vh;
+    position: relative;
+  } */
+  .filter-container-mobile-open {
+    display: none;
+    padding: 0px;
+  }
+
+  .filter-container-mobile-open {
+    display: none;
+    padding: 0px;
+  }
+
+  .filter-types-container {
+    /* position: fixed; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container {
+    position: sticky;
+    top: 0px;
+    display: flex;
+    flex-flow: column nowrap;
+    /* left: 0px;
+    bottom: 0px */
+  }
+
+  .filter-header-mobile-closed {
+    display: none;
+  }
+
+  .filter-header-mobile-open {
+    display: none;
+  }
+
+  .filter-header {
+    display: flex;
+    /* position: fixed; */
+  }
+
+  span {
+    display: none;
+  }
+}

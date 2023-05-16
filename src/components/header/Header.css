@@ -7,9 +7,6 @@ nav {
   width: 100%;
 }
 
-.nav-link-container {
-  display: none;
-}
 .nav-link-container > * {
   margin-right: 1em;
   position: relative;
@@ -26,10 +23,9 @@ nav {
   background-color: rgb(255, 255, 255);
   align-items: center;
   z-index: 1;
-  
 }
 
-.cross-tab-icon{
+.cross-tab-icon {
   z-index: 1;
   color: red;
 }
