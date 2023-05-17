@@ -1,0 +1,61 @@
+.signup-container {
+  padding: 2em;
+  border: 1px solid black;
+  width: 70vw;
+  margin: auto;
+  margin-top: 15vh;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 40vh;
+}
+
+.signup-body {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+}
+
+.email-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.password-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.signup-btn-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.remember-me-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup-body > a {
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.input-container {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-container input {
+  border: none;
+  flex-grow: 1;
+}
+
+.input-container input:focus {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .signup-container {
+    width: 40vw;
+  }
+}

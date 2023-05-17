@@ -60,8 +60,8 @@ export const Filter = () => {
             <h3>Ratings</h3>
             <div>
               <datalist id="markers">
-                <option label="1" value="1">
-                  1
+                <option label="0" value="0">
+                  0
                 </option>
                 <option label="2.5" value="2.5">
                   2.5
@@ -71,6 +71,7 @@ export const Filter = () => {
                 </option>
               </datalist>
               <input
+                step="0.1"
                 onChange={(e) =>
                   dispatch({
                     type: "ADD_RATINGS",
@@ -80,7 +81,7 @@ export const Filter = () => {
                 list="markers"
                 id="price"
                 type="range"
-                min="1"
+                min="0"
                 max="5"
                 value={state.filters.rating}
               />
