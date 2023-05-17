@@ -2,14 +2,12 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 
 import { getAllCategories } from "../services/services";
 import { getAllProducts } from "../services/services";
-import { dataReducer, initialState } from "../dataReducer/dataReducer";
+import { dataReducer, initialState } from "../reducer/dataReducer";
 
 const DataContext = createContext();
 
 export function DataProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
-
-  console.log(state.filters.categories)
 
   const getAllSneakers = async () => {
     try {

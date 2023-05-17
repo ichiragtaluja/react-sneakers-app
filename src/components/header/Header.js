@@ -7,8 +7,10 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { GrSearch } from "react-icons/gr";
+import { useData } from "../../contexts/DataProvider";
 
 export const Header = () => {
+  const { dispatch } = useData();
   const [showHamburger, setShowHamburger] = useState(true);
   const getActiveStyle = ({ isActive }) => {
     return { border: isActive ? "1px solid black" : "" };
@@ -26,7 +28,10 @@ export const Header = () => {
       </div>
 
       <div className="nav-input-search">
-        <input placeholder="Search" />
+        <input
+          onChange={(e) => dispatch({ type: "SEARCH", payload: e.target.value })}
+          placeholder="Search"
+        />
         <button>
           <GrSearch />
         </button>

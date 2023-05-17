@@ -1,6 +1,7 @@
 export const initialState = {
   allProductsFromApi: [],
   allCategories: [],
+  inputSearch: "",
   filters: {
     rating: "",
     categories: [],
@@ -16,6 +17,9 @@ export const dataReducer = (state, action) => {
 
     case "GET_ALL_CATEGORIES":
       return { ...state, allCategories: action.payload };
+
+    case "SEARCH":
+      return { ...state, inputSearch: action.payload };
 
     case "ADD_RATINGS":
       return {
