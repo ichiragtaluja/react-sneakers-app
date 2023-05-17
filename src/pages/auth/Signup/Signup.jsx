@@ -1,5 +1,5 @@
 import "./Signup.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { useState } from "react";
@@ -11,23 +11,35 @@ import { signupService } from "../../../services/auth-services/signupService";
 export const Signup = () => {
   const [hidePassword, setHidePassword] = useState(true);
 
+  const { setAuth } = useAuth();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [signupCredential, setSignupCredential] = useState({
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
   });
 
   const signupHandler = async () => {
     try {
       const response = await signupService(
         signupCredential.email,
-        signupCredential.password
+        signupCredential.password,
+        signupCredential.firstName,
+        signupCredential.lastName
       );
-      const token = response.data.encodedToken;
-      localStorage.setItem("token", token);
+      const encodedToken = response.data.encodedToken;
+
+      setAuth({ token: encodedToken, isAuth: true });
+
+      localStorage.setItem("token", encodedToken);
+      localStorage.setItem("isAuth", true);
+      navigate("/");
     } catch (error) {}
   };
-
-  const { setIsLoggedIn } = useAuth();
 
   return (
     <div className="signup-container">
@@ -42,6 +54,7 @@ export const Signup = () => {
         <div className="email-container">
           <label htmlFor="email">Email Address</label>
           <input
+            required
             onChange={(e) =>
               setSignupCredential({
                 ...signupCredential,
@@ -58,6 +71,7 @@ export const Signup = () => {
           <label htmlFor="password">Password</label>
           <div className="input-container">
             <input
+              required
               onChange={(e) =>
                 setSignupCredential({
                   ...signupCredential,
@@ -65,6 +79,7 @@ export const Signup = () => {
                 })
               }
               id="password"
+              minlength="8"
               placeholder="Enter Password"
               type={hidePassword ? "password" : "text"}
             />{" "}
@@ -76,9 +91,39 @@ export const Signup = () => {
           </div>
         </div>
 
+        <div className="first-name-container">
+          <label htmlFor="first-name">First Name</label>
+          <input
+            onChange={(e) =>
+              setSignupCredential({
+                ...signupCredential,
+                firstName: e.target.value,
+              })
+            }
+            id="first-name"
+            placeholder="Enter first Name"
+            type="text"
+          />
+        </div>
+
+        <div className="last-name-container">
+          <label htmlFor="last-name">Last Name</label>
+          <input
+            onChange={(e) =>
+              setSignupCredential({
+                ...signupCredential,
+                lastName: e.target.value,
+              })
+            }
+            id="last-name"
+            placeholder="Enter last Name"
+            type="text"
+          />
+        </div>
+
         <div className="remember-me-container">
           <div>
-            <input name="remember-me" type="checkbox" />
+            <input required name="remember-me" type="checkbox" />
             <label htmlFor="remember-me">
               I accept all terms and conditions
             </label>

@@ -3,15 +3,15 @@ import React, { createContext, useContext, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const encodedToken = localStorage.getItem("token");
-  const [token, setToken] = useState(encodedToken);
+  const [auth, setAuth] = useState(
+    encodedToken
+      ? { token: encodedToken, isAuth: true }
+      : { token: "", isAuth: false }
+  );
 
   return (
-    <AuthContext.Provider
-      value={{ token, setToken, isLoggedIn, setIsLoggedIn }}
-    >
+    <AuthContext.Provider value={{ auth, setAuth }}>
       {children}
     </AuthContext.Provider>
   );

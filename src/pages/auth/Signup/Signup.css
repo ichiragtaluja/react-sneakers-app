@@ -6,7 +6,7 @@
   margin-top: 15vh;
   display: flex;
   flex-flow: column nowrap;
-  height: 40vh;
+  height: 50vh;
 }
 
 .signup-body {
@@ -52,6 +52,16 @@
 
 .input-container input:focus {
   outline: none;
+}
+
+.first-name-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.last-name-container {
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 @media (min-width: 768px) {

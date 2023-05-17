@@ -8,8 +8,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { GrSearch } from "react-icons/gr";
 import { useData } from "../../contexts/DataProvider";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const Header = () => {
+  const { auth } = useAuth();
   const { dispatch } = useData();
   const [showHamburger, setShowHamburger] = useState(true);
   const getActiveStyle = ({ isActive }) => {
@@ -29,7 +31,9 @@ export const Header = () => {
 
       <div className="nav-input-search">
         <input
-          onChange={(e) => dispatch({ type: "SEARCH", payload: e.target.value })}
+          onChange={(e) =>
+            dispatch({ type: "SEARCH", payload: e.target.value })
+          }
           placeholder="Search"
         />
         <button>
@@ -54,9 +58,9 @@ export const Header = () => {
         <NavLink
           onClick={() => setShowHamburger(true)}
           style={getActiveStyle}
-          to="/login"
+          to={auth.isAuth ? "/logout" : "/login"}
         >
-          Login
+          {!auth.isAuth ? "Login" : "Logout"}
         </NavLink>
         <NavLink
           onClick={() => setShowHamburger(true)}

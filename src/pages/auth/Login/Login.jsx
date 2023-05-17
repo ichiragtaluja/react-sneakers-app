@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { useState } from "react";
@@ -9,34 +9,46 @@ import { loginService } from "../../../services/auth-services/loginService";
 
 export const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
-  const { setIsLoggedIn } = useAuth();
+  const { auth, setAuth } = useAuth();
 
   const [loginCredential, setLoginCredential] = useState({
     email: "",
     password: "",
   });
+  const { email, password } = loginCredential;
 
-  const loginHandler = async () => {
-    const response = await loginService(
-      loginCredential.email,
-      loginCredential.password
-    );
-    console.log(response.data.encodedToken);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const loginHandler = async (e, email, password) => {
+    e.preventDefault();
+    setLoginCredential({ email, password });
+    const response = await loginService(email, password);
+
+    if (response.status === 200) {
+      const encodedToken = response.data.encodedToken;
+
+      setAuth({ token: encodedToken, isAuth: true });
+
+      localStorage.setItem("token", encodedToken);
+      localStorage.setItem("isAuth", true);
+
+      navigate(location?.state?.from.pathname);
+    }
   };
 
   return (
     <div className="login-container">
       <h2>Login</h2>
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          loginHandler();
-        }}
+        onSubmit={(e) => loginHandler(e, email, password)}
         className="login-body"
       >
         <div className="email-container">
           <label htmlFor="email">Email Address</label>
           <input
+            value={loginCredential.email}
+            required
             onChange={(e) =>
               setLoginCredential({
                 ...loginCredential,
@@ -53,6 +65,8 @@ export const Login = () => {
           <label htmlFor="password">Password</label>
           <div className="input-container">
             <input
+              value={loginCredential.password}
+              required
               onChange={(e) =>
                 setLoginCredential({
                   ...loginCredential,
@@ -81,8 +95,14 @@ export const Login = () => {
         </div>
 
         <div className="login-btn-container">
-          <button onClick={() => setIsLoggedIn(true)}>Login</button>
-          <button>Login with test credentials</button>
+          <button type="submit">Login</button>
+          <button
+            onClick={(e) => {
+              loginHandler(e, "adarshbalika@gmail.com", "adarshbalika");
+            }}
+          >
+            Login with test credentials
+          </button>
         </div>
         <Link to="/signup">Create a new account?</Link>
       </form>
