@@ -9,13 +9,14 @@ import { RxCross2 } from "react-icons/rx";
 import { GrSearch } from "react-icons/gr";
 import { useData } from "../../contexts/DataProvider";
 import { useAuth } from "../../contexts/AuthContext";
+import { CgShoppingCart } from "react-icons/cg";
 
 export const Header = () => {
   const { auth } = useAuth();
   const { dispatch } = useData();
   const [showHamburger, setShowHamburger] = useState(true);
   const getActiveStyle = ({ isActive }) => {
-    return { border: isActive ? "1px solid black" : "" };
+    return { border: isActive ? "" : "" };
   };
 
   const totalProductsInCart = 1;
@@ -68,7 +69,8 @@ export const Header = () => {
           to="wishlist"
         >
           <span>{!showHamburger ? "Wishlist" : ""}</span>
-          <CgHeart /> <span className="cart-count">{totalProductsInCart}</span>
+          <CgHeart size={25} className="wishlist" />{" "}
+          <span className="cart-count">{totalProductsInCart}</span>
         </NavLink>
         <NavLink
           onClick={() => setShowHamburger(true)}
@@ -76,7 +78,7 @@ export const Header = () => {
           to="/cart"
         >
           <span>{!showHamburger ? "Cart" : ""}</span>
-          <GrCart />{" "}
+          <CgShoppingCart size={25} className="cart" />{" "}
           <span className="cart-count">{totalProductsInWishlist}</span>
         </NavLink>
       </div>

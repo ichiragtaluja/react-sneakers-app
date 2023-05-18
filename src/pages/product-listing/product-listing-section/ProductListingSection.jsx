@@ -90,7 +90,7 @@ export const ProductListingSection = () => {
               </div>
 
               <div className="product-card-buttons">
-                <button className="cart-btn">Add to cart</button>
+                <button className="cart-btn">Add To Cart</button>
                 <button className="wishlist-btn">
                   <AiOutlineHeart color={"rgb(174, 174, 90)"} size={30} />
                 </button>

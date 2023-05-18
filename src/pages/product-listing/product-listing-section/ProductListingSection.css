@@ -1,4 +1,5 @@
 .product-card-container {
+  /* background-color: whitesmoke; */
   padding: 1em;
   display: flex;
   /* border: 5px solid yellow; */
@@ -13,7 +14,7 @@
   margin: 1em 1em 2em 1em;
   border-radius: 1em;
   width: 250px;
-  height: 460px;
+  height: 470px;
   justify-content: space-between;
   display: flex;
   flex-flow: column nowrap;
@@ -28,9 +29,9 @@
 }
 
 .product-card-image {
-  background-color: rgb(244, 244, 244);
-  /* border: 1px solid rgb(255, 255, 193); */
-  border-radius: 1em;
+  background-color: rgb(246, 246, 246);
+  /* border: 1px solid rgb(213, 213, 213); */
+  border-radius: 0.8em;
 }
 
 .product-card-image img {
@@ -85,9 +86,8 @@
   border: none;
   flex-grow: 1;
   justify-self: stretch;
-  padding: 0.5em;
   border-radius: 10px;
-  font-size: 1.1em;
+  font-size: 1.05em;
   color: white;
   background-color: rgb(174, 174, 90);
 }

@@ -119,7 +119,7 @@ datalist > * {
     /* position: fixed; */
   }
 
-  span {
+  .filter-container span {
     display: none;
   }
 }
