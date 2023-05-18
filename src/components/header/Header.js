@@ -70,7 +70,9 @@ export const Header = () => {
         >
           <span>{!showHamburger ? "Wishlist" : ""}</span>
           <CgHeart size={25} className="wishlist" />{" "}
-          <span className="cart-count">{totalProductsInCart}</span>
+          <span className="cart-count cart-count-mobile">
+            {totalProductsInCart}
+          </span>
         </NavLink>
         <NavLink
           onClick={() => setShowHamburger(true)}
@@ -79,17 +81,23 @@ export const Header = () => {
         >
           <span>{!showHamburger ? "Cart" : ""}</span>
           <CgShoppingCart size={25} className="cart" />{" "}
-          <span className="cart-count">{totalProductsInWishlist}</span>
+          <span className="cart-count cart-count-mobile">
+            {" "}
+            {totalProductsInWishlist}{" "}
+          </span>
         </NavLink>
       </div>
       {showHamburger && (
         <div className="hamburger-icon" onClick={() => setShowHamburger(false)}>
-          <RxHamburgerMenu />
+          <RxHamburgerMenu size={20} color={"white"} />
         </div>
       )}
       {!showHamburger && (
-        <div className="cross-tab-icon" onClick={() => setShowHamburger(true)}>
-          <RxCross2 />
+        <div
+          className="cross-tab-icon cross-tab-icon-mobile"
+          onClick={() => setShowHamburger(true)}
+        >
+          <RxCross2 color={"rgb(106, 106, 65)"} size={25} />
         </div>
       )}
     </nav>

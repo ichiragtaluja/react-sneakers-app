@@ -3,14 +3,23 @@ nav {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  padding: 2em;
+  padding: 1rem;
   width: 100%;
   background-color: rgb(153, 153, 56);
-
+  border-radius: 0 0 10px 10px;
 }
-a {
+
+.nav-logo-home-button {
+  align-self: center;
+}
+
+.nav-logo-home-button a {
   outline: none;
   border: none;
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.75px;
 }
 a:active {
   outline: none;
@@ -19,6 +28,9 @@ a:active {
 a:focus {
   outline: none;
   border: none;
+}
+.hamburger-icon {
+  align-self: center;
 }
 
 .nav-link-container {
@@ -35,17 +47,41 @@ input:focus {
 }
 
 .nav-link-container-mobile {
+  padding: 1em;
+  padding-top: 70px;
+  border-radius: 10px;
   position: absolute;
   display: flex;
   flex-flow: column nowrap;
+  top: 0px;
   width: 50vw;
   right: 0;
   height: 80vh;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   background-color: rgb(255, 255, 255);
-  align-items: center;
+  align-items: stretch;
   z-index: 1;
+  /* border: 1px solid black; */
+  background-color: rgb(251, 251, 251);
+  box-shadow: 0px 0px 46px -4px rgb(176, 175, 175);
 }
+.nav-link-container-mobile > * {
+  color: rgb(106, 106, 65);
+  margin-bottom: 10px;
+  border: 1px solid rgb(230, 230, 230);
+  margin-right: 0px;
+  text-align: center;
+  text-decoration: none;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.cross-tab-icon {
+  position: relative;
+  top: 8px;
+  left: 2px;
+}
+
 ::placeholder {
   letter-spacing: 0.7px;
 }
@@ -55,19 +91,11 @@ input:focus {
   color: red;
 }
 
-.cart-count {
-  position: absolute;
-  right: 0.05em;
-  bottom: 0.5em;
-  background-color: rgb(255, 128, 128);
-  z-index: 2;
-}
-
 .nav-input-search {
   margin-top: 0.4em;
   border: none;
   background-color: white;
-  border-radius: 15px;
+  border-radius: 18px;
   display: flex;
   align-items: center;
 }
@@ -83,39 +111,80 @@ input:focus {
   background-color: white;
   padding: 0.5rem 1rem;
   border-radius: 15px;
-
+  /* border: 1px solid black; */
   margin-top: 0.1em;
+  padding-bottom: 5px;
+}
+.cart-count {
+  position: relative;
+  display: inline-block;
+  padding: 0 7px;
+  border-radius: 30px;
+  left: -5px;
+  bottom: 15px;
+  background-color: rgb(255, 137, 137);
+  color: white;
+  border: none;
+}
+.cart,
+.wishlist {
+  position: relative;
+  top: 5px;
+  left: 10px;
 }
 
 @media (min-width: 768px) {
   nav a {
     display: inline-block;
     color: white;
-    font-size: 1.5em;
-    font-weight: 600;
+    font-size: 1.2em;
+    font-weight: 400;
 
     text-decoration: none;
     letter-spacing: 0.5px;
+    /* border: 1px solid black; */
   }
 
-  .cart-count{position: relative;}
+  /* .cart-count{position: relative;} */
 
   nav {
+    z-index: 3;
     align-items: center;
+    position: sticky;
+    top: 0;
   }
   .hamburger-icon {
     display: none;
   }
   .nav-link-container {
+    /* border: 1px solid black; */
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
   }
 
+  .cart-count {
+    position: absolute;
+    display: block;
+    padding: 0 7px;
+    border-radius: 30px;
+    left: 15px;
+    bottom: 20px;
+    background-color: rgb(255, 137, 137);
+    color: white;
+    border: none;
+    border: 1px solid rgb(153, 153, 56);
+  }
+
   .cart a {
     color: white;
   }
-  .cart {
+
+  .cart,
+  .wishlist {
+    position: default;
+    top: 0;
+    left: 0;
     margin-top: 0.2em;
   }
   .wishlist {
