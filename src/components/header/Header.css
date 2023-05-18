@@ -6,7 +6,6 @@ nav {
   padding: 1rem;
   width: 100%;
   background-color: rgb(153, 153, 56);
-  border-radius: 0 0 10px 10px;
 }
 
 .nav-logo-home-button {
@@ -54,7 +53,7 @@ input:focus {
   display: flex;
   flex-flow: column nowrap;
   top: 0px;
-  width: 50vw;
+  width: 100vw;
   right: 0;
   height: 80vh;
   justify-content: flex-start;
@@ -83,7 +82,7 @@ input:focus {
 }
 
 ::placeholder {
-  letter-spacing: 0.7px;
+  letter-spacing: 0.4px;
 }
 
 .cross-tab-icon {
@@ -141,7 +140,7 @@ input:focus {
     font-weight: 400;
 
     text-decoration: none;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.2px;
     /* border: 1px solid black; */
   }
 
