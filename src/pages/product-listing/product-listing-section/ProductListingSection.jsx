@@ -1,5 +1,5 @@
 import "./ProductListingSection.css";
-
+import Tilt from "react-parallax-tilt";
 import React from "react";
 import { useData } from "../../../contexts/DataProvider";
 import { Link } from "react-router-dom";
@@ -8,6 +8,9 @@ import { getRatedProducts } from "../../../helpers/filter-functions/ratings";
 import { getPricedProducts } from "../../../helpers/filter-functions/price";
 import { getSortedProducts } from "../../../helpers/filter-functions/sort";
 import { getSearchedProducts } from "../../../helpers/searchedProducts";
+// import { BsSlack } from "react-icons/bs";
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiTwotoneHeart } from "react-icons/ai";
 
 export const ProductListingSection = () => {
   const { state } = useData();
@@ -48,27 +51,52 @@ export const ProductListingSection = () => {
         } = product;
 
         return (
-          <div className="product-card" key={_id}>
-            <Link to={`/product-details/${_id}`}>
-              <div className="product-card-image">
-                <img width="200px" src={img} />
+          <Tilt
+            tiltMaxAngleX={5}
+            tiltMaxAngleY={5}
+            glareEnable={false}
+            transitionSpeed={2000}
+            scale={1.02}
+          >
+            <div className="product-card" key={_id}>
+              <Link to={`/product-details/${_id}`}>
+                <div className="product-card-image">
+                  <Tilt
+                    transitionSpeed={2000}
+                    tiltMaxAngleX={15}
+                    tiltMaxAngleY={15}
+                    scale={1.18}
+                  >
+                    <img src={img} />
+                  </Tilt>
+                </div>
+              </Link>
+
+              <div className="product-card-details">
+                <h3>{name}</h3>
+                <div className="price-container">
+                  <p className="original-price">${original_price}</p>
+                  <p className="discount-price">${discounted_price}</p>
+                </div>
+                <p></p>
+                <p>
+                  Rating: {rating} ({reviews} reviews){" "}
+                </p>
+                <p>Gender: {category_name}</p>
+                <div className="info">
+                  {!is_stock && <p className="out-of-stock">Out of stock</p>}
+                  {trending && <p className="trending">Trending</p>}
+                </div>
               </div>
-            </Link>
 
-            <div className="product-card-details">
-              <h4>{name}</h4>
-              <p>original price: {original_price}</p>
-              <p>discounted price: {discounted_price}</p>
-              <p>reviews: {reviews}</p>
-              <p>rating: {rating}</p>
-              <p>gender: {category_name}</p>
+              <div className="product-card-buttons">
+                <button className="cart-btn">Add to cart</button>
+                <button className="wishlist-btn">
+                  <AiOutlineHeart color={"rgb(174, 174, 90)"} size={30} />
+                </button>
+              </div>
             </div>
-
-            <div className="product-card-buttons">
-              <button>Add to cart</button>
-              <button>Add to wishlist</button>
-            </div>
-          </div>
+          </Tilt>
         );
       })}
     </div>
