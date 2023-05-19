@@ -5,6 +5,9 @@
   justify-content: space-between;
 }
 
-.category-card  img{
-    width: 33.33vw;
+.category-card img {
+  width: 33.33vw;
+}
+.category-card {
+  position: relative;
 }

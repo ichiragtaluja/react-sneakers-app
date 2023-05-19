@@ -1,9 +1,11 @@
 import "./HeroVideo.css";
 import ReactPlayer from "react-player";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import React from "react";
 
 export const HeroVideo = () => {
+  const Navigate = useNavigate();
   return (
     <div className="hero-video-container">
       <div className="hero-video">
@@ -24,7 +26,12 @@ export const HeroVideo = () => {
         <h2>Where Adventure Meets Style in Quirky Sneaker Bliss</h2>
       </div>
 
-      <button className="shop-now-btn">Shop Now</button>
+      <button
+        onClick={() => Navigate("product-listing")}
+        className="shop-now-btn"
+      >
+        Shop Now
+      </button>
     </div>
   );
 };

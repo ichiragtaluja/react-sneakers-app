@@ -9,7 +9,6 @@
 }
 
 .video-container .video-card {
-
   display: flex;
   flex-flow: column nowrap;
 
@@ -49,7 +48,6 @@
   text-align: center;
 }
 
-
 .video-section-img {
   /* margin: 10px; */
   width: 100%;
@@ -64,23 +62,21 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  
 }
 
 .hero-img-container img {
-  opacity: .6;
+  opacity: 0.6;
 }
 
-.hero-img-container h1{
-  opacity: .9;
-text-align: center;
-  font-size: 4em;
+.hero-img-container h1 {
+  opacity: 0.9;
+  text-align: center;
+  font-size: 3rem;
   padding: 10px;
   color: white;
   position: absolute;
-  top: 10rem;
+  top: 5rem;
   /* border: 1px solid white; */
- 
 }
 
 @media (min-width: 768px) {

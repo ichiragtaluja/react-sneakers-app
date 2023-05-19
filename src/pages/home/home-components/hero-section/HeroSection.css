@@ -11,9 +11,9 @@
   text-align: center;
 }
 .hero-title {
-  font-size: 5em;
+  font-size: 4.5em;
 
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 
   background: #000000;
   background: linear-gradient(to right, #000000 0%, #5e5e5e 100%);

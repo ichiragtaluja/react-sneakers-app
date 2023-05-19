@@ -10,7 +10,11 @@ export const CategoriesSection = () => {
     <div className="categories-container">
       {state.allCategories.map(({ _id, categoryName, img }) => (
         <Link
-          onClick={() =>dispatch({ type: "ADD_CATEGORIES_FROM_HOME", payload: categoryName })
+          onClick={() =>
+            dispatch({
+              type: "ADD_CATEGORIES_FROM_HOME",
+              payload: categoryName,
+            })
           }
           to="/product-listing"
           className="category-card"
