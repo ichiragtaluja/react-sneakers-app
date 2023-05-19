@@ -1,5 +1,40 @@
-.hero-image {
+/* .hero-image {
   width: 100%;
+  opacity: 0.9;
+}
+.hero-img-cont {
+  background-color: black;
+} */
+
+.hero-heading-container {
+  margin: 4rem;
+  text-align: center;
+}
+.hero-title {
+  font-size: 5em;
+
+  text-transform: uppercase;
+
+  background: #000000;
+  background: linear-gradient(to right, #000000 0%, #5e5e5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+.hero-subtitle {
+  margin: 1em 0 5em 0em;
+  line-height: 1.5;
+  font-size: 1em;
 
+  color: grey;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 9em;
+  }
+
+  .hero-subtitle {
+    font-size: 1.3em;
+  }
+}

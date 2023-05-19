@@ -33,7 +33,7 @@ export const Login = () => {
       localStorage.setItem("token", encodedToken);
       localStorage.setItem("isAuth", true);
 
-      navigate(location?.state?.from.pathname);
+      navigate(location?.state?.from.pathname || "/");
     }
   };
 

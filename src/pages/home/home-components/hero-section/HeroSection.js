@@ -4,11 +4,14 @@ import heroImg from "./hero-image-men-1.png";
 import "./HeroSection.css";
 
 export const HeroSection = () => {
-  const Navigate = useNavigate();
   return (
-    <div onClick={() => Navigate("product-listing")}>
-      {" "}
-      <img className="hero-image" src={heroImg} alt="model wearing sneakers" />
-    </div>
+    <>
+      <div className="hero-heading-container">
+        <h1 className="hero-title">Elevate Your Style</h1>
+        <h2 className="hero-subtitle">
+          Discover the Heroic Sneaker Line that Transcends Boundaries
+        </h2>
+      </div>
+    </>
   );
 };

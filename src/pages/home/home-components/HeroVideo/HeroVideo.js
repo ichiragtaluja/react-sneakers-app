@@ -1,0 +1,45 @@
+import "./HeroVideo.css";
+import ReactPlayer from "react-player";
+
+import React from "react";
+
+export const HeroVideo = () => {
+  return (
+    <div className="hero-video-container">
+      <div className="hero-video">
+        <ReactPlayer
+          url={`${process.env.PUBLIC_URL}/assets/videos/video-2.mp4`}
+          playing
+          playbackRate={1.25}
+          muted
+          loop
+          controls={false}
+          width={"100%"}
+          height={"100%"}
+        />
+      </div>
+
+      <div className="hero-text">
+        <h1>Sneak into Extraordinary</h1>
+        <h2>Where Adventure Meets Style in Quirky Sneaker Bliss</h2>
+      </div>
+
+      <button className="shop-now-btn">Shop Now</button>
+    </div>
+  );
+};
+
+{
+  /* <div className="hero-video">
+        <ReactPlayer
+          url={`${process.env.PUBLIC_URL}/assets/videos/video-1.mp4`}
+          playing
+          playbackRate={1.25}
+          muted
+          loop
+          width={"100%"}
+          height={"100%"}
+          controls={false}
+        />
+      </div> */
+}
