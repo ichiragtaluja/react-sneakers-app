@@ -21,7 +21,9 @@ export const CategoriesSection = () => {
           key={_id}
         >
           <h3>{categoryName}</h3>
-          <img src={img} alt="category" />
+          <div className="img-cont">
+            <img src={img} alt="category" />
+          </div>
         </Link>
       ))}
     </div>

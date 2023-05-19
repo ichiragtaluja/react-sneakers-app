@@ -72,7 +72,7 @@ export const VideosSection = () => {
           <span className="notch"></span>
         </Tilt>
       </div>
-      <div
+      {/* <div
         onClick={() => Navigate("product-listing")}
         className="hero-img-container"
       >
@@ -81,7 +81,7 @@ export const VideosSection = () => {
           src="/assets/images/hero-images/hero-image-men-1.png"
         />
         <h1>See our latest collection</h1>
-      </div>
+      </div> */}
     </>
   );
 };
