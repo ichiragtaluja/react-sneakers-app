@@ -116,7 +116,7 @@
   font-weight: 600;
 }
 
-.price-container {
+.product-card-details .price-container {
   font-size: 1e;
   display: flex;
   margin-bottom: 0.35em;
