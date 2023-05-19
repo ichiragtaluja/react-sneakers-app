@@ -1,7 +1,42 @@
 .footer {
+  color: white;
   text-align: center;
-  border: 1px solid black;
-  /* position: absolute; */
+
   display: block;
- 
+  background-color: rgb(153, 153, 56);
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 0.8rem;
+  justify-content: space-between;
+  /* height: 2rem; */
+}
+.footer > * {
+  margin: 0.5rem;
+}
+.footer > :first-child {
+  opacity: 0.5;
+}
+
+.social-links {
+  display: flex;
+  flex-grow: 1;
+  /* border: 1px solid black; */
+  justify-content: center;
+}
+
+.social-links > * {
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 1.2rem;
+  }
+  .footer small {
+    font-size: 1rem;
+  }
+
+  .footer a {
+    font-size: 1.5rem;
+  }
 }
