@@ -8,12 +8,13 @@ import { getRatedProducts } from "../../../helpers/filter-functions/ratings";
 import { getPricedProducts } from "../../../helpers/filter-functions/price";
 import { getSortedProducts } from "../../../helpers/filter-functions/sort";
 import { getSearchedProducts } from "../../../helpers/searchedProducts";
-// import { BsSlack } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
+import { useUserData } from "../../../contexts/UserDataProvider";
 
 export const ProductListingSection = () => {
   const { state } = useData();
+  const { addToCartHandler, addToWishlistHandler } = useUserData();
 
   const {
     allProductsFromApi,
@@ -52,6 +53,7 @@ export const ProductListingSection = () => {
 
         return (
           <Tilt
+            key={product._id}
             tiltMaxAngleX={5}
             tiltMaxAngleY={5}
             glareEnable={false}
@@ -90,8 +92,16 @@ export const ProductListingSection = () => {
               </div>
 
               <div className="product-card-buttons">
-                <button className="cart-btn">Add To Cart</button>
-                <button className="wishlist-btn">
+                <button
+                  onClick={() => addToCartHandler(product)}
+                  className="cart-btn"
+                >
+                  Add To Cart
+                </button>
+                <button
+                  onClick={() => addToWishlistHandler(product)}
+                  className="wishlist-btn"
+                >
                   <AiOutlineHeart color={"rgb(174, 174, 90)"} size={30} />
                 </button>
               </div>

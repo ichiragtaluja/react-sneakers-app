@@ -39,6 +39,8 @@ export function DataProvider({ children }) {
   };
 
   useEffect(() => {
+
+    console.log("from data provider")
     getAllSneakers();
 
     getCategories();
