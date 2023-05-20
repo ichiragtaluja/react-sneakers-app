@@ -33,9 +33,9 @@ export const Filter = () => {
           </span>
           <h2>Filters</h2>
 
-          {isFilterMenuOn && (
+          
             <button
-              className="reset-btn"
+              className={isFilterMenuOn ? "reset-btn" : "reset-btn-hide"}
               onClick={() =>
                 dispatch({
                   type: "RESET",
@@ -50,7 +50,7 @@ export const Filter = () => {
             >
               Reset
             </button>
-          )}
+          
         </div>
 
         <div

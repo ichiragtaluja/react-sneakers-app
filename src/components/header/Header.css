@@ -1,11 +1,14 @@
 nav {
   /* border: 1px solid black; */
+  position: sticky;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   padding: 1rem;
   width: 100%;
   background-color: rgb(153, 153, 56);
+  top: 0;
+  z-index: 1;
 }
 
 .nav-logo-home-button {
