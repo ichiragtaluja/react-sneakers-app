@@ -1,6 +1,6 @@
 .login-container {
   padding: 2em;
-  border: 1px solid rgb(228, 228, 228);
+  /* border: 1px solid rgb(228, 228, 228); */
   width: 70vw;
   margin: auto;
   margin-top: 15vh;
@@ -8,12 +8,13 @@
   flex-flow: column nowrap;
   height: 450px;
   border-radius: 10px;
+  box-shadow: 0px 2px 33px 3px rgb(234, 234, 234);
 }
 
 .login-container > h2 {
   /* border: 1px solid black; */
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .login-body {
@@ -39,7 +40,7 @@
   border: 1px solid rgb(210, 210, 210);
 }
 
-.login-container .login-container .input-container {
+.login-container .input-container {
   display: flex;
   align-items: center;
   font-size: 1rem;
@@ -91,9 +92,9 @@
   padding: 10px;
   border-radius: 5px;
   font-weight: 600;
-  /* border: .9px solid rgb(178, 178, 106); */
+
   border: none;
-  /* background-color: rgb(231, 231, 231); */
+
   color: rgb(0, 0, 0);
 }
 
@@ -110,6 +111,7 @@
   margin: 0 auto;
   font-size: 0.8rem;
   color: rgb(144, 144, 144);
+  text-decoration: none;
 }
 
 .input-container {

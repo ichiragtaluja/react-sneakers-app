@@ -84,14 +84,38 @@ export const Signup = () => {
               type={hidePassword ? "password" : "text"}
             />{" "}
             {!hidePassword ? (
-              <BsEye onClick={() => setHidePassword(!hidePassword)} />
+              <BsEye className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
             ) : (
-              <BsEyeSlash onClick={() => setHidePassword(!hidePassword)} />
+              <BsEyeSlash className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
             )}
           </div>
         </div>
 
-        <div className="first-name-container">
+        <div className="password-container">
+          <label htmlFor="password">Confirm Password</label>
+          <div className="input-container">
+            <input
+              required
+              onChange={(e) =>
+                setSignupCredential({
+                  ...signupCredential,
+                  password: e.target.value,
+                })
+              }
+              id="confirm-password"
+              minlength="8"
+              placeholder="Enter Confirm Password"
+              type={hidePassword ? "password" : "text"}
+            />{" "}
+            {!hidePassword ? (
+              <BsEye className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
+            ) : (
+              <BsEyeSlash className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
+            )}
+          </div>
+        </div>
+
+        <div className="name-container">
           <label htmlFor="first-name">First Name</label>
           <input
             onChange={(e) =>
@@ -106,7 +130,7 @@ export const Signup = () => {
           />
         </div>
 
-        <div className="last-name-container">
+        <div className="name-container">
           <label htmlFor="last-name">Last Name</label>
           <input
             onChange={(e) =>
@@ -130,9 +154,9 @@ export const Signup = () => {
           </div>
         </div>
 
-        <div className="login-btn-container">
-          <input value="Sign up" type="submit" />
-          <button>Login with test credentials</button>
+        <div className="signup-btn-container">
+          <input value="Sign Up" type="submit" />
+          <button>Login with Test Credentials</button>
         </div>
         <Link to="/login">Already have an account?</Link>
       </form>

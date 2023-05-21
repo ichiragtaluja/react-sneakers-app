@@ -1,12 +1,14 @@
 .signup-container {
   padding: 2em;
-  border: 1px solid black;
+  /* border: 1px solid rgb(228, 228, 228); */
   width: 70vw;
   margin: auto;
-  margin-top: 15vh;
+  margin-top: 12vh;
   display: flex;
   flex-flow: column nowrap;
-  height: 50vh;
+  height: 600px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 33px 3px rgb(234, 234, 234);
 }
 
 .signup-body {
@@ -16,10 +18,56 @@
   justify-content: space-around;
 }
 
-.email-container {
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.signup-container .email-container {
   display: flex;
   flex-flow: column nowrap;
 }
+
+.signup-container .email-container > label {
+  margin-bottom: 5px;
+}
+
+.signup-container .email-container input {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(210, 210, 210);
+}
+
+.signup-container .input-container {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.signup-container .password-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.signup-container .password-container > label {
+  margin-bottom: 5px;
+}
+
+.signup-container .password-container .input-container {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(210, 210, 210);
+}
+
+.signup-container .hide-show-password-eye {
+  margin-right: 3px;
+  color: rgb(127, 127, 127);
+}
+
+.signup-container .confirm-password-container > label {
+  margin-bottom: 5px;
+}
+
 .password-container {
   display: flex;
   flex-flow: column nowrap;
@@ -29,14 +77,42 @@
   display: flex;
   flex-flow: column nowrap;
 }
+
+.signup-container .signup-btn-container button {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+
+  border: none;
+
+  color: rgb(0, 0, 0);
+}
+
+.signup-container .signup-btn-container input {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+
+  border: none;
+
+  border: none;
+  margin-bottom: 10px;
+  color: white;
+
+  background-color: rgb(188, 188, 88);
+}
+
 .remember-me-container {
   display: flex;
   justify-content: space-between;
 }
 
 .signup-body > a {
-  border: 1px solid black;
   margin: 0 auto;
+
+  font-size: 0.8rem;
+  color: rgb(144, 144, 144);
+  text-decoration: none;
 }
 
 .input-container {
@@ -54,14 +130,19 @@
   outline: none;
 }
 
-.first-name-container {
+.name-container {
   display: flex;
   flex-flow: column nowrap;
 }
 
-.last-name-container {
-  display: flex;
-  flex-flow: column nowrap;
+.signup-container .name-container > label {
+  margin-bottom: 5px;
+}
+
+.signup-container .name-container input {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(210, 210, 210);
 }
 
 @media (min-width: 768px) {
