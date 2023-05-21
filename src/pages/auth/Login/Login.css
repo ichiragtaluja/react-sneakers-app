@@ -1,7 +1,7 @@
 .login-container {
   padding: 2em;
   /* border: 1px solid rgb(228, 228, 228); */
-  width: 70vw;
+  width: 350px;
   margin: auto;
   margin-top: 15vh;
   display: flex;
@@ -131,7 +131,7 @@
 
 @media (min-width: 868px) {
   .login-container {
-    width: 40vw;
+    width: 400px;
   }
 
   .remember-me-container {

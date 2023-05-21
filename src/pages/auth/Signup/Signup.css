@@ -1,7 +1,7 @@
 .signup-container {
   padding: 2em;
   /* border: 1px solid rgb(228, 228, 228); */
-  width: 70vw;
+  width: 350px;
   margin: auto;
   margin-top: 12vh;
   display: flex;
@@ -147,6 +147,6 @@
 
 @media (min-width: 768px) {
   .signup-container {
-    width: 40vw;
+    width: 400px;
   }
 }
