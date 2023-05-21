@@ -45,7 +45,7 @@ export const Login = () => {
         className="login-body"
       >
         <div className="email-container">
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">Email</label>
           <input
             value={loginCredential.email}
             required
@@ -56,7 +56,7 @@ export const Login = () => {
               })
             }
             id="email"
-            placeholder="Enter Email"
+            placeholder="Email Address"
             type="email"
           />
         </div>
@@ -74,13 +74,19 @@ export const Login = () => {
                 })
               }
               id="password"
-              placeholder="Enter Password"
+              placeholder="Password"
               type={hidePassword ? "password" : "text"}
             />{" "}
             {!hidePassword ? (
-              <BsEye onClick={() => setHidePassword(!hidePassword)} />
+              <BsEye
+                className="hide-show-password-eye"
+                onClick={() => setHidePassword(!hidePassword)}
+              />
             ) : (
-              <BsEyeSlash onClick={() => setHidePassword(!hidePassword)} />
+              <BsEyeSlash
+                className="hide-show-password-eye"
+                onClick={() => setHidePassword(!hidePassword)}
+              />
             )}
           </div>
         </div>
@@ -88,10 +94,10 @@ export const Login = () => {
         <div className="remember-me-container">
           <div>
             <input name="remember-me" type="checkbox" />
-            <label htmlFor="remember-me">Remember-me</label>
+            <label htmlFor="remember-me">Keep me signed in</label>
           </div>
 
-          <p>forgot your password?</p>
+          <p>Forgot your password?</p>
         </div>
 
         <div className="login-btn-container">
@@ -101,10 +107,12 @@ export const Login = () => {
               loginHandler(e, "adarshbalika@gmail.com", "adarshbalika");
             }}
           >
-            Login with test credentials
+            Login with Test Credentials
           </button>
         </div>
-        <Link to="/signup">Create a new account?</Link>
+        <Link className="new-account" to="/signup">
+          Create a new account?
+        </Link>
       </form>
     </div>
   );

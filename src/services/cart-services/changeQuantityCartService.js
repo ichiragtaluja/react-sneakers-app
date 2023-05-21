@@ -6,7 +6,7 @@ export const changeQuantityCartService = async (
   type
 ) => {
   return await axios.post(
-    `/api/user/cart/:${productId}`,
+    `/api/user/cart/${productId}`,
 
     {
       action: {

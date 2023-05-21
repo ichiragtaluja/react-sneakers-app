@@ -2,7 +2,7 @@ import "./ProductListingSection.css";
 import Tilt from "react-parallax-tilt";
 import React from "react";
 import { useData } from "../../../contexts/DataProvider";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getCategoryWiseProducts } from "../../../helpers/filter-functions/category";
 import { getRatedProducts } from "../../../helpers/filter-functions/ratings";
 import { getPricedProducts } from "../../../helpers/filter-functions/price";
@@ -14,7 +14,8 @@ import { useUserData } from "../../../contexts/UserDataProvider";
 
 export const ProductListingSection = () => {
   const { state } = useData();
-  const { addToCartHandler, addToWishlistHandler } = useUserData();
+  const { addToCartHandler, addToWishlistHandler, isProductInCart } =
+    useUserData();
 
   const {
     allProductsFromApi,
@@ -22,6 +23,8 @@ export const ProductListingSection = () => {
     inputSearch,
     filters: { rating, categories, price, sort },
   } = state;
+
+  const navigate = useNavigate();
 
   const searchedProducts = getSearchedProducts(allProductsFromApi, inputSearch);
 
@@ -93,10 +96,14 @@ export const ProductListingSection = () => {
 
               <div className="product-card-buttons">
                 <button
-                  onClick={() => addToCartHandler(product)}
+                  onClick={() =>
+                    !isProductInCart(product)
+                      ? addToCartHandler(product)
+                      : navigate("/cart")
+                  }
                   className="cart-btn"
                 >
-                  Add To Cart
+                  {!isProductInCart(product) ? "Add To Cart" : "Go to Cart"}
                 </button>
                 <button
                   onClick={() => addToWishlistHandler(product)}

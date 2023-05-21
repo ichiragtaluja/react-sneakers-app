@@ -4,6 +4,9 @@ import { getCartService } from "../services/cart-services/getCartService";
 import { useAuth } from "./AuthContext";
 import { getWishlistService } from "../services/wishlist-services/getWishlistService";
 import { addToWishlistService } from "../services/wishlist-services/addToWishlistService";
+import { removeFromWishlistService } from "../services/wishlist-services/removeFromWishlist";
+import axios from "axios";
+import { removeFromCartService } from "../services/cart-services/removeFromCartService";
 
 const UserDataContext = createContext();
 
@@ -54,11 +57,36 @@ export function UserProvider({ children }) {
     } catch (error) {}
   };
 
+  const removeFromCartHandler = async (product) => {
+    const response = removeFromCartService(product._id, auth.token);
+    dispatch({ type: "SET_CART", payload: (await response).data.cart });
+  };
+
   const getWishlistProducts = async () => {
     try {
       const response = await getWishlistService(auth.token);
       dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
     } catch (error) {}
+  };
+
+  const removeFromWishlistHandler = async (product) => {
+    const response = await removeFromWishlistService(product._id, auth.token);
+    dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+  };
+
+  const isProductInCart = (product) => {
+    const found = userDataState.cartProducts.find(
+      (item) => item._id === product._id
+    );
+    return found ? true : false;
+  };
+
+
+  const isProductInWishlist = (product) => {
+    const found = userDataState.wishlistProducts.find(
+      (item) => item._id === product._id
+    );
+    return found ? true : false;
   };
 
   useEffect(() => {
@@ -73,6 +101,10 @@ export function UserProvider({ children }) {
         dispatch,
         addToCartHandler,
         addToWishlistHandler,
+        removeFromWishlistHandler,
+        isProductInCart,
+        removeFromCartHandler,
+        isProductInWishlist
       }}
     >
       {children}

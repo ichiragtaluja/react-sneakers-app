@@ -1,12 +1,19 @@
 .login-container {
   padding: 2em;
-  border: 1px solid black;
+  border: 1px solid rgb(228, 228, 228);
   width: 70vw;
   margin: auto;
   margin-top: 15vh;
   display: flex;
   flex-flow: column nowrap;
-  height: 40vh;
+  height: 450px;
+  border-radius: 10px;
+}
+
+.login-container > h2 {
+  /* border: 1px solid black; */
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 .login-body {
@@ -16,27 +23,93 @@
   justify-content: space-around;
 }
 
-.email-container {
+.login-container .email-container {
+  /* border: 1px solid black; */
   display: flex;
   flex-flow: column nowrap;
 }
-.password-container {
+
+.login-container .email-container > label {
+  margin-bottom: 5px;
+}
+
+.login-container .email-container input {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(210, 210, 210);
+}
+
+.login-container .login-container .input-container {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.login-container .password-container {
   display: flex;
   flex-flow: column nowrap;
+}
+
+.login-container .password-container > label {
+  margin-bottom: 5px;
+}
+
+.login-container .password-container .input-container {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(210, 210, 210);
+}
+
+.login-container .hide-show-password-eye {
+  margin-right: 3px;
+  color: rgb(127, 127, 127);
+}
+
+.remember-me-container {
+  display: flex;
+  flex-flow: column nowrap;
+
+  font-size: 0.8rem;
+  color: rgb(95, 95, 95);
+}
+
+.remember-me-container input {
+  border-color: rgb(189, 189, 189);
+  margin-right: 7px;
+  margin-bottom: 10px;
+}
+.remember-me-container p {
+  color: rgb(179, 179, 179);
 }
 
 .login-btn-container {
   display: flex;
   flex-flow: column nowrap;
 }
-.remember-me-container {
-  display: flex;
-  justify-content: space-between;
+
+.login-container .login-btn-container button {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  /* border: .9px solid rgb(178, 178, 106); */
+  border: none;
+  /* background-color: rgb(231, 231, 231); */
+  color: rgb(0, 0, 0);
+}
+
+.login-container .login-btn-container :first-child {
+  border: none;
+  margin-bottom: 10px;
+  color: white;
+
+  background-color: rgb(188, 188, 88);
 }
 
 .login-body > a {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
+  font-size: 0.8rem;
+  color: rgb(144, 144, 144);
 }
 
 .input-container {
@@ -54,8 +127,13 @@
   outline: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 868px) {
   .login-container {
     width: 40vw;
+  }
+
+  .remember-me-container {
+    flex-flow: row nowrap;
+    justify-content: space-between;
   }
 }
