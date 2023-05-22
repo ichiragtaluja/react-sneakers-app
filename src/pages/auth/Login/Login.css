@@ -72,6 +72,7 @@
 
   font-size: 0.8rem;
   color: rgb(95, 95, 95);
+
 }
 
 .remember-me-container input {
@@ -98,7 +99,12 @@
   color: rgb(0, 0, 0);
 }
 
-.login-container .login-btn-container :first-child {
+.login-container .login-btn-container input {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+
+  color: rgb(0, 0, 0);
   border: none;
   margin-bottom: 10px;
   color: white;
@@ -118,6 +124,14 @@
   border: 1px solid black;
   display: flex;
   justify-content: space-between;
+}
+
+.login-body .error {
+  color: red;
+  font-size: .8rem;
+  padding: 0;
+ 
+  
 }
 
 .input-container input {

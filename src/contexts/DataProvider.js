@@ -26,6 +26,8 @@ export function DataProvider({ children }) {
     } catch (error) {}
   };
 
+
+
   const getCategories = async () => {
     try {
       const response = await getAllCategories();
@@ -43,6 +45,8 @@ export function DataProvider({ children }) {
 
     getCategories();
   }, []);
+
+  console.log("1", state.getAllProductsFromApi)
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

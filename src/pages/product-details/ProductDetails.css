@@ -1,3 +1,17 @@
+.products-page-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.product-details-image {
+  border: 1px solid black;
+}
+
 .product-details-image img {
   width: 60vw;
+}
+
+.products-page-container .product-details-description {
+  border: 1px solid black;
 }

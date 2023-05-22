@@ -10,6 +10,7 @@ import { loginService } from "../../../services/auth-services/loginService";
 export const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const { auth, setAuth } = useAuth();
+  const [error, setError] = useState("");
 
   const [loginCredential, setLoginCredential] = useState({
     email: "",
@@ -22,18 +23,23 @@ export const Login = () => {
 
   const loginHandler = async (e, email, password) => {
     e.preventDefault();
-    setLoginCredential({ email, password });
-    const response = await loginService(email, password);
+    try {
+      setLoginCredential({ email, password });
+      const response = await loginService(email, password);
 
-    if (response.status === 200) {
-      const encodedToken = response.data.encodedToken;
+      console.log("res", response);
+      if (response.status === 200) {
+        const encodedToken = response.data.encodedToken;
 
-      setAuth({ token: encodedToken, isAuth: true });
+        setAuth({ token: encodedToken, isAuth: true });
 
-      localStorage.setItem("token", encodedToken);
-      localStorage.setItem("isAuth", true);
+        localStorage.setItem("token", encodedToken);
+        localStorage.setItem("isAuth", true);
 
-      navigate(location?.state?.from.pathname || "/");
+        navigate(location?.state?.from.pathname || "/");
+      }
+    } catch (error) {
+      setError(error.response.data.errors[0]);
     }
   };
 
@@ -48,7 +54,7 @@ export const Login = () => {
           <label htmlFor="email">Email</label>
           <input
             value={loginCredential.email}
-            required
+            // required
             onChange={(e) =>
               setLoginCredential({
                 ...loginCredential,
@@ -99,9 +105,9 @@ export const Login = () => {
 
           <p>Forgot your password?</p>
         </div>
-
+        {error && <span className="error">{error}</span>}
         <div className="login-btn-container">
-          <button type="submit">Login</button>
+          <input value="Login" type="submit" />
           <button
             onClick={(e) => {
               loginHandler(e, "adarshbalika@gmail.com", "adarshbalika");

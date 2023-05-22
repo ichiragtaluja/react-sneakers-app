@@ -11,11 +11,14 @@ import { getSearchedProducts } from "../../../helpers/searchedProducts";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { useUserData } from "../../../contexts/UserDataProvider";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export const ProductListingSection = () => {
   const { state } = useData();
   const { addToCartHandler, addToWishlistHandler, isProductInCart } =
     useUserData();
+
+  const { auth } = useAuth();
 
   const {
     allProductsFromApi,
@@ -41,6 +44,7 @@ export const ProductListingSection = () => {
       {sortedProducts.map((product) => {
         const {
           _id,
+          id,
           name,
           original_price,
           discounted_price,
@@ -64,7 +68,7 @@ export const ProductListingSection = () => {
             scale={1.02}
           >
             <div className="product-card" key={_id}>
-              <Link to={`/product-details/${_id}`}>
+              <Link to={`/product-details/${id}`}>
                 <div className="product-card-image">
                   <Tilt
                     transitionSpeed={2000}
@@ -97,7 +101,9 @@ export const ProductListingSection = () => {
               <div className="product-card-buttons">
                 <button
                   onClick={() =>
-                    !isProductInCart(product)
+                    !auth.isAuth
+                      ? navigate("/login")
+                      : !isProductInCart(product)
                       ? addToCartHandler(product)
                       : navigate("/cart")
                   }
@@ -106,7 +112,11 @@ export const ProductListingSection = () => {
                   {!isProductInCart(product) ? "Add To Cart" : "Go to Cart"}
                 </button>
                 <button
-                  onClick={() => addToWishlistHandler(product)}
+                  onClick={() =>
+                    !auth.isAuth
+                      ? navigate("/login")
+                      : addToWishlistHandler(product)
+                  }
                   className="wishlist-btn"
                 >
                   <AiOutlineHeart color={"rgb(174, 174, 90)"} size={30} />

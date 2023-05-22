@@ -84,9 +84,15 @@ export const Signup = () => {
               type={hidePassword ? "password" : "text"}
             />{" "}
             {!hidePassword ? (
-              <BsEye className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
+              <BsEye
+                className="hide-show-password-eye"
+                onClick={() => setHidePassword(!hidePassword)}
+              />
             ) : (
-              <BsEyeSlash className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
+              <BsEyeSlash
+                className="hide-show-password-eye"
+                onClick={() => setHidePassword(!hidePassword)}
+              />
             )}
           </div>
         </div>
@@ -104,13 +110,19 @@ export const Signup = () => {
               }
               id="confirm-password"
               minlength="8"
-              placeholder="Enter Confirm Password"
+              placeholder="Enter Password Again"
               type={hidePassword ? "password" : "text"}
             />{" "}
             {!hidePassword ? (
-              <BsEye className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
+              <BsEye
+                className="hide-show-password-eye"
+                onClick={() => setHidePassword(!hidePassword)}
+              />
             ) : (
-              <BsEyeSlash className="hide-show-password-eye" onClick={() => setHidePassword(!hidePassword)} />
+              <BsEyeSlash
+                className="hide-show-password-eye"
+                onClick={() => setHidePassword(!hidePassword)}
+              />
             )}
           </div>
         </div>
@@ -125,7 +137,7 @@ export const Signup = () => {
               })
             }
             id="first-name"
-            placeholder="Enter first Name"
+            placeholder="Enter First Name"
             type="text"
           />
         </div>
@@ -140,7 +152,7 @@ export const Signup = () => {
               })
             }
             id="last-name"
-            placeholder="Enter last Name"
+            placeholder="Enter Last Name"
             type="text"
           />
         </div>

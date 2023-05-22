@@ -3,10 +3,10 @@
   /* border: 1px solid rgb(228, 228, 228); */
   width: 350px;
   margin: auto;
-  margin-top: 12vh;
+  margin-top: 10vh;
   display: flex;
   flex-flow: column nowrap;
-  height: 600px;
+  height: 630px;
   border-radius: 10px;
   box-shadow: 0px 2px 33px 3px rgb(234, 234, 234);
 }
