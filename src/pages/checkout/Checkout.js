@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { AddressProvider, useAddress } from "../../contexts/AddressProvider";
+import { useUserData } from "../../contexts/UserDataProvider";
 import { AddressModal } from "./AddressModal/AddressModal";
 import "./Checkout.css";
 
 export const Checkout = () => {
+  const { userDataState } = useUserData();
+  console.log(userDataState.cartProducts);
   const {
     addressForm,
     setAddressForm,
@@ -14,6 +17,8 @@ export const Checkout = () => {
     editAddressIndex,
     setEditAddressIndex,
   } = useAddress();
+
+  const { totalDiscountedPrice, totalOriginalPrice } = useUserData();
 
   const [deliveryAddressIndex, setDeliveryAddressIndex] = useState(0);
 
@@ -69,9 +74,47 @@ export const Checkout = () => {
           {isAddressModalOpen && <AddressModal />}
         </div>
         <div className="order-details-container">
-          <div>
+          <div className="product-details-container">
             <h3>Order Details</h3>
-            <div className="ordered-products-container"></div>
+            <div className="ordered-products-container">
+              {userDataState.cartProducts?.map(
+                ({ id, name, qty, discounted_price }) => (
+                  <div key={id} className="ordered-product-card">
+                    <span>{name}</span>
+                    <span>{qty}</span>
+                    <span>${discounted_price}</span>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="billing-container">
+            <h3>Billing</h3>
+            <div price-details-container>
+              <div>
+                <span className="subtotal">Subtotal</span>
+                <span>{totalOriginalPrice}</span>
+              </div>
+
+              <div>
+                <span className="subtotal">Discount</span>
+                <span>{totalOriginalPrice - totalDiscountedPrice}</span>
+              </div>
+
+              <div>
+                <span>Total before shipping</span>
+                <span>{totalDiscountedPrice}</span>
+              </div>
+              <div>
+                <span>Shipping</span>
+                <span>{}</span>
+              </div>
+              <div>
+                <span>Total</span>
+                <span>{}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
