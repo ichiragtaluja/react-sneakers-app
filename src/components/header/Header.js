@@ -10,17 +10,30 @@ import { GrSearch } from "react-icons/gr";
 import { useData } from "../../contexts/DataProvider";
 import { useAuth } from "../../contexts/AuthContext";
 import { CgShoppingCart } from "react-icons/cg";
+import { useUserData } from "../../contexts/UserDataProvider";
 
 export const Header = () => {
   const { auth } = useAuth();
   const { dispatch } = useData();
+  const { userDataState } = useUserData();
   const [showHamburger, setShowHamburger] = useState(true);
   const getActiveStyle = ({ isActive }) => {
     return { border: isActive ? "" : "" };
   };
 
-  const totalProductsInCart = 1;
-  const totalProductsInWishlist = 1;
+  const totalProductsInCart = userDataState.cartProducts?.reduce(
+    (acc, curr) => {
+      return acc + curr.qty;
+    },
+    0
+  );
+
+  const isProductInCart = () => (Number(totalProductsInCart) ? true : false);
+
+  const totalProductsInWishlist = userDataState.wishlistProducts.length;
+
+  const isProductInWishlist = () =>
+    Number(totalProductsInWishlist) ? true : false;
 
   return (
     <nav>
@@ -70,9 +83,11 @@ export const Header = () => {
         >
           <span>{!showHamburger ? "Wishlist" : ""}</span>
           <CgHeart size={25} className="wishlist" />{" "}
-          <span className="cart-count cart-count-mobile">
-            {totalProductsInCart}
-          </span>
+          {isProductInWishlist() && (
+            <span className="cart-count cart-count-mobile">
+              {totalProductsInWishlist}
+            </span>
+          )}
         </NavLink>
         <NavLink
           onClick={() => setShowHamburger(true)}
@@ -81,10 +96,12 @@ export const Header = () => {
         >
           <span>{!showHamburger ? "Cart" : ""}</span>
           <CgShoppingCart size={25} className="cart" />{" "}
-          <span className="cart-count cart-count-mobile">
-            {" "}
-            {totalProductsInWishlist}{" "}
-          </span>
+          {isProductInCart() && (
+            <span className="cart-count cart-count-mobile">
+              {" "}
+              {totalProductsInCart}{" "}
+            </span>
+          )}
         </NavLink>
       </div>
       {showHamburger && (

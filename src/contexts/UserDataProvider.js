@@ -81,7 +81,6 @@ export function UserProvider({ children }) {
     return found ? true : false;
   };
 
-
   const isProductInWishlist = (product) => {
     const found = userDataState.wishlistProducts.find(
       (item) => item._id === product._id
@@ -89,6 +88,7 @@ export function UserProvider({ children }) {
     return found ? true : false;
   };
 
+  console.log("wishliost", userDataState.wishlistProducts);
   useEffect(() => {
     getWishlistProducts();
     getCartProducts();
@@ -104,7 +104,7 @@ export function UserProvider({ children }) {
         removeFromWishlistHandler,
         isProductInCart,
         removeFromCartHandler,
-        isProductInWishlist
+        isProductInWishlist,
       }}
     >
       {children}

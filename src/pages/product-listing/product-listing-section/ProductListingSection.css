@@ -77,9 +77,9 @@
 .product-card-buttons {
   position: relative;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
-  z-index: 10;
+  z-index: 5;
 }
 .cart-btn {
   font-weight: 800;
