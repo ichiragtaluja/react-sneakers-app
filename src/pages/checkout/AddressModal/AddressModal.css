@@ -1,0 +1,19 @@
+.address-modal-container {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: auto;
+  border: 3px solid rgb(36, 182, 255);
+}
+
+.address-modal-container .address-input-container {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  margin: auto;
+  width: 400px;
+  height: 500px;
+  color: blue;
+}

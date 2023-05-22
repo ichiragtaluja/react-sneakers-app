@@ -30,19 +30,19 @@ import { v4 as uuid } from "uuid";
 
 export const categories = [
   {
-    _id: uuid(),
+    _id: "a",
     categoryName: "men",
     img: "/assets/images/category-images/hero-image-men-1.png",
   },
 
   {
-    _id: uuid(),
+    _id: "b",
     categoryName: "women",
     img: "/assets/images/category-images/hero-image-women-1.png",
   },
 
   {
-    _id: uuid(),
+    _id: "c",
     categoryName: "kid",
     img: "/assets/images/category-images/hero-image-kids-1.png",
   },

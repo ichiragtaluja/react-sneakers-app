@@ -88,7 +88,7 @@ export function UserProvider({ children }) {
     return found ? true : false;
   };
 
-  console.log("wishliost", userDataState.wishlistProducts);
+ 
   useEffect(() => {
     getWishlistProducts();
     getCartProducts();

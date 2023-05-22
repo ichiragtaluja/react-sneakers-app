@@ -11,6 +11,7 @@ import { RequiresAuth } from "./components/requires-auth/RequiresAuth";
 import { Signup } from "./pages/auth/Signup/Signup";
 import MockAPI from "./components/Mockman/Mockman";
 import { Logout } from "./pages/auth/Logout/Logout";
+import { Checkout } from "./pages/checkout/Checkout";
 
 function App() {
   return (
@@ -42,6 +43,15 @@ function App() {
         <Route
           path="/product-details/:productId"
           element={<ProductDetails />}
+        />
+
+<Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <Checkout />
+            </RequiresAuth>
+          }
         />
 
         <Route path="/mock-api" element={<MockAPI />} />

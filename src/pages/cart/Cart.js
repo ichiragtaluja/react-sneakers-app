@@ -1,6 +1,7 @@
 import "./Cart.css";
 import { changeQuantityCartService } from "../../services/cart-services/changeQuantityCartService";
 import { removeFromCartService } from "../../services/cart-services/removeFromCartService";
+import { Link } from "react-router-dom";
 
 import { useUserData } from "../../contexts/UserDataProvider";
 import { useAuth } from "../../contexts/AuthContext";
@@ -105,6 +106,7 @@ export const Cart = () => {
           <span>"Free"</span>
           <span>Total: </span>
           <span>{totalDiscountedPrice}</span>
+          <Link to="/checkout">Place Order</Link>
         </div>
       </div>
     </div>
