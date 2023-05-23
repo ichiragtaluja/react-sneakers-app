@@ -75,7 +75,10 @@ export const Cart = () => {
                   {/* <button onClick={() => removeFromCartHandler(product)}>
                     Remove to Cart
                   </button> */}
-                  <MdDelete size={25}onClick={() => removeFromCartHandler(product)} />
+                  <MdDelete
+                    size={25}
+                    onClick={() => removeFromCartHandler(product)}
+                  />
                   {/* <button
                     onClick={() =>
                       isProductInWishlist(product)
@@ -88,11 +91,13 @@ export const Cart = () => {
                       : "Remove From Wishlist"}
                   </button> */}
                   {!isProductInWishlist(product) ? (
-                    <AiOutlineHeart size={25}
+                    <AiOutlineHeart
+                      size={25}
                       onClick={() => addToWishlistHandler(product)}
                     />
                   ) : (
-                    <AiFillHeart size={25}
+                    <AiFillHeart
+                      size={25}
                       onClick={() => removeFromWishlistHandler(product)}
                     />
                   )}
@@ -102,15 +107,24 @@ export const Cart = () => {
           ))}
         </div>
         <div className="cart-price-container">
-          <span>Subtotal: </span>
-          <span>{totalOriginalPrice}</span>
-          <span>Discount: </span>
-          <span>{discountPercent()}%</span>
+          <h2>Summary</h2>
+          <div className="subtotal-container">
+            <span>Sub-total: </span>
+            <span>${totalOriginalPrice}</span>
+          </div>
+          <div className="discount-container">
+            <span>Discount: </span>
+            <span>{discountPercent().toFixed(1)}%</span>
+          </div>
+          <div className="shipping-container">
+            <span>Estimated Delivery & Handling:</span>
+            <span>Free</span>
+          </div>
+          <div className="total">
+            <span className="total-container">Total: </span>
+            <span>{totalDiscountedPrice}</span>
+          </div>
 
-          <span>Estimated Delivery & Handling:</span>
-          <span>"Free"</span>
-          <span>Total: </span>
-          <span>{totalDiscountedPrice}</span>
           <Link to="/checkout">Place Order</Link>
         </div>
       </div>
