@@ -93,6 +93,12 @@
   background-color: rgb(174, 174, 90);
 }
 
+.product-card-details .ratings {
+  font-size: .7rem;
+  margin-top: -5px;
+  margin-bottom: 12px
+}
+
 .wishlist-btn {
   /* position: absolute; */
   /* bottom: 31em; */

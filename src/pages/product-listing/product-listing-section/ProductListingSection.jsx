@@ -12,6 +12,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { useUserData } from "../../../contexts/UserDataProvider";
 import { useAuth } from "../../../contexts/AuthContext";
+import { BsFillStarFill } from "react-icons/bs";
 
 export const ProductListingSection = () => {
   const { state } = useData();
@@ -83,14 +84,16 @@ export const ProductListingSection = () => {
 
               <div className="product-card-details">
                 <h3>{name}</h3>
+                <p className="ratings">
+                  {rating}
+                  <BsFillStarFill color="orange" /> ({reviews} reviews){" "}
+                </p>
                 <div className="price-container">
                   <p className="original-price">${original_price}</p>
                   <p className="discount-price">${discounted_price}</p>
                 </div>
                 <p></p>
-                <p>
-                  Rating: {rating} ({reviews} reviews){" "}
-                </p>
+                
                 <p>Gender: {category_name}</p>
                 <div className="info">
                   {!is_stock && <p className="out-of-stock">Out of stock</p>}
