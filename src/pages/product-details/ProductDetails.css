@@ -13,7 +13,8 @@
   width: 90vw;
   object-fit: cover;
   height: 65vw;
-  margin-bottom: 100px;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .products-page-container .product-details-description {
@@ -164,6 +165,7 @@
     height: 300px;
     justify-content: space-between;
     line-height: 26px;
+    margin-top: -30px;
   }
 
   .tags {
