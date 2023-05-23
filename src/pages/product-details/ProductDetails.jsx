@@ -1,4 +1,6 @@
 import "./ProductDetails.css";
+import { BsFillStarFill } from "react-icons/bs";
+import Tilt from "react-parallax-tilt";
 
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -31,34 +33,66 @@ export const ProductDetails = () => {
   return (
     <>
       <div className="products-page-container">
-        <div className="product-details-image">
+        <Tilt
+          tiltEnable={false}
+          scale={1.05}
+          transitionSpeed={1000}
+          className="product-details-image"
+        >
           {" "}
           <img src={selectedProduct?.img} />
-        </div>
+        </Tilt>
+
         <div className="product-details-description">
-          <h1>{selectedProduct?.name}</h1>
-          <span>{selectedProduct?.category_name}</span>
-          <p>{selectedProduct?.description}</p>
-          <p>Size: {selectedProduct?.size}</p>
-          <div className="price-details">
-            <span>{selectedProduct?.original_price}</span>
-            <span>Price: ${selectedProduct?.discounted_price}</span>
-          </div>
+          <h1 className="product-name">{selectedProduct?.name}</h1>
+
           <div className="ratings-reviews">
-            <span>Rating: {selectedProduct?.rating}</span>{" "}
-            <span>{selectedProduct?.reviews} reviews</span>
-          </div>
-          <div className="tags">
-            <span className="in-stock">
-              {selectedProduct?.is_stock ? "In Stock" : "Out of stock"}
-            </span>
-            <span className="trending">
-              {selectedProduct?.trending ? "Trending" : ""}
+            <span></span>
+            <span>{selectedProduct?.rating}</span>{" "}
+            <BsFillStarFill color={"orange"} />
+            <span>
+              <span className="review">
+                ({selectedProduct?.reviews}) reviews{" "}
+              </span>
             </span>
           </div>
 
-          <button>Add to cart</button>
-          <button>Add to wishlist</button>
+          <p className="description-container">
+            <span>Description</span>: {selectedProduct?.description}
+          </p>
+
+          <span className="gender-container">
+            <span>Gender</span>: {selectedProduct?.category_name}
+          </span>
+          <p className="size-container">
+            <span>Size</span>: {selectedProduct?.size}
+          </p>
+          <div className="product-price-container">
+            <span className="product-original-price">
+              ${selectedProduct?.original_price}{" "}
+            </span>
+            <span className="product-discount-price">
+              {" "}
+              ${selectedProduct?.discounted_price}
+            </span>
+          </div>
+
+          <div className="tags">
+            {!selectedProduct?.is_stock && (
+              <span className="out-of-stock">
+                {selectedProduct?.is_stock ? "In Stock" : "Out of stock"}
+              </span>
+            )}
+            {selectedProduct?.trending && (
+              <span className="trending">
+                {selectedProduct?.trending ? "Trending" : ""}
+              </span>
+            )}
+          </div>
+          <div className="product-card-buttons-container">
+            <button className="add-to-cart-btn">Add to cart</button>
+            <button className="add-to-wishlist-btn">Add to wishlist</button>
+          </div>
         </div>
       </div>
     </>
