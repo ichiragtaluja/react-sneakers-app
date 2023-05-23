@@ -57,6 +57,16 @@ export const ProductDetails = () => {
             </span>
           </div>
 
+          <div className="product-price-container">
+            <span className="product-original-price">
+              ${selectedProduct?.original_price}{" "}
+            </span>
+            <span className="product-discount-price">
+              {" "}
+              ${selectedProduct?.discounted_price}
+            </span>
+          </div>
+
           <p className="description-container">
             <span>Description</span>: {selectedProduct?.description}
           </p>
@@ -67,15 +77,7 @@ export const ProductDetails = () => {
           <p className="size-container">
             <span>Size</span>: {selectedProduct?.size}
           </p>
-          <div className="product-price-container">
-            <span className="product-original-price">
-              ${selectedProduct?.original_price}{" "}
-            </span>
-            <span className="product-discount-price">
-              {" "}
-              ${selectedProduct?.discounted_price}
-            </span>
-          </div>
+          
 
           <div className="tags">
             {!selectedProduct?.is_stock && (
