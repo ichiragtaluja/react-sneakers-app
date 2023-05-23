@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProductListing.css";
 import { Filter } from "./components/filter/Filter";
-import { ProductListingSection } from "./product-listing-section/ProductListingSection";
+import { ProductListingSection } from "./components/product-listing-section/ProductListingSection";
 
 export const ProductListing = () => {
   return (

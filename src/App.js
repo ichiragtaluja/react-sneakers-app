@@ -1,7 +1,6 @@
 import "./App.css";
 import { Header } from "./components/header/Header";
 import { Home } from "./pages/home/Home";
-import { Wishlist } from "./pages/Wishlist";
 import { Cart } from "./pages/cart/Cart";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "./pages/auth/Login/Login";
@@ -12,6 +11,7 @@ import { Signup } from "./pages/auth/Signup/Signup";
 import MockAPI from "./components/Mockman/Mockman";
 import { Logout } from "./pages/auth/Logout/Logout";
 import { Checkout } from "./pages/checkout/Checkout";
+import { Wishlist } from "./pages/wishlist/Wishlist";
 
 function App() {
   return (
@@ -45,7 +45,7 @@ function App() {
           element={<ProductDetails />}
         />
 
-<Route
+        <Route
           path="/checkout"
           element={
             <RequiresAuth>

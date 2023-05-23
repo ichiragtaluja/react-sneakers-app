@@ -72,24 +72,12 @@ export const Cart = () => {
                   </button>
                 </div>
                 <div className="secondary-btn-section">
-                  {/* <button onClick={() => removeFromCartHandler(product)}>
-                    Remove to Cart
-                  </button> */}
+                  
                   <MdDelete
                     size={25}
                     onClick={() => removeFromCartHandler(product)}
                   />
-                  {/* <button
-                    onClick={() =>
-                      isProductInWishlist(product)
-                        ? removeFromWishlistHandler(product)
-                        : addToWishlistHandler(product)
-                    }
-                  >
-                    {!isProductInWishlist(product)
-                      ? "Add To Wishlist"
-                      : "Remove From Wishlist"}
-                  </button> */}
+                 
                   {!isProductInWishlist(product) ? (
                     <AiOutlineHeart
                       size={25}

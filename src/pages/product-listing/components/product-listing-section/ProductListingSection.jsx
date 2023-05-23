@@ -1,17 +1,17 @@
 import "./ProductListingSection.css";
 import Tilt from "react-parallax-tilt";
 import React from "react";
-import { useData } from "../../../contexts/DataProvider";
+import { useData } from "../../../../contexts/DataProvider";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { getCategoryWiseProducts } from "../../../helpers/filter-functions/category";
-import { getRatedProducts } from "../../../helpers/filter-functions/ratings";
-import { getPricedProducts } from "../../../helpers/filter-functions/price";
-import { getSortedProducts } from "../../../helpers/filter-functions/sort";
-import { getSearchedProducts } from "../../../helpers/searchedProducts";
+import { getCategoryWiseProducts } from "../../../../helpers/filter-functions/category";
+import { getRatedProducts } from "../../../../helpers/filter-functions/ratings";
+import { getPricedProducts } from "../../../../helpers/filter-functions/price";
+import { getSortedProducts } from "../../../../helpers/filter-functions/sort";
+import { getSearchedProducts } from "../../../../helpers/searchedProducts";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
-import { useUserData } from "../../../contexts/UserDataProvider";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useUserData } from "../../../../contexts/UserDataProvider";
+import { useAuth } from "../../../../contexts/AuthContext";
 import { BsFillStarFill } from "react-icons/bs";
 
 export const ProductListingSection = () => {
@@ -93,7 +93,7 @@ export const ProductListingSection = () => {
                   <p className="discount-price">${discounted_price}</p>
                 </div>
                 <p></p>
-                
+
                 <p>Gender: {category_name}</p>
                 <div className="info">
                   {!is_stock && <p className="out-of-stock">Out of stock</p>}
