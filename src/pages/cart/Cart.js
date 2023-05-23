@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { useUserData } from "../../contexts/UserDataProvider";
 import { useAuth } from "../../contexts/AuthContext";
 import { getCartService } from "../../services/cart-services/getCartService";
+import { MdDelete } from "react-icons/md";
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 
 export const Cart = () => {
   const { auth } = useAuth();
@@ -44,31 +47,56 @@ export const Cart = () => {
         <div className="cart-products-container">
           {userDataState.cartProducts.map((product) => (
             <div className="cart-product-card" key={product.name}>
-              <p>{product.name}</p>
-              <div className="count-btn-container">
-                <button onClick={() => cartCountHandler(product, "decrement")}>
-                  -
-                </button>
-                {product.qty}
-                <button onClick={() => cartCountHandler(product, "increment")}>
-                  +
-                </button>
-              </div>
               <div>
-                <button onClick={() => removeFromCartHandler(product)}>
-                  Remove to Cart
-                </button>
-                <button
-                  onClick={() =>
-                    isProductInWishlist(product)
-                      ? removeFromWishlistHandler(product)
-                      : addToWishlistHandler(product)
-                  }
-                >
-                  {!isProductInWishlist(product)
-                    ? "Add To Wishlist"
-                    : "Remove From Wishlist"}
-                </button>
+                <img className="cart-img" src={product.img} />
+              </div>
+              <div className="product-description">
+                <h3>{product.name}</h3>
+                <p>Price:${product.discounted_price}</p>
+                <p>Size: {product.size}</p>
+              </div>
+              <div className="button-section">
+                <div className="count-btn-container">
+                  <button
+                    className="counter-btn"
+                    onClick={() => cartCountHandler(product, "decrement")}
+                  >
+                    -
+                  </button>
+                  <span>{product.qty}</span>
+                  <button
+                    className="counter-btn"
+                    onClick={() => cartCountHandler(product, "increment")}
+                  >
+                    +
+                  </button>
+                </div>
+                <div className="secondary-btn-section">
+                  {/* <button onClick={() => removeFromCartHandler(product)}>
+                    Remove to Cart
+                  </button> */}
+                  <MdDelete size={25}onClick={() => removeFromCartHandler(product)} />
+                  {/* <button
+                    onClick={() =>
+                      isProductInWishlist(product)
+                        ? removeFromWishlistHandler(product)
+                        : addToWishlistHandler(product)
+                    }
+                  >
+                    {!isProductInWishlist(product)
+                      ? "Add To Wishlist"
+                      : "Remove From Wishlist"}
+                  </button> */}
+                  {!isProductInWishlist(product) ? (
+                    <AiOutlineHeart size={25}
+                      onClick={() => addToWishlistHandler(product)}
+                    />
+                  ) : (
+                    <AiFillHeart size={25}
+                      onClick={() => removeFromWishlistHandler(product)}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           ))}
