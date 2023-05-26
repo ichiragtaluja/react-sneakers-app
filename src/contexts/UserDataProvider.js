@@ -7,18 +7,25 @@ import { addToWishlistService } from "../services/wishlist-services/addToWishlis
 import { removeFromWishlistService } from "../services/wishlist-services/removeFromWishlist";
 import axios from "axios";
 import { removeFromCartService } from "../services/cart-services/removeFromCartService";
+import { getAddressListService } from "../services/address-services/getAddressListService";
 
 const UserDataContext = createContext();
 
 const initialUserData = {
   cartProducts: [],
   wishlistProducts: [],
+  addressList: [],
+  orders: [],
 };
 
 const userDataReducer = (state, action) => {
   switch (action.type) {
     case "SET_CART": {
       return { ...state, cartProducts: [...action.payload] };
+    }
+
+    case "SET_ADDRESS": {
+      return { ...state, addressList: [...action.payload] };
     }
 
     case "SET_WISHLIST": {
@@ -114,10 +121,17 @@ export function UserProvider({ children }) {
     return totalDiscount?.toFixed(2) * 100;
   };
 
- 
+  const getAddressList = async () => {
+    try {
+      const response = await getAddressListService(auth.token);
+      dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+    } catch (error) {}
+  };
+
   useEffect(() => {
     getWishlistProducts();
     getCartProducts();
+    getAddressList();
   }, []);
 
   return (
@@ -133,7 +147,7 @@ export function UserProvider({ children }) {
         isProductInWishlist,
         totalDiscountedPrice,
         totalOriginalPrice,
-        discountPercent
+        discountPercent,
       }}
     >
       {children}

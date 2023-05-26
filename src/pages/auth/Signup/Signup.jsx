@@ -10,6 +10,7 @@ import { signupService } from "../../../services/auth-services/signupService";
 
 export const Signup = () => {
   const [hidePassword, setHidePassword] = useState(true);
+  const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
 
   const { setAuth } = useAuth();
 
@@ -19,25 +20,40 @@ export const Signup = () => {
   const [signupCredential, setSignupCredential] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
     firstName: "",
     lastName: "",
   });
 
   const signupHandler = async () => {
     try {
-      const response = await signupService(
-        signupCredential.email,
-        signupCredential.password,
-        signupCredential.firstName,
-        signupCredential.lastName
-      );
-      const encodedToken = response.data.encodedToken;
+      if (signupCredential.password === signupCredential.confirmPassword) {
+        const response = await signupService(
+          signupCredential.email,
+          signupCredential.password,
+          signupCredential.firstName,
+          signupCredential.lastName
+        );
 
-      setAuth({ token: encodedToken, isAuth: true });
+        console.log(response);
 
-      localStorage.setItem("token", encodedToken);
-      localStorage.setItem("isAuth", true);
-      navigate("/");
+        const encodedToken = response.data.encodedToken;
+        const firstName = response.data.createdUser.firstName;
+        const lastName = response.data.createdUser.lastName;
+        const email = response.data.createdUser.email;
+
+        setAuth({
+          token: encodedToken,
+          isAuth: true,
+          firstName,
+          lastName,
+          email,
+        });
+
+        localStorage.setItem("token", encodedToken);
+        localStorage.setItem("isAuth", true);
+        navigate("/");
+      }
     } catch (error) {}
   };
 
@@ -79,7 +95,7 @@ export const Signup = () => {
                 })
               }
               id="password"
-              minlength="8"
+              minLength="8"
               placeholder="Enter Password"
               type={hidePassword ? "password" : "text"}
             />{" "}
@@ -97,26 +113,26 @@ export const Signup = () => {
           </div>
         </div>
 
-        <div className="password-container">
-          <label htmlFor="password">Confirm Password</label>
+        <div className="confirm-password-container">
+          <label htmlFor="confirm-password">Confirm Password</label>
           <div className="input-container">
             <input
               required
               onChange={(e) =>
                 setSignupCredential({
                   ...signupCredential,
-                  password: e.target.value,
+                  confirmPassword: e.target.value,
                 })
               }
               id="confirm-password"
-              minlength="8"
+              minLength="8"
               placeholder="Enter Password Again"
               type={hidePassword ? "password" : "text"}
             />{" "}
             {!hidePassword ? (
               <BsEye
                 className="hide-show-password-eye"
-                onClick={() => setHidePassword(!hidePassword)}
+                onClick={() => setHideConfirmPassword(!hideConfirmPassword)}
               />
             ) : (
               <BsEyeSlash

@@ -1,14 +1,21 @@
 import "./AddressModal.css";
-
 import React from "react";
 import { useAddress } from "../../../contexts/AddressProvider";
 import { useState } from "react";
+import { addAddressService } from "../../../services/address-services/addAddressService";
+import { useAuth } from "../../../contexts/AuthContext";
+import { useUserData } from "../../../contexts/UserDataProvider";
+import { updateAddressService } from "../../../services/address-services/updateAddressService";
+import { removeAddressService } from "../../../services/address-services/removeAddressService";
 
 export const AddressModal = () => {
+  const { auth } = useAuth();
+  const { userDataState, dispatch } = useUserData();
+
   const dummyAddress = {
-    name: "Ritika Dhanda",
+    name: "Chirag",
     street: "abc",
-    city: "Pickle Lake",
+    city: "Toronto",
     state: "Ontario",
     country: "Canada",
     pincode: "135001",
@@ -21,9 +28,21 @@ export const AddressModal = () => {
     setIsAddressModalOpen,
     addressForm,
     setAddressForm,
-    addresses,
-    setAddresses,
   } = useAddress();
+
+ 
+
+  const updateAddress = async (address) => {
+    const response = await updateAddressService(address, auth.token);
+    dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+  };
+
+  const addAddress = async (address) => {
+    const response = await addAddressService(address, auth.token);
+
+    dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+  };
+
   return (
     <div className="address-modal-container">
       <div className="address-input-container">
@@ -32,7 +51,7 @@ export const AddressModal = () => {
           onSubmit={(e) => {
             if (!editAddressIndex.length) {
               e.preventDefault();
-              setAddresses([...addresses, { ...addressForm }]);
+              addAddress(addressForm);
               setAddressForm({
                 name: "",
                 street: "",
@@ -46,11 +65,13 @@ export const AddressModal = () => {
             } else {
               e.preventDefault();
 
-              setAddresses(
-                addresses.map((add, index) =>
-                  index !== editAddressIndex[0] ? add : addressForm
-                )
-              );
+              // setAddresses(
+              //   addresses.map((add, index) =>
+              //     index !== editAddressIndex[0] ? add : addressForm
+              //   )
+              // );
+
+              updateAddress(addressForm)
               setAddressForm({
                 name: "",
                 street: "",
@@ -135,6 +156,7 @@ export const AddressModal = () => {
         <button
           onClick={() => {
             setAddressForm({ ...dummyAddress });
+
             // setAddresses([...addresses, { ...dummyAddress }]);
           }}
         >

@@ -59,6 +59,12 @@
   border: 1px solid rgb(210, 210, 210);
 }
 
+.signup-container .confirm-password-container .input-container {
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid rgb(210, 210, 210);
+}
+
 .signup-container .hide-show-password-eye {
   margin-right: 3px;
   color: rgb(127, 127, 127);

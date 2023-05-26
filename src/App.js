@@ -12,6 +12,10 @@ import MockAPI from "./components/Mockman/Mockman";
 import { Logout } from "./pages/auth/Logout/Logout";
 import { Checkout } from "./pages/checkout/Checkout";
 import { Wishlist } from "./pages/wishlist/Wishlist";
+import { UserProfile } from "./pages/UserProfile/UserProfile";
+import { Profile } from "./pages/UserProfile/Profile/Profile";
+import { Addresses } from "./pages/UserProfile/Addresses/Addresses";
+import { Orders } from "./pages/UserProfile/Orders/Orders";
 
 function App() {
   return (
@@ -53,6 +57,18 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="/profile" element={<UserProfile />}>
+          <Route
+            path="/profile"
+            element={
+              <RequiresAuth>
+                <Profile />
+              </RequiresAuth>
+            }
+          />
+          <Route path="/profile/orders" element={<Orders />} />
+          <Route path="/profile/addresses" element={<Addresses />} />
+        </Route>
 
         <Route path="/mock-api" element={<MockAPI />} />
       </Routes>

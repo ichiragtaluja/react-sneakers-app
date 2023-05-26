@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { addAddressService } from "../services/address-services/addAddressService";
 
 const AddressContext = createContext();
 
@@ -17,6 +18,7 @@ export function AddressProvider({ children }) {
   //   });
 
   const [addressForm, setAddressForm] = useState({
+    _id:"",
     name: "",
     street: "",
     city: "",
@@ -26,29 +28,32 @@ export function AddressProvider({ children }) {
     phone: "",
   });
 
+
+
+
   const [editAddressIndex, setEditAddressIndex] = useState([]);
 
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
-  const [addresses, setAddresses] = useState([
-    {
-      name: "Chirag",
-      street: "Model Town",
-      city: "Yamunanagar",
-      state: "Haryana",
-      country: "India",
-      pincode: "135001",
-      phone: "9717239115",
-    },
-  ]);
+  // const [addresses, setAddresses] = useState([
+  //   {
+  //     name: "Chirag",
+  //     street: "Model Town",
+  //     city: "Yamunanagar",
+  //     state: "Haryana",
+  //     country: "India",
+  //     pincode: "135001",
+  //     phone: "9717239115",
+  //   },
+  // ]);
 
   return (
     <AddressContext.Provider
       value={{
         editAddressIndex,
         setEditAddressIndex,
-        addresses,
-        setAddresses,
+        // addresses,
+        // setAddresses,
         addressForm,
         setAddressForm,
         isAddressModalOpen,

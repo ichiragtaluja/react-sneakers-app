@@ -27,11 +27,19 @@ export const Login = () => {
       setLoginCredential({ email, password });
       const response = await loginService(email, password);
 
-      console.log("res", response);
       if (response.status === 200) {
         const encodedToken = response.data.encodedToken;
+        const firstName = response.data.foundUser.firstName;
+        const lastName = response.data.foundUser.lastName;
+        const email = response.data.foundUser.email;
 
-        setAuth({ token: encodedToken, isAuth: true });
+        setAuth({
+          token: encodedToken,
+          isAuth: true,
+          firstName,
+          lastName,
+          email,
+        });
 
         localStorage.setItem("token", encodedToken);
         localStorage.setItem("isAuth", true);

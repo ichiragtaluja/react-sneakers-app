@@ -3,9 +3,13 @@ import { AddressProvider, useAddress } from "../../contexts/AddressProvider";
 import { useUserData } from "../../contexts/UserDataProvider";
 import { AddressModal } from "./AddressModal/AddressModal";
 import "./Checkout.css";
+import { removeAddressService } from "../../services/address-services/removeAddressService";
+import { useAuth } from "../../contexts/AuthContext";
+import { addAddressService } from "../../services/address-services/addAddressService";
 
 export const Checkout = () => {
-  const { userDataState } = useUserData();
+  const { auth } = useAuth();
+  const { userDataState, dispatch } = useUserData();
   console.log(userDataState.cartProducts);
   const {
     addressForm,
@@ -18,6 +22,11 @@ export const Checkout = () => {
     setEditAddressIndex,
   } = useAddress();
 
+  const deleteAddress = async (address) => {
+    const response = await removeAddressService(address, auth.token);
+    dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+  };
+
   const { totalDiscountedPrice, totalOriginalPrice } = useUserData();
 
   const [deliveryAddressIndex, setDeliveryAddressIndex] = useState(0);
@@ -27,11 +36,12 @@ export const Checkout = () => {
       <div>Checkout</div>
       <div className="checkbox-container">
         <div className="address-container">
-          {addresses?.map((add, index) => {
-            const { name, street, city, state, country, pincode, phone } = add;
+          {userDataState.addressList?.map((add, index) => {
+            const { name, street, city, state, country, pincode, phone, _id } =
+              add;
 
             return (
-              <div key={name} className="address-card">
+              <div key={_id} className="address-card">
                 <input
                   checked={index === deliveryAddressIndex}
                   onChange={() => {
@@ -57,9 +67,10 @@ export const Checkout = () => {
                   </button>
                   <button
                     onClick={() =>
-                      setAddresses(
-                        addresses.filter((add, ind) => ind !== index)
-                      )
+                      // setAddresses(
+                      //   addresses.filter((add, ind) => ind !== index)
+                      // )
+                      deleteAddress(add)
                     }
                   >
                     Delete

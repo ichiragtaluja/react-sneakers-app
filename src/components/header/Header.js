@@ -72,9 +72,9 @@ export const Header = () => {
         <NavLink
           onClick={() => setShowHamburger(true)}
           style={getActiveStyle}
-          to={auth.isAuth ? "/logout" : "/login"}
+          to={auth.isAuth ? "/profile" : "/login"}
         >
-          {!auth.isAuth ? "Login" : "Logout"}
+          {!auth.isAuth ? "Login" : "Profile"}
         </NavLink>
         <NavLink
           onClick={() => setShowHamburger(true)}
