@@ -1,11 +1,10 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { addToCartService } from "../services/cart-services/addToCartService";
 import { getCartService } from "../services/cart-services/getCartService";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./AuthProvider";
 import { getWishlistService } from "../services/wishlist-services/getWishlistService";
 import { addToWishlistService } from "../services/wishlist-services/addToWishlistService";
 import { removeFromWishlistService } from "../services/wishlist-services/removeFromWishlist";
-import axios from "axios";
 import { removeFromCartService } from "../services/cart-services/removeFromCartService";
 import { getAddressListService } from "../services/address-services/getAddressListService";
 
@@ -47,13 +46,11 @@ export function UserProvider({ children }) {
 
   const addToCartHandler = async (product) => {
     const response = await addToCartService(product, auth.token);
-
     dispatch({ type: "SET_CART", payload: response.data.cart });
   };
 
   const addToWishlistHandler = async (product) => {
     const response = await addToWishlistService(product, auth.token);
-
     dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
   };
 

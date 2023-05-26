@@ -1,30 +1,31 @@
 import React, { useState } from "react";
-import { AddressProvider, useAddress } from "../../contexts/AddressProvider";
+import { useAddress } from "../../contexts/AddressProvider";
 import { useUserData } from "../../contexts/UserDataProvider";
 import { AddressModal } from "./AddressModal/AddressModal";
 import "./Checkout.css";
 import { removeAddressService } from "../../services/address-services/removeAddressService";
-import { useAuth } from "../../contexts/AuthContext";
-import { addAddressService } from "../../services/address-services/addAddressService";
+import { useAuth } from "../../contexts/AuthProvider";
 
 export const Checkout = () => {
   const { auth } = useAuth();
   const { userDataState, dispatch } = useUserData();
-  console.log(userDataState.cartProducts);
+
   const {
-    addressForm,
     setAddressForm,
-    addresses,
-    setAddresses,
     isAddressModalOpen,
     setIsAddressModalOpen,
-    editAddressIndex,
-    setEditAddressIndex,
+    setIsEdit,
   } = useAddress();
 
   const deleteAddress = async (address) => {
     const response = await removeAddressService(address, auth.token);
     dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+  };
+
+  const editButtonHandler = (add) => {
+    setIsAddressModalOpen(true);
+    setAddressForm(add);
+    setIsEdit(true);
   };
 
   const { totalDiscountedPrice, totalOriginalPrice } = useUserData();
@@ -56,25 +57,8 @@ export const Checkout = () => {
                     {name}, {street}, {city},{state}, {country} {pincode} -{" "}
                     {phone}
                   </p>
-                  <button
-                    onClick={() => {
-                      setIsAddressModalOpen(true);
-                      setAddressForm(add);
-                      setEditAddressIndex([index]);
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() =>
-                      // setAddresses(
-                      //   addresses.filter((add, ind) => ind !== index)
-                      // )
-                      deleteAddress(add)
-                    }
-                  >
-                    Delete
-                  </button>
+                  <button onClick={() => editButtonHandler(add)}>Edit</button>
+                  <button onClick={() => deleteAddress(add)}>Delete</button>
                 </label>
               </div>
             );

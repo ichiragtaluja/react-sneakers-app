@@ -4,7 +4,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { useState } from "react";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthProvider";
 import { loginService } from "../../../services/auth-services/loginService";
 
 export const Login = () => {
@@ -62,7 +62,7 @@ export const Login = () => {
           <label htmlFor="email">Email</label>
           <input
             value={loginCredential.email}
-            // required
+            required
             onChange={(e) =>
               setLoginCredential({
                 ...loginCredential,

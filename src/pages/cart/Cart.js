@@ -2,9 +2,10 @@ import "./Cart.css";
 import { changeQuantityCartService } from "../../services/cart-services/changeQuantityCartService";
 import { removeFromCartService } from "../../services/cart-services/removeFromCartService";
 import { Link } from "react-router-dom";
-
+import { addToWishlistService } from "../../services/wishlist-services/addToWishlistService";
+import { removeFromWishlistService } from "../../services/wishlist-services/removeFromWishlist";
 import { useUserData } from "../../contexts/UserDataProvider";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthProvider";
 import { getCartService } from "../../services/cart-services/getCartService";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -12,17 +13,7 @@ import { AiFillHeart } from "react-icons/ai";
 
 export const Cart = () => {
   const { auth } = useAuth();
-  const {
-    userDataState,
-    dispatch,
-    removeFromCartHandler,
-    addToWishlistHandler,
-    isProductInWishlist,
-    removeFromWishlistHandler,
-    totalDiscountedPrice,
-    totalOriginalPrice,
-    discountPercent,
-  } = useUserData();
+  const { userDataState, dispatch, isProductInWishlist } = useUserData();
 
   const cartCountHandler = async (product, type) => {
     if (type === "decrement" && product.qty === 1) {
@@ -38,6 +29,47 @@ export const Cart = () => {
 
       dispatch({ type: "SET_CART", payload: response.data.cart });
     }
+  };
+
+  const removeFromCartHandler = async (product) => {
+    const response = removeFromCartService(product._id, auth.token);
+    dispatch({ type: "SET_CART", payload: (await response).data.cart });
+  };
+
+  const addToWishlistHandler = async (product) => {
+    const response = await addToWishlistService(product, auth.token);
+    dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+  };
+
+  const removeFromWishlistHandler = async (product) => {
+    const response = await removeFromWishlistService(product._id, auth.token);
+    dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+  };
+
+  const totalDiscountedPrice = userDataState.cartProducts?.reduce(
+    (acc, curr) => acc + curr.discounted_price * curr.qty,
+    0
+  );
+
+  const totalOriginalPrice = userDataState.cartProducts?.reduce(
+    (acc, curr) => acc + curr.original_price * curr.qty,
+    0
+  );
+
+  const discountPercent = () => {
+    const totalPrice = userDataState?.cartProducts?.reduce(
+      (acc, curr) => ({
+        ...acc,
+        original: acc.original + curr.original_price,
+        discount: acc.discount + curr.discounted_price,
+      }),
+      { original: 0, discount: 0 }
+    );
+
+    const totalDiscount =
+      (totalPrice.original - totalPrice.discount) / totalPrice.original;
+
+    return totalDiscount?.toFixed(2) * 100;
   };
 
   return (
@@ -72,12 +104,11 @@ export const Cart = () => {
                   </button>
                 </div>
                 <div className="secondary-btn-section">
-                  
                   <MdDelete
                     size={25}
                     onClick={() => removeFromCartHandler(product)}
                   />
-                 
+
                   {!isProductInWishlist(product) ? (
                     <AiOutlineHeart
                       size={25}

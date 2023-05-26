@@ -8,7 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { GrSearch } from "react-icons/gr";
 import { useData } from "../../contexts/DataProvider";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthProvider";
 import { CgShoppingCart } from "react-icons/cg";
 import { useUserData } from "../../contexts/UserDataProvider";
 

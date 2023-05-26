@@ -5,7 +5,7 @@ import { BsEye } from "react-icons/bs";
 import { useState } from "react";
 
 import React from "react";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthProvider";
 import { signupService } from "../../../services/auth-services/signupService";
 
 export const Signup = () => {
@@ -34,8 +34,6 @@ export const Signup = () => {
           signupCredential.firstName,
           signupCredential.lastName
         );
-
-        console.log(response);
 
         const encodedToken = response.data.encodedToken;
         const firstName = response.data.createdUser.firstName;

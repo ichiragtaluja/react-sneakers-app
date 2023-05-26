@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer } from "../../components/footer/Footer";
+import { Footer } from "../../components/Footer/Footer";
 import { HeroSection } from "./home-components/hero-section/HeroSection";
 import { CategoriesSection } from "./home-components/categories-section/CategoriesSection";
 import { VideosSection } from "./home-components/videos-section/VideosSection";

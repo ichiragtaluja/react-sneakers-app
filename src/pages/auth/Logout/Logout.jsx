@@ -1,12 +1,10 @@
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthProvider";
 
 export const Logout = () => {
-
   const navigate = useNavigate();
   const { setAuth } = useAuth();
-
 
   const logoutHandler = () => {
     localStorage.removeItem("isAuth");

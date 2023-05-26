@@ -40,7 +40,6 @@ export function DataProvider({ children }) {
 
   useEffect(() => {
     getAllSneakers();
-
     getCategories();
   }, []);
 

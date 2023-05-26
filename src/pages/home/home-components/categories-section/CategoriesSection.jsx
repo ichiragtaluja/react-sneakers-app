@@ -1,7 +1,6 @@
 import React from "react";
 import { useData } from "../../../../contexts/DataProvider";
 import { Link } from "react-router-dom";
-// import { categories } from "../../../../backened/db/categories";
 import "./CategoriesSection.css";
 
 export const CategoriesSection = () => {

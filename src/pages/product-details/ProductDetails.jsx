@@ -1,15 +1,33 @@
 import "./ProductDetails.css";
 import { BsFillStarFill } from "react-icons/bs";
 import Tilt from "react-parallax-tilt";
-
 import React from "react";
 import { useParams } from "react-router-dom";
+
+import { addToWishlistService } from "../../services/wishlist-services/addToWishlistService";
+
 import { useData } from "../../contexts/DataProvider";
+import { addToCartService } from "../../services/cart-services/addToCartService";
+import { useAuth } from "../../contexts/AuthProvider";
+import { useUserData } from "../../contexts/UserDataProvider";
 
 export const ProductDetails = () => {
   const { state } = useData();
   const { productId } = useParams();
-  console.log("2");
+
+  const { dispatch } = useUserData();
+
+  const { auth } = useAuth();
+
+  const addToCartHandler = async (product) => {
+    const response = await addToCartService(product, auth.token);
+    dispatch({ type: "SET_CART", payload: response.data.cart });
+  };
+
+  const addToWishlistHandler = async (product) => {
+    const response = await addToWishlistService(product, auth.token);
+    dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+  };
 
   const selectedProduct = state.allProductsFromApi?.find(
     ({ id }) => Number(id) === Number(productId)
@@ -77,7 +95,6 @@ export const ProductDetails = () => {
           <p className="size-container">
             <span>Size</span>: {selectedProduct?.size}
           </p>
-          
 
           <div className="tags">
             {!selectedProduct?.is_stock && (
@@ -92,8 +109,18 @@ export const ProductDetails = () => {
             )}
           </div>
           <div className="product-card-buttons-container">
-            <button className="add-to-cart-btn">Add to cart</button>
-            <button className="add-to-wishlist-btn">Add to wishlist</button>
+            <button
+              onClick={() => addToCartHandler(selectedProduct)}
+              className="add-to-cart-btn"
+            >
+              Add to cart
+            </button>
+            <button
+              onClick={() => addToWishlistHandler(selectedProduct)}
+              className="add-to-wishlist-btn"
+            >
+              Add to wishlist
+            </button>
           </div>
         </div>
       </div>

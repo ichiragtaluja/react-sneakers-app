@@ -11,7 +11,7 @@ import { getSearchedProducts } from "../../../../helpers/searchedProducts";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { useUserData } from "../../../../contexts/UserDataProvider";
-import { useAuth } from "../../../../contexts/AuthContext";
+import { useAuth } from "../../../../contexts/AuthProvider";
 import { BsFillStarFill } from "react-icons/bs";
 
 export const ProductListingSection = () => {

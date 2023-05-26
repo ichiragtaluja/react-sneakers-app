@@ -1,11 +1,11 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import "./VideosSection.css";
-import { useNavigate } from "react-router-dom";
+
 import Tilt from "react-parallax-tilt";
 
 export const VideosSection = () => {
-  const Navigate = useNavigate();
+
   return (
     <>
       <div className="video-container">
@@ -72,16 +72,7 @@ export const VideosSection = () => {
           <span className="notch"></span>
         </Tilt>
       </div>
-      {/* <div
-        onClick={() => Navigate("product-listing")}
-        className="hero-img-container"
-      >
-        <img
-          className="video-section-img"
-          src="/assets/images/hero-images/hero-image-men-1.png"
-        />
-        <h1>See our latest collection</h1>
-      </div> */}
+     
     </>
   );
 };

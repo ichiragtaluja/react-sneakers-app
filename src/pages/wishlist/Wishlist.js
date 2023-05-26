@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthProvider";
 import { useUserData } from "../../contexts/UserDataProvider";
 import { removeFromWishlistService } from "../../services/wishlist-services/removeFromWishlist";
 import { BsFillStarFill } from "react-icons/bs";
-import"./Wishlist.css"
+import "./Wishlist.css";
 
 export const Wishlist = () => {
   const { auth } = useAuth();
@@ -53,7 +53,8 @@ export const Wishlist = () => {
             </div>
 
             <div className="wishlist-btn-container">
-              <button className="cart-wishlist-btn"
+              <button
+                className="cart-wishlist-btn"
                 onClick={() => {
                   !isProductInCart(product)
                     ? addToCartHandler(product)
@@ -62,7 +63,10 @@ export const Wishlist = () => {
               >
                 {!isProductInCart(product) ? "Add to cart" : "Go to cart"}
               </button>
-              <button className="remove-from-wishlist-btn" onClick={() => removeFromWishlistHandler(product)}>
+              <button
+                className="remove-from-wishlist-btn"
+                onClick={() => removeFromWishlistHandler(product)}
+              >
                 Remove from wishlist
               </button>
             </div>

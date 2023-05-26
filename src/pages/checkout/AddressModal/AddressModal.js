@@ -3,7 +3,7 @@ import React from "react";
 import { useAddress } from "../../../contexts/AddressProvider";
 import { useState } from "react";
 import { addAddressService } from "../../../services/address-services/addAddressService";
-import { useAuth } from "../../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthProvider";
 import { useUserData } from "../../../contexts/UserDataProvider";
 import { updateAddressService } from "../../../services/address-services/updateAddressService";
 import { removeAddressService } from "../../../services/address-services/removeAddressService";
@@ -28,9 +28,8 @@ export const AddressModal = () => {
     setIsAddressModalOpen,
     addressForm,
     setAddressForm,
+    isEdit, setIsEdit
   } = useAddress();
-
- 
 
   const updateAddress = async (address) => {
     const response = await updateAddressService(address, auth.token);
@@ -49,7 +48,7 @@ export const AddressModal = () => {
         <h1>AddressModal</h1>
         <form
           onSubmit={(e) => {
-            if (!editAddressIndex.length) {
+            if (!isEdit) {
               e.preventDefault();
               addAddress(addressForm);
               setAddressForm({
@@ -64,14 +63,7 @@ export const AddressModal = () => {
               setIsAddressModalOpen(false);
             } else {
               e.preventDefault();
-
-              // setAddresses(
-              //   addresses.map((add, index) =>
-              //     index !== editAddressIndex[0] ? add : addressForm
-              //   )
-              // );
-
-              updateAddress(addressForm)
+              updateAddress(addressForm);
               setAddressForm({
                 name: "",
                 street: "",
@@ -82,7 +74,7 @@ export const AddressModal = () => {
                 phone: "",
               });
               setIsAddressModalOpen(false);
-              setEditAddressIndex([]);
+              setIsEdit(false);
             }
           }}
           className="input-containter"
