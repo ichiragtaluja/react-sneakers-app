@@ -1,0 +1,24 @@
+
+
+
+.logout-container {
+  
+    text-align: center;
+}
+
+
+
+.logout-container button{
+    color:white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: rgb(185, 185, 109);
+    font-weight: 600;
+    margin: 15px 0 0px 0;
+    
+
+    
+   
+ 
+}

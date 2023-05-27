@@ -1,0 +1,30 @@
+.profile-container {
+  padding: 25px;
+}
+
+.profile-container > h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-details {
+  margin-bottom: 20px;
+}
+
+.profile-details > * {
+  margin-bottom: 10px;
+}
+
+.profile-details > * > :first-child {
+  font-weight: 600;
+}
+.profile-details .name {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.profile-details .email {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}

@@ -22,9 +22,9 @@ export const Checkout = () => {
     dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
   };
 
-  const editButtonHandler = (add) => {
+  const editButtonHandler = (address) => {
     setIsAddressModalOpen(true);
-    setAddressForm(add);
+    setAddressForm(address);
     setIsEdit(true);
   };
 

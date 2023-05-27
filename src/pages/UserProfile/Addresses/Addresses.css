@@ -1,0 +1,43 @@
+.address-section-container {
+  padding: 20px;
+}
+
+.add-address-btn-container button {
+  padding: 10px 30px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(194, 194, 108);
+  margin-bottom: 15px;
+}
+
+.address-card .name {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.address-card .address {
+  margin-bottom: 5px;
+}
+
+.address-card span {
+  font-weight: 600;
+}
+
+.address-card .phone {
+  margin-bottom: 10px;
+}
+
+.address-btn-container {
+}
+
+.address-btn-container > button {
+  margin-right: 15px;
+  padding: 6px 18px;
+  border: none;
+  border-radius: 5px;
+}
+
+.address-section-container .address-card:not(:first-child) {
+  margin-top: 20px;
+}
