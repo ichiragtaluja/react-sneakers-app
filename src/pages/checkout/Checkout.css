@@ -131,6 +131,41 @@
   text-align: center;
 }
 
+/* -------adressss delvery----- */
+
+.delivery-address-container {
+  border: 1px solid rgb(231, 231, 231);
+  padding: 15px;
+  margin: 15px;
+  border-radius: 10px;
+}
+
+.delivery-address-description {
+  display: flex;
+  flex-direction: column;
+}
+.delivery-address-description .name {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.delivery-address-description .address {
+  margin-bottom: 10px;
+}
+
+.delivery-address-description .contact {
+}
+
+.delivery-address-container h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.page-heading {
+  text-align: center;
+  margin: 20px;
+}
+
 @media (min-width: 768px) {
   .checkout-container {
     flex-flow: row nowrap;

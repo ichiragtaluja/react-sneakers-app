@@ -7,6 +7,7 @@ import { addToWishlistService } from "../services/wishlist-services/addToWishlis
 import { removeFromWishlistService } from "../services/wishlist-services/removeFromWishlist";
 import { removeFromCartService } from "../services/cart-services/removeFromCartService";
 import { getAddressListService } from "../services/address-services/getAddressListService";
+import toast, { Toaster } from "react-hot-toast";
 
 const UserDataContext = createContext();
 
@@ -39,11 +40,17 @@ const userDataReducer = (state, action) => {
     }
 
     case "SET_ORDER": {
-      return { ...state, orderDetails: { ...action.payload } };
+      return {
+        ...state,
+        orderDetails: {
+          ...state.orderdetails,
+          ...action.payload,
+        },
+      };
     }
 
     case "SET_ORDERS": {
-      return { ...state, orders: [...state.orderDetails, ...action.payload] };
+      return { ...state, orders: [...state.orders, ...action.payload] };
     }
 
     default:
@@ -59,9 +66,16 @@ export function UserProvider({ children }) {
 
   const { auth } = useAuth();
 
+  console.log("ordera address", userDataState.orderDetails?.orderAddress);
+
   const addToCartHandler = async (product) => {
-    const response = await addToCartService(product, auth.token);
-    dispatch({ type: "SET_CART", payload: response.data.cart });
+    try {
+      const response = await addToCartService(product, auth.token);
+      if (response.status === 201) {
+        toast.success("Added to cart")
+        dispatch({ type: "SET_CART", payload: response.data.cart });
+      }
+    } catch (error) {}
   };
 
   const addToWishlistHandler = async (product) => {

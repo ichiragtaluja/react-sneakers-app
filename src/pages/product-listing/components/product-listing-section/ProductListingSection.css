@@ -90,7 +90,7 @@
   border-radius: 10px;
   font-size: 1.05em;
   color: white;
-  background-color: rgb(174, 174, 90);
+  background-color: var(--primary-color);
 }
 
 .product-card-details .ratings {

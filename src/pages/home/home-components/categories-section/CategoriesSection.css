@@ -44,9 +44,12 @@
 
   border-radius: 25px;
   /* border: 1px solid white; */
-  color: white;
-  background-color: rgb(153, 153, 56);
-  box-shadow: 0px 7px 84px -16px rgba(0, 0, 0, 1);
+  color: black;
+  background-color: white;
+  /* box-shadow: 0px 7px 84px -16px rgb(255, 255, 255); */
+
+  
+  
 }
 
 @media (min-width: 768px) {

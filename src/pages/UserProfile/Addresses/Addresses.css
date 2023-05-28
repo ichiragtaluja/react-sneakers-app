@@ -7,13 +7,21 @@
   color: white;
   border: none;
   border-radius: 5px;
-  background-color: rgb(194, 194, 108);
+  background-color: var(--primary-color);
   margin-bottom: 15px;
 }
 
 .address-card .name {
   font-weight: 600;
   margin-bottom: 10px;
+}
+.profile-address-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.address-card {
+  display: flex;
+  flex-direction: column;
 }
 
 .address-card .address {

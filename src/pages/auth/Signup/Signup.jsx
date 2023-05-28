@@ -112,17 +112,17 @@ export const Signup = () => {
         </div>
 
         <div className="confirm-password-container">
-          <label htmlFor="confirm-password">Confirm Password</label>
+          <label for="confirm-password">Confirm Password</label>
           <div className="input-container">
             <input
               required
+              id="confirm-password"
               onChange={(e) =>
                 setSignupCredential({
                   ...signupCredential,
                   confirmPassword: e.target.value,
                 })
               }
-              id="confirm-password"
               minLength="8"
               placeholder="Enter Password Again"
               type={hidePassword ? "password" : "text"}

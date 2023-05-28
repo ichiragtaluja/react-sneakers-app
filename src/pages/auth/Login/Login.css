@@ -109,7 +109,7 @@
   margin-bottom: 10px;
   color: white;
 
-  background-color: rgb(188, 188, 88);
+  background-color: var(--primary-color);
 }
 
 .login-body > a {

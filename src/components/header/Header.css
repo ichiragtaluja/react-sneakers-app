@@ -6,7 +6,7 @@ nav {
   justify-content: space-between;
   padding: 1rem;
   width: 100%;
-  background-color: rgb(153, 153, 56);
+  background-color: var(--primary-color);
   top: 0;
   z-index: 3;
 }
@@ -21,7 +21,7 @@ nav {
   color: white;
   text-decoration: none;
   font-weight: 400;
-  letter-spacing: 0.75px;
+  /* letter-spacing: 0.75px; */
 }
 a:active {
   outline: none;
@@ -68,7 +68,7 @@ input:focus {
   box-shadow: 0px 0px 46px -4px rgb(176, 175, 175);
 }
 .nav-link-container-mobile > * {
-  color: rgb(106, 106, 65);
+  color: var(--primary-color);
   margin-bottom: 10px;
   border: 1px solid rgb(230, 230, 230);
   margin-right: 0px;
@@ -175,7 +175,7 @@ input:focus {
     background-color: rgb(255, 137, 137);
     color: white;
     border: none;
-    border: 1px solid rgb(153, 153, 56);
+    border: 1px solid var(--primary-color);
   }
 
   .cart a {

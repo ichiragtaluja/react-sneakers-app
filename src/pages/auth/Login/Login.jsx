@@ -6,6 +6,7 @@ import { BsEye } from "react-icons/bs";
 import { useState } from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
 import { loginService } from "../../../services/auth-services/loginService";
+import { Footer } from "../../../components/Footer/Footer";
 
 export const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);

@@ -1,14 +1,13 @@
 .footer {
   color: white;
   text-align: center;
-
   display: block;
-  background-color: rgb(153, 153, 56);
+  background-color: var(--primary-color);
   display: flex;
   flex-flow: column nowrap;
   padding: 0.8rem;
   justify-content: space-between;
-  /* height: 2rem; */
+ 
 }
 .footer > * {
   margin: 0.5rem;

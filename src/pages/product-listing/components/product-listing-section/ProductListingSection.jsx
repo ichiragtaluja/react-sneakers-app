@@ -13,8 +13,11 @@ import { AiTwotoneHeart } from "react-icons/ai";
 import { useUserData } from "../../../../contexts/UserDataProvider";
 import { useAuth } from "../../../../contexts/AuthProvider";
 import { BsFillStarFill } from "react-icons/bs";
+import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
 
 export const ProductListingSection = () => {
+
   const { state } = useData();
   const { addToCartHandler, addToWishlistHandler, isProductInCart } =
     useUserData();
@@ -42,6 +45,7 @@ export const ProductListingSection = () => {
 
   return (
     <div className="product-card-container">
+      <Toaster position="bottom-center" reverseOrder={false} />
       {sortedProducts.map((product) => {
         const {
           _id,
@@ -122,7 +126,7 @@ export const ProductListingSection = () => {
                   }
                   className="wishlist-btn"
                 >
-                  <AiOutlineHeart color={"rgb(174, 174, 90)"} size={30} />
+                  <AiOutlineHeart color={"black"} size={30} />
                 </button>
               </div>
             </div>

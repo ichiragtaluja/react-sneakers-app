@@ -60,6 +60,7 @@
 }
 
 .signup-container .confirm-password-container .input-container {
+  margin-top: 5px;
   padding: 5px 10px;
   border-radius: 3px;
   border: 1px solid rgb(210, 210, 210);
@@ -68,10 +69,6 @@
 .signup-container .hide-show-password-eye {
   margin-right: 3px;
   color: rgb(127, 127, 127);
-}
-
-.signup-container .confirm-password-container > label {
-  margin-bottom: 5px;
 }
 
 .password-container {
@@ -105,7 +102,7 @@
   margin-bottom: 10px;
   color: white;
 
-  background-color: rgb(188, 188, 88);
+  background-color: var(--primary-color);
 }
 
 .remember-me-container {

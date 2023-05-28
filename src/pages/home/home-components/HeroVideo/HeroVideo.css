@@ -38,7 +38,7 @@
 .shop-now-btn {
   position: absolute;
   bottom: 5rem;
-  border: 1px solid black;
+ 
 
   align-self: center;
 
@@ -50,10 +50,32 @@
   justify-self: stretch;
   border-radius: 40px;
 
-  color: white;
-  background-color: rgb(153, 153, 56);
+  color: rgb(0, 0, 0);
+  background-color: white;
   /* box-shadow: 0px 0px 39px 0px rgb(32, 32, 32); */
+
+
+  background-image: linear-gradient(to right, #DC2424 0%, #4A569D  51%, #DC2424  100%);
+  margin: 10px;
+
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+
+
+  display: block;
+           
 }
+
+  .shop-now-btn:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+ 
+
 
 @media (min-width: 768px) {
   .hero-video-container {

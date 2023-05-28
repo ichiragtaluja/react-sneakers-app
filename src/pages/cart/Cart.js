@@ -164,7 +164,7 @@ export const Cart = () => {
         <div>
           <div className="coupons-section">
             <div className="coupon-header">
-              <MdDiscount color={"rgb(177, 177, 76)"} />
+              <MdDiscount color={"black"} />
               <h3 onClick={() => setIsCouponClicked(!isCouponClicked)}>
                 Apply Coupons ?
               </h3>

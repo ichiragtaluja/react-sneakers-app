@@ -19,7 +19,7 @@
 .cart-price-container a {
   text-decoration: none;
   color: white;
-  background-color: rgb(169, 169, 58);
+  background-color: var(--primary-color);
   align-self: center;
   padding: 10px 30px;
   border-radius: 10px;
@@ -117,7 +117,7 @@
 
 .secondary-btn-section > * {
   margin: 0px 20px;
-  color: rgb(177, 177, 76);
+  color: var(--primary-color);
 }
 
 .counter-btn {

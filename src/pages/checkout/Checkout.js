@@ -9,7 +9,8 @@ import { useAuth } from "../../contexts/AuthProvider";
 export const Checkout = () => {
   const { auth } = useAuth();
   const { userDataState, dispatch } = useUserData();
-  console.log("addressList", userDataState.addressList);
+
+  // console.log(userDataState.orderDetails.orderAddress);
 
   const {
     setAddressForm,
@@ -39,7 +40,7 @@ export const Checkout = () => {
 
   return (
     <div>
-      <div>Checkout</div>
+      <h1 className="page-heading">Checkout!</h1>
       <div className="checkout-container">
         <div className="address-container">
           {userDataState.addressList?.map((address, index) => {
@@ -49,9 +50,12 @@ export const Checkout = () => {
             return (
               <div key={_id} className="address-card">
                 <input
-                  checked={index === deliveryAddressIndex}
+                  checked={_id === userDataState.orderDetails?.orderAddress?._id}
                   onChange={() => {
-                    setDeliveryAddressIndex(index);
+                    dispatch({
+                      type: "SET_ORDER",
+                      payload: { orderAddress: address },
+                    });
                   }}
                   name="address"
                   id={_id}
@@ -133,6 +137,21 @@ export const Checkout = () => {
                   ${userDataState.orderDetails?.cartItemsDiscountTotal}
                 </span>
               </div>
+            </div>
+          </div>
+
+          <div className="delivery-address-container">
+            <h3>Delivering To</h3>
+            <div className="delivery-address-description">
+              <span className="name">{userDataState.orderDetails?.orderAddress.name}</span>
+              <span className="address">
+                {userDataState.orderDetails?.orderAddress.street},{" "}
+                {userDataState.orderDetails?.orderAddress.city},{" "}
+                {userDataState.orderDetails?.orderAddress.state},{" "}
+                {userDataState.orderDetails?.orderAddress.country},{" "}
+                {userDataState.orderDetails?.orderAddress.pincode}
+              </span>
+              <span className="contact">Contact: {userDataState.orderDetails?.orderAddress.phone}</span>
             </div>
           </div>
         </div>
