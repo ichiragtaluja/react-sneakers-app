@@ -6,12 +6,13 @@ import { BsEye } from "react-icons/bs";
 import { useState } from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
 import { loginService } from "../../../services/auth-services/loginService";
-import { Footer } from "../../../components/Footer/Footer";
+import toast, { Toaster } from "react-hot-toast";
 
 export const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const { auth, setAuth } = useAuth();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [loginCredential, setLoginCredential] = useState({
     email: "",
@@ -25,10 +26,14 @@ export const Login = () => {
   const loginHandler = async (e, email, password) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError("");
       setLoginCredential({ email, password });
       const response = await loginService(email, password);
 
       if (response.status === 200) {
+        setLoading(false);
+        toast.success(`Welcome back, ${response.data.foundUser.firstName}!`);
         const encodedToken = response.data.encodedToken;
         const firstName = response.data.foundUser.firstName;
         const lastName = response.data.foundUser.lastName;
@@ -48,7 +53,10 @@ export const Login = () => {
         navigate(location?.state?.from.pathname || "/");
       }
     } catch (error) {
+      setLoading(false);
       setError(error.response.data.errors[0]);
+    } finally {
+      setLoading(false);
     }
   };
 

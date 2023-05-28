@@ -5,12 +5,13 @@ import { AddressModal } from "./AddressModal/AddressModal";
 import "./Checkout.css";
 import { removeAddressService } from "../../services/address-services/removeAddressService";
 import { useAuth } from "../../contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 
 export const Checkout = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("false");
   const { auth } = useAuth();
   const { userDataState, dispatch } = useUserData();
-
-  // console.log(userDataState.orderDetails.orderAddress);
 
   const {
     setAddressForm,
@@ -21,11 +22,18 @@ export const Checkout = () => {
 
   const deleteAddress = async (address) => {
     try {
+      setLoading(true);
+      setError("");
       const response = await removeAddressService(address, auth.token);
       if (response.status === 200) {
+        setLoading(false);
+        toast.success(`${address.name}'s address deleted successfully!`);
         dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
       }
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   };
 
   const editButtonHandler = (address) => {
@@ -50,7 +58,9 @@ export const Checkout = () => {
             return (
               <div key={_id} className="address-card">
                 <input
-                  checked={_id === userDataState.orderDetails?.orderAddress?._id}
+                  checked={
+                    _id === userDataState.orderDetails?.orderAddress?._id
+                  }
                   onChange={() => {
                     dispatch({
                       type: "SET_ORDER",
@@ -143,7 +153,9 @@ export const Checkout = () => {
           <div className="delivery-address-container">
             <h3>Delivering To</h3>
             <div className="delivery-address-description">
-              <span className="name">{userDataState.orderDetails?.orderAddress.name}</span>
+              <span className="name">
+                {userDataState.orderDetails?.orderAddress.name}
+              </span>
               <span className="address">
                 {userDataState.orderDetails?.orderAddress.street},{" "}
                 {userDataState.orderDetails?.orderAddress.city},{" "}
@@ -151,7 +163,9 @@ export const Checkout = () => {
                 {userDataState.orderDetails?.orderAddress.country},{" "}
                 {userDataState.orderDetails?.orderAddress.pincode}
               </span>
-              <span className="contact">Contact: {userDataState.orderDetails?.orderAddress.phone}</span>
+              <span className="contact">
+                Contact: {userDataState.orderDetails?.orderAddress.phone}
+              </span>
             </div>
           </div>
         </div>

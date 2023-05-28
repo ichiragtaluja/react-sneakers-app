@@ -13,8 +13,11 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { addOrderService } from "../../services/order-services/addOrderService";
 import { MdDiscount } from "react-icons/md";
+import { toast } from "react-hot-toast";
 
 export const Cart = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [isCouponClicked, setIsCouponClicked] = useState(false);
 
   const { auth } = useAuth();
@@ -43,34 +46,98 @@ export const Cart = () => {
   const isCouponApplied = couponSelected.length ? true : false;
 
   const cartCountHandler = async (product, type) => {
-    if (type === "decrement" && product.qty === 1) {
-      const response = await removeFromCartService(product._id, auth.token);
+    try {
+      setLoading(true);
+      setError("");
+      if (type === "decrement" && product.qty === 1) {
+        const response = await removeFromCartService(product._id, auth.token);
+        if (response.status === 200) {
+          setLoading(false);
+          toast.success(`${product.name} succesfully removed from the cart`);
+          dispatch({ type: "SET_CART", payload: response.data.cart });
+        }
+      } else {
+        const response = await changeQuantityCartService(
+          product._id,
+          auth.token,
+          type
+        );
 
-      dispatch({ type: "SET_CART", payload: response.data.cart });
+        if (response.status === 200) {
+          setLoading(false);
+          if (type === "decrement") {
+            toast.success(`Removed one ${product.name} from the cart!`);
+          } else {
+            toast.success(`Added onother ${product.name} to the cart!`);
+          }
+          dispatch({ type: "SET_CART", payload: response.data.cart });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const couponHandler = (e, coupon) => {
+    if (e.target.checked) {
+      toast.success(`Woohoo! ${coupon.name} applied successfully!`)
+      setCouponSelected([...couponSelected, coupon]);
     } else {
-      const response = await changeQuantityCartService(
-        product._id,
-        auth.token,
-        type
-      );
-
-      dispatch({ type: "SET_CART", payload: response.data.cart });
+      toast.success(`${coupon.name} removed!`)
+      setCouponSelected(couponSelected.filter(({ id }) => id !== coupon.id));
     }
   };
 
   const removeFromCartHandler = async (product) => {
-    const response = removeFromCartService(product._id, auth.token);
-    dispatch({ type: "SET_CART", payload: response.data.cart });
+    try {
+      setLoading(true);
+      setError("");
+      const response = await removeFromCartService(product._id, auth.token);
+      if (response.status === 200) {
+        setLoading(false);
+        toast.success(`${product.name} successfully removed from the cart `);
+        dispatch({ type: "SET_CART", payload: response.data.cart });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const addToWishlistHandler = async (product) => {
-    const response = await addToWishlistService(product, auth.token);
-    dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+    try {
+      setLoading(true);
+      setError("");
+      const response = await addToWishlistService(product, auth.token);
+      if (response.status === 201) {
+        toast.success(`${product.name} add to the wishlist!`);
+        setLoading(false);
+        dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const removeFromWishlistHandler = async (product) => {
-    const response = await removeFromWishlistService(product._id, auth.token);
-    dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+    try {
+      setLoading(true);
+      setError("");
+      const response = await removeFromWishlistService(product._id, auth.token);
+      if (response.status === 200) {
+        toast.success(`${product.name} removed from the wishlist!`);
+        setLoading(false);
+        dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   };
 
   const totalOriginalPrice = userDataState.cartProducts?.reduce(
@@ -184,15 +251,7 @@ export const Cart = () => {
                   return (
                     <div key={id} className="coupon-card">
                       <input
-                        onChange={(e) => {
-                          e.target.checked
-                            ? setCouponSelected([...couponSelected, coupon])
-                            : setCouponSelected(
-                                couponSelected.filter(
-                                  ({ id }) => id !== coupon.id
-                                )
-                              );
-                        }}
+                        onChange={(e) => couponHandler(e, coupon)}
                         disabled={
                           totalDiscountedPriceBeforeCoupon <= minimumPurchase
                         }

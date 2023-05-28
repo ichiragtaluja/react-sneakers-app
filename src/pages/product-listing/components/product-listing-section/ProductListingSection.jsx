@@ -45,7 +45,7 @@ export const ProductListingSection = () => {
 
   return (
     <div className="product-card-container">
-      <Toaster position="bottom-center" reverseOrder={false} />
+      
       {sortedProducts.map((product) => {
         const {
           _id,

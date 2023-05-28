@@ -1,8 +1,10 @@
-.address-card {
+.checkout-container .address-card {
   border: 1px solid rgb(232, 232, 232);
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
 }
 /* .address-card:last-child{
     border: 1px solid black;
@@ -12,6 +14,7 @@
 .checkout-container {
   display: flex;
   flex-flow: column nowrap;
+
 }
 
 .address-container {
@@ -28,11 +31,7 @@
 .address-container .address-card .address {
   font-size: 13px;
 }
-.address-card {
-  display: flex;
-  /* margin-bottom: 10px */
-  /* align-items: flex-start; */
-}
+
 .add-new-address-btn-container {
   /* border: 1px solid black; */
   text-align: center;
@@ -63,14 +62,16 @@
 /* -------billing------- */
 
 .order-details-container {
-  /* border: 1px solid rgb(227, 227, 227); */
+  border: 1px solid rgb(227, 227, 227);
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
+  border-radius: 10px;
+  margin: 15px ;
 }
 
 .product-details-container {
-  border: 1px solid rgb(233, 233, 233);
+  /* border: 1px solid rgb(233, 233, 233); */
   border-radius: 10px;
   padding: 15px;
   margin: 15px;
@@ -92,8 +93,8 @@
 }
 
 .billing-container {
-  border-radius: 10px;
-  border: 1px solid rgb(226, 226, 226);
+  /* border-radius: 10px; */
+  border-top: 1px solid rgb(226, 226, 226);
   padding: 15px;
   margin: 0 15px;
 }
@@ -134,10 +135,10 @@
 /* -------adressss delvery----- */
 
 .delivery-address-container {
-  border: 1px solid rgb(231, 231, 231);
+  border-top: 1px solid rgb(231, 231, 231);
   padding: 15px;
   margin: 15px;
-  border-radius: 10px;
+ 
 }
 
 .delivery-address-description {
@@ -182,5 +183,6 @@
     width: 70vw;
 
     flex-grow: 1;
+    margin: 15px 15px 15px 0;
   }
 }

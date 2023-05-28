@@ -7,10 +7,15 @@ import { useState } from "react";
 import React from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
 import { signupService } from "../../../services/auth-services/signupService";
+import { toast } from "react-hot-toast";
 
 export const Signup = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
+
+  console.log("error", error);
 
   const { setAuth } = useAuth();
 
@@ -27,6 +32,8 @@ export const Signup = () => {
 
   const signupHandler = async () => {
     try {
+      setLoading(true);
+      setError("");
       if (signupCredential.password === signupCredential.confirmPassword) {
         const response = await signupService(
           signupCredential.email,
@@ -34,25 +41,35 @@ export const Signup = () => {
           signupCredential.firstName,
           signupCredential.lastName
         );
+        if (response.status === 201) {
+          setLoading(false);
+          toast.success(
+            `You've successfully signed up, ${response.data.createdUser.firstName}`
+          );
+          const encodedToken = response.data.encodedToken;
+          const firstName = response.data.createdUser.firstName;
+          const lastName = response.data.createdUser.lastName;
+          const email = response.data.createdUser.email;
 
-        const encodedToken = response.data.encodedToken;
-        const firstName = response.data.createdUser.firstName;
-        const lastName = response.data.createdUser.lastName;
-        const email = response.data.createdUser.email;
+          setAuth({
+            token: encodedToken,
+            isAuth: true,
+            firstName,
+            lastName,
+            email,
+          });
 
-        setAuth({
-          token: encodedToken,
-          isAuth: true,
-          firstName,
-          lastName,
-          email,
-        });
-
-        localStorage.setItem("token", encodedToken);
-        localStorage.setItem("isAuth", true);
-        navigate("/");
+          localStorage.setItem("token", encodedToken);
+          localStorage.setItem("isAuth", true);
+          navigate("/");
+        }
       }
-    } catch (error) {}
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.errors);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -179,6 +196,7 @@ export const Signup = () => {
             </label>
           </div>
         </div>
+        {error && <p className="error">{error[0]}</p>}
 
         <div className="signup-btn-container">
           <input value="Sign Up" type="submit" />

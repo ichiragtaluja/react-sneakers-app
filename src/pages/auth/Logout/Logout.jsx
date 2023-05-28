@@ -1,7 +1,8 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
-import "./Logout.css"
+import "./Logout.css";
 
 export const Logout = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export const Logout = () => {
     localStorage.removeItem("isAuth");
     localStorage.removeItem("token");
     setAuth({ token: "", isAuth: false });
+    toast.success("You're logged out successfully!");
     navigate("/");
   };
   return (

@@ -16,11 +16,19 @@ import { UserProfile } from "./pages/UserProfile/UserProfile";
 import { Profile } from "./pages/UserProfile/Profile/Profile";
 import { Addresses } from "./pages/UserProfile/Addresses/Addresses";
 import { Orders } from "./pages/UserProfile/Orders/Orders";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        containerStyle={{
+          top: "5rem",
+        }}
+      />
 
       <Routes>
         <Route path="/" element={<Home />} />

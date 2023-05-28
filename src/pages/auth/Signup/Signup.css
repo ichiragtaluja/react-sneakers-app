@@ -109,6 +109,11 @@
   display: flex;
   justify-content: space-between;
 }
+.signup-container .error {
+  color: red;
+  font-size: .8rem;
+  padding: 0;
+}
 
 .signup-body > a {
   margin: 0 auto;

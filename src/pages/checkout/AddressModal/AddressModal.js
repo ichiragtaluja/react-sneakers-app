@@ -7,8 +7,11 @@ import { useAuth } from "../../../contexts/AuthProvider";
 import { useUserData } from "../../../contexts/UserDataProvider";
 import { updateAddressService } from "../../../services/address-services/updateAddressService";
 import { removeAddressService } from "../../../services/address-services/removeAddressService";
+import { toast } from "react-hot-toast";
 
 export const AddressModal = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("false");
   const { auth } = useAuth();
   const { userDataState, dispatch } = useUserData();
 
@@ -33,14 +36,39 @@ export const AddressModal = () => {
   } = useAddress();
 
   const updateAddress = async (address) => {
-    const response = await updateAddressService(address, auth.token);
-    dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+    try {
+      setLoading(true);
+      setError("");
+      const response = await updateAddressService(address, auth.token);
+      if (response.status === 200) {
+        setLoading(false);
+        toast.success(` ${address.name}'s address updated successfully!`);
+        dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const addAddress = async (address) => {
-    const response = await addAddressService(address, auth.token);
-
-    dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+    try {
+      setLoading(true);
+      setError("");
+      const response = await addAddressService(address, auth.token);
+      if (response.status === 201) {
+        setLoading(false);
+        toast.success("New address added successfully!");
+        dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

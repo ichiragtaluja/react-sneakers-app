@@ -66,13 +66,11 @@ export function UserProvider({ children }) {
 
   const { auth } = useAuth();
 
-  console.log("ordera address", userDataState.orderDetails?.orderAddress);
-
   const addToCartHandler = async (product) => {
     try {
       const response = await addToCartService(product, auth.token);
       if (response.status === 201) {
-        toast.success("Added to cart")
+        toast.success("Added to cart");
         dispatch({ type: "SET_CART", payload: response.data.cart });
       }
     } catch (error) {}
