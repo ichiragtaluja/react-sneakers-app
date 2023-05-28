@@ -28,7 +28,8 @@ export const AddressModal = () => {
     setIsAddressModalOpen,
     addressForm,
     setAddressForm,
-    isEdit, setIsEdit
+    isEdit,
+    setIsEdit,
   } = useAddress();
 
   const updateAddress = async (address) => {
@@ -45,7 +46,7 @@ export const AddressModal = () => {
   return (
     <div className="address-modal-container">
       <div className="address-input-container">
-        <h1>AddressModal</h1>
+        <h1>Address Form</h1>
         <form
           onSubmit={(e) => {
             if (!isEdit) {
@@ -86,7 +87,7 @@ export const AddressModal = () => {
             onChange={(e) =>
               setAddressForm({ ...addressForm, name: e.target.value })
             }
-            placeholder="name"
+            placeholder="Enter Name"
           />
           <input
             required
@@ -94,7 +95,7 @@ export const AddressModal = () => {
             onChange={(e) =>
               setAddressForm({ ...addressForm, street: e.target.value })
             }
-            placeholder="street"
+            placeholder="Enter Street"
           />
           <input
             name="city"
@@ -103,7 +104,7 @@ export const AddressModal = () => {
             onChange={(e) =>
               setAddressForm({ ...addressForm, city: e.target.value })
             }
-            placeholder="city"
+            placeholder="Enter City"
           />
           <input
             name="state"
@@ -112,7 +113,7 @@ export const AddressModal = () => {
             onChange={(e) =>
               setAddressForm({ ...addressForm, state: e.target.value })
             }
-            placeholder="state"
+            placeholder="Enter State"
           />
           <input
             name="country"
@@ -121,7 +122,7 @@ export const AddressModal = () => {
             onChange={(e) =>
               setAddressForm({ ...addressForm, country: e.target.value })
             }
-            placeholder="country"
+            placeholder="Enter Country"
           />
           <input
             name="pincode"
@@ -130,7 +131,7 @@ export const AddressModal = () => {
             onChange={(e) =>
               setAddressForm({ ...addressForm, pincode: e.target.value })
             }
-            placeholder="pincode"
+            placeholder="Enter Pincode"
           />
           <input
             name="phone"
@@ -139,21 +140,22 @@ export const AddressModal = () => {
             onChange={(e) =>
               setAddressForm({ ...addressForm, phone: e.target.value })
             }
-            placeholder="phone"
+            placeholder="Enter Phone"
           />
-          <input type="submit" value="Save" />
+          <input className="submit" type="submit" value="Save" />
         </form>
+        <div className="btn-container">
+          <button onClick={() => setIsAddressModalOpen(false)}>Cancel</button>
+          <button
+            onClick={() => {
+              setAddressForm({ ...dummyAddress });
 
-        <button onClick={() => setIsAddressModalOpen(false)}>Cancel</button>
-        <button
-          onClick={() => {
-            setAddressForm({ ...dummyAddress });
-
-            // setAddresses([...addresses, { ...dummyAddress }]);
-          }}
-        >
-          Add Dummy Data
-        </button>
+              // setAddresses([...addresses, { ...dummyAddress }]);
+            }}
+          >
+            Add Dummy Data
+          </button>
+        </div>
       </div>
     </div>
   );

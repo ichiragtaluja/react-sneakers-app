@@ -30,6 +30,11 @@ import {
   updateAddressHandler,
 } from "./backend/controllers/AddressController";
 
+import {
+  getOrderItemsHandler,
+  addItemToOrdersHandler,
+} from "./backend/controllers/OrderController";
+
 import { categories } from "./backend/db/categories";
 import { products } from "./backend/db/products";
 import { users } from "./backend/db/users";
@@ -112,10 +117,14 @@ export function makeServer({ environment = "development" } = {}) {
       );
 
       //address routes (private)
-      this.get("/user/address", getAddressListHandler.bind(this))
-      this.post("/user/address",addAddressHandler.bind(this))
-      this.post("/user/address/:addressId", updateAddressHandler.bind(this))
-      this.delete("/user/address/:addressId", removeAddressHandler.bind(this))
+      this.get("/user/address", getAddressListHandler.bind(this));
+      this.post("/user/address", addAddressHandler.bind(this));
+      this.post("/user/address/:addressId", updateAddressHandler.bind(this));
+      this.delete("/user/address/:addressId", removeAddressHandler.bind(this));
+
+      // order routes (private)
+      this.get("/user/orders", getOrderItemsHandler.bind(this));
+      this.post("/user/orders", addItemToOrdersHandler.bind(this));
     },
   });
 }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Cart.css";
 import { changeQuantityCartService } from "../../services/cart-services/changeQuantityCartService";
 import { removeFromCartService } from "../../services/cart-services/removeFromCartService";
@@ -10,10 +11,36 @@ import { getCartService } from "../../services/cart-services/getCartService";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
+import { addOrderService } from "../../services/order-services/addOrderService";
+import { MdDiscount } from "react-icons/md";
 
 export const Cart = () => {
+  const [isCouponClicked, setIsCouponClicked] = useState(false);
+
   const { auth } = useAuth();
-  const { userDataState, dispatch, isProductInWishlist } = useUserData();
+  const { userDataState, dispatch, isProductInWishlist, orderDetails } =
+    useUserData();
+
+  const [couponSelected, setCouponSelected] = useState([]);
+
+  const couponsData = [
+    {
+      id: 1,
+      name: "BLACK FRIDAY OFFER",
+      description: "Get $20 off on a purchase of $250",
+      minimumPurchase: 250,
+      amount: 20,
+    },
+    {
+      id: 2,
+      name: "NEW YEAR OFFER",
+      description: "Get 20% off on a purchase of $500",
+      minimumPurchase: 500,
+      discount: 20,
+    },
+  ];
+
+  const isCouponApplied = couponSelected.length ? true : false;
 
   const cartCountHandler = async (product, type) => {
     if (type === "decrement" && product.qty === 1) {
@@ -33,7 +60,7 @@ export const Cart = () => {
 
   const removeFromCartHandler = async (product) => {
     const response = removeFromCartService(product._id, auth.token);
-    dispatch({ type: "SET_CART", payload: (await response).data.cart });
+    dispatch({ type: "SET_CART", payload: response.data.cart });
   };
 
   const addToWishlistHandler = async (product) => {
@@ -46,30 +73,39 @@ export const Cart = () => {
     dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
   };
 
-  const totalDiscountedPrice = userDataState.cartProducts?.reduce(
-    (acc, curr) => acc + curr.discounted_price * curr.qty,
-    0
-  );
-
   const totalOriginalPrice = userDataState.cartProducts?.reduce(
     (acc, curr) => acc + curr.original_price * curr.qty,
     0
   );
 
-  const discountPercent = () => {
-    const totalPrice = userDataState?.cartProducts?.reduce(
-      (acc, curr) => ({
-        ...acc,
-        original: acc.original + curr.original_price,
-        discount: acc.discount + curr.discounted_price,
-      }),
-      { original: 0, discount: 0 }
-    );
+  const totalDiscountedPriceBeforeCoupon = userDataState.cartProducts?.reduce(
+    (acc, curr) => acc + curr.discounted_price * curr.qty,
+    0
+  );
 
-    const totalDiscount =
-      (totalPrice.original - totalPrice.discount) / totalPrice.original;
+  const totalCouponDiscount = couponSelected?.reduce(
+    (acc, curr) =>
+      curr.amount
+        ? acc + curr.amount
+        : acc + (curr.discount * totalDiscountedPriceBeforeCoupon) / 100,
+    0
+  );
 
-    return totalDiscount?.toFixed(2) * 100;
+  const totalDiscountedPriceAfterCoupon = (
+    totalDiscountedPriceBeforeCoupon.toFixed(2) -
+    totalCouponDiscount?.toFixed(2)
+  ).toFixed(2);
+
+  const placeOrderHandler = () => {
+    dispatch({
+      type: "SET_ORDER",
+      payload: {
+        cartItemsTotal: totalOriginalPrice,
+        cartItemsDiscountTotal: totalDiscountedPriceAfterCoupon,
+        couponDiscountTotal: totalCouponDiscount,
+        orderAddress: userDataState.addressList[0],
+      },
+    });
   };
 
   return (
@@ -125,26 +161,95 @@ export const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="cart-price-container">
-          <h2>Summary</h2>
-          <div className="subtotal-container">
-            <span>Sub-total: </span>
-            <span>${totalOriginalPrice}</span>
-          </div>
-          <div className="discount-container">
-            <span>Discount: </span>
-            <span>{discountPercent().toFixed(1)}%</span>
-          </div>
-          <div className="shipping-container">
-            <span>Estimated Delivery & Handling:</span>
-            <span>Free</span>
-          </div>
-          <div className="total">
-            <span className="total-container">Total: </span>
-            <span>{totalDiscountedPrice}</span>
+        <div>
+          <div className="coupons-section">
+            <div className="coupon-header">
+              <MdDiscount color={"rgb(177, 177, 76)"} />
+              <h3 onClick={() => setIsCouponClicked(!isCouponClicked)}>
+                Apply Coupons ?
+              </h3>
+            </div>
+
+            {isCouponClicked && (
+              <div className="coupon-list-container">
+                {couponsData.map((coupon) => {
+                  const {
+                    id,
+                    name,
+                    description,
+                    minimumPurchase,
+                    discount,
+                    amount,
+                  } = coupon;
+                  return (
+                    <div key={id} className="coupon-card">
+                      <input
+                        onChange={(e) => {
+                          e.target.checked
+                            ? setCouponSelected([...couponSelected, coupon])
+                            : setCouponSelected(
+                                couponSelected.filter(
+                                  ({ id }) => id !== coupon.id
+                                )
+                              );
+                        }}
+                        disabled={
+                          totalDiscountedPriceBeforeCoupon <= minimumPurchase
+                        }
+                        id={name}
+                        type="checkbox"
+                      />
+                      <label htmlFor={name}>
+                        <p className="name">{name}</p>
+                        <p className="description">{description}</p>
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
-          <Link to="/checkout">Place Order</Link>
+          <div className="cart-price-container">
+            <h2>Summary</h2>
+            <div className="subtotal-container">
+              <span>Sub-total: </span>
+              <span>${totalOriginalPrice}</span>
+            </div>
+            <div className="discount-container">
+              <span>Discount: </span>
+              <span>
+                -${totalOriginalPrice - totalDiscountedPriceBeforeCoupon}
+              </span>
+            </div>
+            {isCouponApplied && (
+              <div className="discount-container">
+                <span>Coupon Discount: </span>
+                <span> -${totalCouponDiscount}</span>
+              </div>
+            )}
+            <div className="shipping-container">
+              <span>Estimated Delivery & Handling:</span>
+              <span>Free</span>
+            </div>
+            <div className="total">
+              <span className="total-container">Total: </span>
+              <span>${totalDiscountedPriceAfterCoupon}</span>
+            </div>
+
+            <div className="total-discount-container">
+              <span>
+                You saved $
+                {(totalOriginalPrice - totalDiscountedPriceAfterCoupon).toFixed(
+                  2
+                )}{" "}
+              </span>
+            </div>
+
+            <Link onClick={placeOrderHandler} to="/checkout">
+              Place Order
+            </Link>
+          </div>
         </div>
       </div>
     </div>

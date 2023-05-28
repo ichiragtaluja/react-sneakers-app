@@ -15,6 +15,13 @@ const initialUserData = {
   wishlistProducts: [],
   addressList: [],
   orders: [],
+  oderDetails: {
+    cartItemsTotal: "",
+    cartItemsDiscountTotal: "",
+    couponDiscountTotal: "",
+    orderAddress: "",
+    orderId: "",
+  },
 };
 
 const userDataReducer = (state, action) => {
@@ -29,6 +36,14 @@ const userDataReducer = (state, action) => {
 
     case "SET_WISHLIST": {
       return { ...state, wishlistProducts: [...action.payload] };
+    }
+
+    case "SET_ORDER": {
+      return { ...state, orderDetails: { ...action.payload } };
+    }
+
+    case "SET_ORDERS": {
+      return { ...state, orders: [...state.orderDetails, ...action.payload] };
     }
 
     default:

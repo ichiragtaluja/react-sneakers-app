@@ -7,6 +7,6 @@ export const Orders = () => {
   return !userDataState.cartProducts?.length ? (
     <div className="orders-container">No Orders</div>
   ) : (
-    <div>Some Orders</div>
+    <div className="orders-container">Some Orders</div>
   );
 };

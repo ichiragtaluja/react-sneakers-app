@@ -9,6 +9,7 @@ import { useAuth } from "../../contexts/AuthProvider";
 export const Checkout = () => {
   const { auth } = useAuth();
   const { userDataState, dispatch } = useUserData();
+  console.log("addressList", userDataState.addressList);
 
   const {
     setAddressForm,
@@ -18,8 +19,12 @@ export const Checkout = () => {
   } = useAddress();
 
   const deleteAddress = async (address) => {
-    const response = await removeAddressService(address, auth.token);
-    dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+    try {
+      const response = await removeAddressService(address, auth.token);
+      if (response.status === 200) {
+        dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+      }
+    } catch (error) {}
   };
 
   const editButtonHandler = (address) => {
@@ -35,11 +40,11 @@ export const Checkout = () => {
   return (
     <div>
       <div>Checkout</div>
-      <div className="checkbox-container">
+      <div className="checkout-container">
         <div className="address-container">
-          {userDataState.addressList?.map((add, index) => {
+          {userDataState.addressList?.map((address, index) => {
             const { name, street, city, state, country, pincode, phone, _id } =
-              add;
+              address;
 
             return (
               <div key={_id} className="address-card">
@@ -49,32 +54,45 @@ export const Checkout = () => {
                     setDeliveryAddressIndex(index);
                   }}
                   name="address"
-                  id={name}
+                  id={_id}
                   type="radio"
                 />
-                <label for={name}>
-                  <p>
-                    {name}, {street}, {city},{state}, {country} {pincode} -{" "}
-                    {phone}
+                <label for={_id}>
+                  <p className="name">{name}</p>
+                  <p className="address">
+                    {street}, {city},{state}, {country} {pincode} - {phone}
                   </p>
-                  <button onClick={() => editButtonHandler(add)}>Edit</button>
-                  <button onClick={() => deleteAddress(add)}>Delete</button>
+                  <div className="address-btns">
+                    <button onClick={() => editButtonHandler(address)}>
+                      Edit
+                    </button>
+                    <button onClick={() => deleteAddress(address)}>
+                      Delete
+                    </button>
+                  </div>
                 </label>
               </div>
             );
           })}
-          <button onClick={() => setIsAddressModalOpen(true)}>
-            Add New Address
-          </button>
+          <div className="add-new-address-btn-container">
+            <button
+              className="add-new-address-btn"
+              onClick={() => setIsAddressModalOpen(true)}
+            >
+              Add New Address
+            </button>
+          </div>
+
           {isAddressModalOpen && <AddressModal />}
         </div>
         <div className="order-details-container">
           <div className="product-details-container">
-            <h3>Order Details</h3>
+            <h3>Purchased Items</h3>
             <div className="ordered-products-container">
               {userDataState.cartProducts?.map(
-                ({ id, name, qty, discounted_price }) => (
+                ({ id, img, name, qty, discounted_price }) => (
                   <div key={id} className="ordered-product-card">
+                    <img src={img} />
                     <span>{name}</span>
                     <span>{qty}</span>
                     <span>${discounted_price}</span>
@@ -86,28 +104,34 @@ export const Checkout = () => {
 
           <div className="billing-container">
             <h3>Billing</h3>
-            <div price-details-container>
+            <div className="price-details-container">
               <div>
                 <span className="subtotal">Subtotal</span>
-                <span>{totalOriginalPrice}</span>
+                <span>${userDataState.orderDetails?.cartItemsTotal}</span>
               </div>
 
               <div>
                 <span className="subtotal">Discount</span>
-                <span>{totalOriginalPrice - totalDiscountedPrice}</span>
+                <span>
+                  $
+                  {userDataState.orderDetails?.cartItemsTotal -
+                    userDataState.orderDetails?.cartItemsDiscountTotal}
+                </span>
               </div>
 
-              <div>
+              {/* <div>
                 <span>Total before shipping</span>
                 <span>{totalDiscountedPrice}</span>
-              </div>
+              </div> */}
               <div>
                 <span>Shipping</span>
-                <span>{}</span>
+                <span>Free</span>
               </div>
               <div>
                 <span>Total</span>
-                <span>{}</span>
+                <span>
+                  ${userDataState.orderDetails?.cartItemsDiscountTotal}
+                </span>
               </div>
             </div>
           </div>

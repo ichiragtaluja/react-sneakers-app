@@ -18,11 +18,11 @@
   flex-flow: row nowrap;
   justify-content: space-around;
   padding: 15px;
-  background-color: rgb(189, 189, 104);
+  background-color: rgb(236, 236, 236);
 }
 
 .link-container > a {
-  color: white;
+  color: black;
   text-decoration: none;
 
   font-weight: 600;
