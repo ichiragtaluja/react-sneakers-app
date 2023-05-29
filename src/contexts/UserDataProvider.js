@@ -16,7 +16,7 @@ const initialUserData = {
   wishlistProducts: [],
   addressList: [],
   orders: [],
-  oderDetails: {
+  orderDetails: {
     cartItemsTotal: "",
     cartItemsDiscountTotal: "",
     couponDiscountTotal: "",
@@ -43,7 +43,7 @@ const userDataReducer = (state, action) => {
       return {
         ...state,
         orderDetails: {
-          ...state.orderdetails,
+          ...state.orderDetails,
           ...action.payload,
         },
       };
@@ -172,6 +172,7 @@ export function UserProvider({ children }) {
         totalDiscountedPrice,
         totalOriginalPrice,
         discountPercent,
+        initialUserData
       }}
     >
       {children}

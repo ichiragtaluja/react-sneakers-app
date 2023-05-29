@@ -12,6 +12,7 @@ export const Checkout = () => {
   const [error, setError] = useState("false");
   const { auth } = useAuth();
   const { userDataState, dispatch } = useUserData();
+  console.log(userDataState.orderDetails);
 
   const {
     setAddressForm,
@@ -128,8 +129,10 @@ export const Checkout = () => {
                 <span className="subtotal">Discount</span>
                 <span>
                   $
-                  {userDataState.orderDetails?.cartItemsTotal -
-                    userDataState.orderDetails?.cartItemsDiscountTotal}
+                  {(
+                    userDataState.orderDetails?.cartItemsTotal -
+                    userDataState.orderDetails?.cartItemsDiscountTotal
+                  ).toFixed(2)}
                 </span>
               </div>
 
@@ -154,17 +157,17 @@ export const Checkout = () => {
             <h3>Delivering To</h3>
             <div className="delivery-address-description">
               <span className="name">
-                {userDataState.orderDetails?.orderAddress.name}
+                {userDataState.orderDetails?.orderAddress?.name}
               </span>
               <span className="address">
-                {userDataState.orderDetails?.orderAddress.street},{" "}
-                {userDataState.orderDetails?.orderAddress.city},{" "}
-                {userDataState.orderDetails?.orderAddress.state},{" "}
-                {userDataState.orderDetails?.orderAddress.country},{" "}
-                {userDataState.orderDetails?.orderAddress.pincode}
+                {userDataState.orderDetails?.orderAddress?.street},{" "}
+                {userDataState.orderDetails?.orderAddress?.city},{" "}
+                {userDataState.orderDetails?.orderAddress?.state},{" "}
+                {userDataState.orderDetails?.orderAddress?.country},{" "}
+                {userDataState.orderDetails?.orderAddress?.pincode}
               </span>
               <span className="contact">
-                Contact: {userDataState.orderDetails?.orderAddress.phone}
+                Contact: {userDataState.orderDetails?.orderAddress?.phone}
               </span>
             </div>
           </div>
