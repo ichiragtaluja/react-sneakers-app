@@ -7,13 +7,10 @@ import { addToWishlistService } from "../../services/wishlist-services/addToWish
 import { removeFromWishlistService } from "../../services/wishlist-services/removeFromWishlist";
 import { useUserData } from "../../contexts/UserDataProvider";
 import { useAuth } from "../../contexts/AuthProvider";
-import { getCartService } from "../../services/cart-services/getCartService";
-import { MdDelete } from "react-icons/md";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiFillHeart } from "react-icons/ai";
-import { addOrderService } from "../../services/order-services/addOrderService";
+
 import { MdDiscount } from "react-icons/md";
 import { toast } from "react-hot-toast";
+import { CartListing } from "./components/CartListing/CartListing";
 
 export const Cart = () => {
   const [loading, setLoading] = useState(false);
@@ -21,7 +18,7 @@ export const Cart = () => {
   const [isCouponClicked, setIsCouponClicked] = useState(false);
 
   const { auth } = useAuth();
-  const { userDataState, dispatch, isProductInWishlist, orderDetails } =
+  const { userDataState, dispatch, orderDetails, } =
     useUserData();
 
   const [couponSelected, setCouponSelected] = useState([]);
@@ -45,38 +42,7 @@ export const Cart = () => {
 
   const isCouponApplied = couponSelected.length ? true : false;
 
-  const cartCountHandler = async (product, type) => {
-    try {
-      setLoading(true);
-      setError("");
-      if (type === "decrement" && product.qty === 1) {
-        const response = await removeFromCartService(product._id, auth.token);
-        if (response.status === 200) {
-          setLoading(false);
-          toast.success(`${product.name} succesfully removed from the cart`);
-          dispatch({ type: "SET_CART", payload: response.data.cart });
-        }
-      } else {
-        const response = await changeQuantityCartService(
-          product._id,
-          auth.token,
-          type
-        );
-
-        if (response.status === 200) {
-          setLoading(false);
-          if (type === "decrement") {
-            toast.success(`Removed one ${product.name} from the cart!`);
-          } else {
-            toast.success(`Added onother ${product.name} to the cart!`);
-          }
-          dispatch({ type: "SET_CART", payload: response.data.cart });
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   const couponHandler = (e, coupon) => {
     if (e.target.checked) {
@@ -88,57 +54,11 @@ export const Cart = () => {
     }
   };
 
-  const removeFromCartHandler = async (product) => {
-    try {
-      setLoading(true);
-      setError("");
-      const response = await removeFromCartService(product._id, auth.token);
-      if (response.status === 200) {
-        setLoading(false);
-        toast.success(`${product.name} successfully removed from the cart `);
-        dispatch({ type: "SET_CART", payload: response.data.cart });
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const addToWishlistHandler = async (product) => {
-    try {
-      setLoading(true);
-      setError("");
-      const response = await addToWishlistService(product, auth.token);
-      if (response.status === 201) {
-        toast.success(`${product.name} add to the wishlist!`);
-        setLoading(false);
-        dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  const removeFromWishlistHandler = async (product) => {
-    try {
-      setLoading(true);
-      setError("");
-      const response = await removeFromWishlistService(product._id, auth.token);
-      if (response.status === 200) {
-        toast.success(`${product.name} removed from the wishlist!`);
-        setLoading(false);
-        dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
+
+
+ 
 
   const totalOriginalPrice = userDataState.cartProducts?.reduce(
     (acc, curr) => acc + curr.original_price * curr.qty,
@@ -179,55 +99,7 @@ export const Cart = () => {
     <div>
       <h1>Cart</h1>
       <div className="cart-container">
-        <div className="cart-products-container">
-          {userDataState.cartProducts.map((product) => (
-            <div className="cart-product-card" key={product.name}>
-              <div>
-                <img className="cart-img" src={product.img} />
-              </div>
-              <div className="product-description">
-                <h3>{product.name}</h3>
-                <p>Price:${product.discounted_price}</p>
-                <p>Size: {product.size}</p>
-              </div>
-              <div className="button-section">
-                <div className="count-btn-container">
-                  <button
-                    className="counter-btn"
-                    onClick={() => cartCountHandler(product, "decrement")}
-                  >
-                    -
-                  </button>
-                  <span>{product.qty}</span>
-                  <button
-                    className="counter-btn"
-                    onClick={() => cartCountHandler(product, "increment")}
-                  >
-                    +
-                  </button>
-                </div>
-                <div className="secondary-btn-section">
-                  <MdDelete
-                    size={25}
-                    onClick={() => removeFromCartHandler(product)}
-                  />
-
-                  {!isProductInWishlist(product) ? (
-                    <AiOutlineHeart
-                      size={25}
-                      onClick={() => addToWishlistHandler(product)}
-                    />
-                  ) : (
-                    <AiFillHeart
-                      size={25}
-                      onClick={() => removeFromWishlistHandler(product)}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <CartListing/>
         <div>
           <div className="coupons-section">
             <div className="coupon-header">
