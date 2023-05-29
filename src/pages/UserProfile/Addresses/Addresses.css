@@ -10,6 +10,9 @@
   background-color: var(--primary-color);
   margin-bottom: 15px;
 }
+.add-address-btn-container .plus {
+  margin-right: 5px;
+}
 
 .address-card .name {
   font-weight: 600;
@@ -26,6 +29,11 @@
 
 .address-card .address {
   margin-bottom: 5px;
+}
+.add-address-btn-container button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .address-card span {

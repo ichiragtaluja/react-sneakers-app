@@ -106,6 +106,7 @@
 .product-card-buttons-container {
   display: flex;
   flex-flow: column nowrap;
+  margin-bottom: 30px;
   /* border: 1px soliod black; */
 }
 

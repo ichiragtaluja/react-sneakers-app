@@ -2,7 +2,10 @@ import "./ProductDetails.css";
 import { BsFillStarFill } from "react-icons/bs";
 import Tilt from "react-parallax-tilt";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+
+import { useLocation } from "react-router-dom";
 
 import { addToWishlistService } from "../../services/wishlist-services/addToWishlistService";
 
@@ -10,23 +13,105 @@ import { useData } from "../../contexts/DataProvider";
 import { addToCartService } from "../../services/cart-services/addToCartService";
 import { useAuth } from "../../contexts/AuthProvider";
 import { useUserData } from "../../contexts/UserDataProvider";
+import { toast } from "react-hot-toast";
+import { removeFromWishlistService } from "../../services/wishlist-services/removeFromWishlist";
 
 export const ProductDetails = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const { state } = useData();
   const { productId } = useParams();
+  const location = useLocation();
 
-  const { dispatch } = useUserData();
+  const { dispatch, userDataState } = useUserData();
 
   const { auth } = useAuth();
+  const navigate = useNavigate();
 
-  const addToCartHandler = async (product) => {
-    const response = await addToCartService(product, auth.token);
-    dispatch({ type: "SET_CART", payload: response.data.cart });
+  const isProductInCart = (product) => {
+    const found = userDataState.cartProducts.find(
+      (item) => item._id === product._id
+    );
+    return found ? true : false;
   };
 
-  const addToWishlistHandler = async (product) => {
-    const response = await addToWishlistService(product, auth.token);
-    dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+  const isProductInWishlist = (product) => {
+    const found = userDataState.wishlistProducts.find(
+      (item) => item._id === product._id
+    );
+    return found ? true : false;
+  };
+
+  const addToCartHandler = async (product) => {
+    if (auth.isAuth) {
+      if (!isProductInCart(product)) {
+        try {
+          setLoading(true);
+          setError("");
+          const response = await addToCartService(product, auth.token);
+          if (response.status === 201) {
+            setLoading(false);
+            toast.success(`${product.name} added to cart successfully!`);
+            dispatch({ type: "SET_CART", payload: response.data.cart });
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        navigate("/cart");
+      }
+    } else {
+      toast("Please login first!");
+      navigate("/login", { state: { from: location } });
+    }
+  };
+
+  const wishlistHandler = async (product) => {
+    if (auth.isAuth) {
+      if (!isProductInWishlist(product)) {
+        try {
+          setLoading(true);
+          setError("");
+          const response = await addToWishlistService(product, auth.token);
+          if (response.status === 201) {
+            setLoading(false);
+            toast.success(
+              `${product.name} added to the wishlist successfully!`
+            );
+            dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        try {
+          setLoading(true);
+          setError("");
+          const response = await removeFromWishlistService(product._id, auth.token);
+          if (response.status === 200) {
+            setLoading(false);
+            toast.success(
+              `${product.name} removed from the wishlist successfully!`
+            );
+            dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    } else {
+      toast("Please login first!");
+      navigate("/login", { state: { from: location } });
+    }
   };
 
   const selectedProduct = state.allProductsFromApi?.find(
@@ -113,13 +198,15 @@ export const ProductDetails = () => {
               onClick={() => addToCartHandler(selectedProduct)}
               className="add-to-cart-btn"
             >
-              Add to cart
+              {!isProductInCart(selectedProduct) ? "Add to cart" : "Go to cart"}
             </button>
             <button
-              onClick={() => addToWishlistHandler(selectedProduct)}
+              onClick={() => wishlistHandler(selectedProduct)}
               className="add-to-wishlist-btn"
             >
-              Add to wishlist
+              {!isProductInWishlist(selectedProduct)
+                ? "Add to wishlist"
+                : "Remove from wishlist"}
             </button>
           </div>
         </div>

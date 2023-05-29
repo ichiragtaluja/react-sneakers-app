@@ -1,8 +1,9 @@
 import "./ProductListingSection.css";
 import Tilt from "react-parallax-tilt";
 import React from "react";
+
 import { useData } from "../../../../contexts/DataProvider";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { getCategoryWiseProducts } from "../../../../helpers/filter-functions/category";
 import { getRatedProducts } from "../../../../helpers/filter-functions/ratings";
 import { getPricedProducts } from "../../../../helpers/filter-functions/price";
@@ -15,14 +16,101 @@ import { useAuth } from "../../../../contexts/AuthProvider";
 import { BsFillStarFill } from "react-icons/bs";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
+import { addToCartService } from "../../../../services/cart-services/addToCartService";
+import { addToWishlistService } from "../../../../services/wishlist-services/addToWishlistService";
+import { removeFromWishlistService } from "../../../../services/wishlist-services/removeFromWishlist";
 
 export const ProductListingSection = () => {
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const { state } = useData();
-  const { addToCartHandler, addToWishlistHandler, isProductInCart } =
-    useUserData();
+  const { isProductInCart, dispatch, userDataState } = useUserData();
 
   const { auth } = useAuth();
+
+  const isProductInWishlist = (product) => {
+    const found = userDataState.wishlistProducts.find(
+      (item) => item._id === product._id
+    );
+    return found ? true : false;
+  };
+
+  const wishlistHandler = async (product) => {
+    if (auth.isAuth) {
+      if (!isProductInWishlist(product)) {
+        try {
+          setLoading(true);
+          setError("");
+          const response = await addToWishlistService(product, auth.token);
+          if (response.status === 201) {
+            setLoading(false);
+            toast.success(
+              `${product.name} added to the wishlist successfully!`
+            );
+            dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        try {
+          setLoading(true);
+          setError("");
+          const response = await removeFromWishlistService(
+            product._id,
+            auth.token
+          );
+          if (response.status === 200) {
+            setLoading(false);
+            toast.success(
+              `${product.name} removed from the wishlist successfully!`
+            );
+            dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    } else {
+      toast("Please login first!");
+      navigate("/login", { state: { from: location } });
+    }
+  };
+
+  const addToCartHandler = async (product) => {
+    if (auth.isAuth) {
+      if (!isProductInCart(product)) {
+        try {
+          setLoading(true);
+          setError("");
+          const response = await addToCartService(product, auth.token);
+          if (response.status === 201) {
+            setLoading(false);
+            toast.success(`${product.name} added to cart successfully!`);
+            dispatch({ type: "SET_CART", payload: response.data.cart });
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        navigate("/cart");
+      }
+    } else {
+      toast("Please login first!");
+      navigate("/login", { state: { from: location } });
+    }
+  };
 
   const {
     allProductsFromApi,
@@ -45,7 +133,6 @@ export const ProductListingSection = () => {
 
   return (
     <div className="product-card-container">
-      
       {sortedProducts.map((product) => {
         const {
           _id,
@@ -107,26 +194,20 @@ export const ProductListingSection = () => {
 
               <div className="product-card-buttons">
                 <button
-                  onClick={() =>
-                    !auth.isAuth
-                      ? navigate("/login")
-                      : !isProductInCart(product)
-                      ? addToCartHandler(product)
-                      : navigate("/cart")
-                  }
+                  onClick={() => addToCartHandler(product)}
                   className="cart-btn"
                 >
                   {!isProductInCart(product) ? "Add To Cart" : "Go to Cart"}
                 </button>
                 <button
-                  onClick={() =>
-                    !auth.isAuth
-                      ? navigate("/login")
-                      : addToWishlistHandler(product)
-                  }
+                  onClick={() => wishlistHandler(product)}
                   className="wishlist-btn"
                 >
-                  <AiOutlineHeart color={"black"} size={30} />
+                  {!isProductInWishlist(product) ? (
+                    <AiOutlineHeart color={"black"} size={30} />
+                  ) : (
+                    <AiTwotoneHeart color={"black"} size={30} />
+                  )}
                 </button>
               </div>
             </div>

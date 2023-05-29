@@ -5,22 +5,38 @@ import { AddressModal } from "../../checkout/AddressModal/AddressModal";
 import { removeAddressService } from "../../../services/address-services/removeAddressService";
 import { useAuth } from "../../../contexts/AuthProvider";
 import "./Addresses.css";
+import { RiAddFill } from "react-icons/ri";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export const Addresses = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const { auth } = useAuth();
 
   const { userDataState, dispatch } = useUserData();
   const {
     setIsEdit,
-
     setAddressForm,
     isAddressModalOpen,
     setIsAddressModalOpen,
   } = useAddress();
 
   const deleteAddress = async (address) => {
-    const response = await removeAddressService(address, auth.token);
-    dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+    try {
+      setLoading(true);
+      setError("");
+      const response = await removeAddressService(address, auth.token);
+      if (response.status === 200) {
+        toast.success(`${address.name}'s address successfully deleted!`);
+        dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const editButtonHandler = (add) => {
@@ -35,7 +51,10 @@ export const Addresses = () => {
   return (
     <div className="address-section-container">
       <div className="add-address-btn-container">
-        <button onClick={addAddressHandler}>New Address</button>
+        <button onClick={addAddressHandler}>
+          <RiAddFill className="plus" />
+          New Address
+        </button>
       </div>
       <div className="profile-address-container">
         {userDataState.addressList.map((address) => {

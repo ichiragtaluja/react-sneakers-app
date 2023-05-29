@@ -26,7 +26,7 @@ function App() {
         position="top-center"
         reverseOrder={false}
         containerStyle={{
-          top: "5rem",
+          top: "6rem",
         }}
       />
 
