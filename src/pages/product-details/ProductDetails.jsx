@@ -118,21 +118,6 @@ export const ProductDetails = () => {
     ({ id }) => Number(id) === Number(productId)
   );
 
-  // const {
-  //   // _id,
-  //   name,
-  //   original_price,
-  //   discounted_price,
-  //   category_name,
-  //   is_stock,
-  //   rating,
-  //   reviews,
-  //   description,
-  //   trending,
-  //   size,
-  //   img,
-  // } = selectedProduct;
-
   return (
     <>
       <div className="products-page-container">

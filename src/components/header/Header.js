@@ -2,7 +2,7 @@ import "./Header.css";
 import { GrCart } from "react-icons/gr";
 import { CgHeart } from "react-icons/cg";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
@@ -15,6 +15,7 @@ import { useUserData } from "../../contexts/UserDataProvider";
 export const Header = () => {
   const { auth } = useAuth();
   const { dispatch } = useData();
+  const navigate = useNavigate();
   const { userDataState } = useUserData();
   const [showHamburger, setShowHamburger] = useState(true);
   const getActiveStyle = ({ isActive }) => {
@@ -48,6 +49,9 @@ export const Header = () => {
           onChange={(e) =>
             dispatch({ type: "SEARCH", payload: e.target.value })
           }
+          onKeyDown={(e) => {
+            e.key === "Enter" && navigate("/product-listing");
+          }}
           placeholder="Search"
         />
         <button>

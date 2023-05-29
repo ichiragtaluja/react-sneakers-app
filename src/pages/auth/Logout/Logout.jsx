@@ -17,18 +17,7 @@ export const Logout = () => {
     toast.success("You're logged out successfully!");
     dispatch({ type: "SET_CART", payload: [] });
     dispatch({ type: "SET_WISHLIST", payload: [] });
-    dispatch({ type: "SET_ADDRESS", payload: [] });
     dispatch({ type: "SET_ORDERS", payload: [] });
-    dispatch({
-      type: "SET_ORDER",
-      payload: {
-        cartItemsTotal: "",
-        cartItemsDiscountTotal: "",
-        couponDiscountTotal: "",
-        orderAddress: "",
-        orderId: "",
-      },
-    });
 
     navigate("/");
   };
