@@ -13,58 +13,12 @@ import { addToWishlistService } from "../services/wishlist-services/addToWishlis
 import { removeFromWishlistService } from "../services/wishlist-services/removeFromWishlist";
 import { removeFromCartService } from "../services/cart-services/removeFromCartService";
 import { getAddressListService } from "../services/address-services/getAddressListService";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { changeQuantityCartService } from "../services/cart-services/changeQuantityCartService";
+import { userDataReducer, initialUserData } from "../reducer/userDataReducer";
 
 const UserDataContext = createContext();
-
-const initialUserData = {
-  cartProducts: [],
-  wishlistProducts: [],
-  addressList: [],
-  orders: [],
-  orderDetails: {
-    cartItemsTotal: "",
-    cartItemsDiscountTotal: "",
-    couponDiscountTotal: "",
-    orderAddress: "",
-    orderId: "",
-  },
-};
-
-const userDataReducer = (state, action) => {
-  switch (action.type) {
-    case "SET_CART": {
-      return { ...state, cartProducts: [...action.payload] };
-    }
-
-    case "SET_ADDRESS": {
-      return { ...state, addressList: [...action.payload] };
-    }
-
-    case "SET_WISHLIST": {
-      return { ...state, wishlistProducts: [...action.payload] };
-    }
-
-    case "SET_ORDER": {
-      return {
-        ...state,
-        orderDetails: {
-          ...state.orderDetails,
-          ...action.payload,
-        },
-      };
-    }
-
-    case "SET_ORDERS": {
-      return { ...state, orders: [...state.orders, ...action.payload] };
-    }
-
-    default:
-      return state;
-  }
-};
 
 export function UserProvider({ children }) {
   const [loading, setLoading] = useState(false);
@@ -79,7 +33,6 @@ export function UserProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
- 
   const addToCartHandler = async (product) => {
     if (auth.isAuth) {
       if (!isProductInCart(product)) {
@@ -231,13 +184,17 @@ export function UserProvider({ children }) {
       setError("");
       const response = await removeFromWishlistService(product._id, auth.token);
       if (response.status === 200) {
-        toast.success(`${product.name} removed from the wishlist!`);
         setLoading(false);
+        toast.success(
+          `${product.name} removed from the wishlist successfully!`
+        );
         dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
       }
     } catch (error) {
       setLoading(false);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -311,6 +268,7 @@ export function UserProvider({ children }) {
         initialUserData,
         wishlistHandler,
         cartCountHandler,
+        loading,
       }}
     >
       {children}
