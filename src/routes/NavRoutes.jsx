@@ -19,7 +19,7 @@ import { Orders } from "../pages/UserProfile/Orders/Orders";
 export const NavRoutes = () => {
   return (
     <Routes>
-      // <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route
         path="/cart"
         element={
