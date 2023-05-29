@@ -1,0 +1,138 @@
+.product-card-container {
+  padding: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.product-card {
+  padding: 1em;
+  box-shadow: 0px 0px 46px -4px rgb(238, 238, 238);
+  margin: 1em 1em 2em 1em;
+  border-radius: 1em;
+  width: 250px;
+  height: 470px;
+  justify-content: space-between;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.info {
+  display: flex;
+}
+
+.info > * {
+  margin-right: 1em;
+}
+
+.product-card-image {
+  background-color: rgb(246, 246, 246);
+  border-radius: 0.8em;
+}
+
+.product-card-image img {
+  height: 230px;
+  bottom: -2em;
+  width: 150%;
+  object-fit: cover;
+  margin-left: -3em;
+}
+
+.product-card-details {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 0.5em 0em;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  flex-grow: 1;
+  z-index: -1;
+}
+.product-card-details > p {
+  color: rgb(108, 108, 108);
+  font-size: 0.8em;
+}
+
+.product-card-details > h3 {
+  text-transform: uppercase;
+  margin: 0em 0.5em 0em 0em;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 0.5em 0em;
+  align-self: stretch;
+  flex-wrap: nowrap;
+}
+.product-card-buttons {
+  position: relative;
+  display: flex;
+  z-index: 5;
+}
+.cart-btn {
+  font-weight: 800;
+  margin: 0px auto;
+  border: none;
+  flex-grow: 1;
+  justify-self: stretch;
+  border-radius: 10px;
+  font-size: 1.05em;
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.product-card-details .ratings {
+  font-size: 0.7rem;
+  margin-top: -5px;
+  margin-bottom: 12px;
+}
+
+.wishlist-btn {
+  margin-left: 0.5em;
+  border: none;
+  background-color: white;
+  padding: 0.5em;
+  border-radius: 10px;
+  box-shadow: 0px 0px 46px -4px rgb(205, 205, 205);
+}
+.original-price {
+  color: rgb(105, 105, 105);
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+
+.discount-price {
+  color: black;
+  font-weight: 600;
+}
+
+.product-card-details .price-container {
+  font-size: 1e;
+  display: flex;
+  margin-bottom: 0.35em;
+}
+
+.price-container > * {
+  margin-right: 0.5em;
+}
+
+.trending {
+  margin-top: 0.8em;
+  border-radius: 5px;
+  align-self: flex-start;
+  padding: 0.3em 1em;
+  background-color: rgb(203, 249, 203);
+  color: rgb(108, 108, 108);
+  font-size: 0.8em;
+}
+
+.out-of-stock {
+  margin-top: 0.8em;
+  border-radius: 5px;
+  align-self: flex-start;
+  padding: 0.3em 1em;
+  background-color: rgb(249, 213, 203);
+  color: rgb(108, 108, 108);
+  font-size: 0.8em;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
+import "./CartListing.css";
 
 import { useUserData } from "../../../../contexts/UserDataProvider";
 

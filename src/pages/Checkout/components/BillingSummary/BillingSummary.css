@@ -1,0 +1,24 @@
+.billing-container {
+  border-top: 1px solid rgb(226, 226, 226);
+  padding: 15px;
+  margin: 0 15px;
+}
+
+.billing-container h3 {
+  text-align: center;
+}
+
+.price-details-container > * {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-details-container > *:first-child {
+  margin-top: 10px;
+}
+
+.price-details-container > *:last-child {
+  font-size: 30px;
+  font-weight: 500;
+}

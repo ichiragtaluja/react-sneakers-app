@@ -79,14 +79,32 @@ export function UserProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
+ 
   const addToCartHandler = async (product) => {
-    try {
-      const response = await addToCartService(product, auth.token);
-      if (response.status === 201) {
-        toast.success("Added to cart");
-        dispatch({ type: "SET_CART", payload: response.data.cart });
+    if (auth.isAuth) {
+      if (!isProductInCart(product)) {
+        try {
+          setLoading(true);
+          setError("");
+          const response = await addToCartService(product, auth.token);
+          if (response.status === 201) {
+            setLoading(false);
+            toast.success(`${product.name} added to cart successfully!`);
+            dispatch({ type: "SET_CART", payload: response.data.cart });
+          }
+        } catch (error) {
+          setLoading(false);
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        navigate("/cart");
       }
-    } catch (error) {}
+    } else {
+      toast("Please login first!");
+      navigate("/login", { state: { from: location } });
+    }
   };
 
   const addToWishlistHandler = async (product) => {

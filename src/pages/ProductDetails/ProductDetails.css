@@ -1,0 +1,18 @@
+.products-page-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .products-page-container {
+    margin-top: 100px;
+    padding: 30px 30px 30px 0px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+    height: 195vw;
+    justify-content: space-evenly;
+  }
+}

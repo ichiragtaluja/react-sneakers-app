@@ -1,0 +1,125 @@
+.products-page-container .product-details-description {
+  width: 70vw;
+  height: 50vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  line-height: 25px;
+}
+
+.products-page-container .product-details-description h1 {
+  margin-bottom: 2rem;
+}
+.gender-container {
+  font-size: 0.9rem;
+}
+
+.description-container {
+  font-size: 1rem;
+  line-height: 22px;
+  margin-bottom: 20px;
+}
+
+.description-container > span {
+  font-weight: 600;
+}
+
+.gender-container > span {
+  font-weight: 600;
+  color: black;
+}
+.gender-container {
+  color: grey;
+}
+
+.size-container {
+  font-size: 0.9rem;
+  color: grey;
+}
+.size-container > span {
+  font-weight: bold;
+  color: black;
+}
+
+.product-price-container {
+  margin-bottom: 20px;
+}
+
+.product-original-price {
+  font-size: 1.5rem;
+  color: grey;
+  text-decoration: line-through;
+  text-decoration-color: red;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.product-discount-price {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+.ratings-reviews {
+  font-size: 0.9rem;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.ratings-reviews > :first-child {
+  font-weight: bold;
+}
+.ratings-reviews .review {
+  color: grey;
+}
+
+.tags {
+  display: flex;
+  margin-bottom: 15px;
+}
+.tags > * {
+  margin-right: 10px;
+}
+
+.product-card-buttons-container {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 30px;
+}
+
+.product-card-buttons-container .add-to-cart-btn {
+  font-weight: 800;
+  border: none;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  font-size: 1em;
+  color: white;
+  background-color: var(--primary-color);
+  padding: 15px 45px;
+  text-transform: uppercase;
+}
+
+.product-card-buttons-container .add-to-wishlist-btn {
+  border: none;
+  background-color: rgb(221, 221, 221);
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  box-shadow: 0px 0px 46px -4px rgb(205, 205, 205);
+  padding: 15px 45px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+@media (min-width: 768px) {
+  .products-page-container .product-details-description {
+    width: 25vw;
+    height: 300px;
+    justify-content: space-between;
+    line-height: 26px;
+    margin-top: -30px;
+  }
+
+  .tags {
+    display: flex;
+    margin-bottom: 30px;
+  }
+}

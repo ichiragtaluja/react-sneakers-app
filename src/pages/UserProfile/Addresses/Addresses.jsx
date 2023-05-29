@@ -1,13 +1,13 @@
 import React from "react";
 import { useAddress } from "../../../contexts/AddressProvider";
 import { useUserData } from "../../../contexts/UserDataProvider";
-import { AddressModal } from "../../checkout/AddressModal/AddressModal";
 import { removeAddressService } from "../../../services/address-services/removeAddressService";
 import { useAuth } from "../../../contexts/AuthProvider";
 import "./Addresses.css";
 import { RiAddFill } from "react-icons/ri";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { AddressModal } from "../../Checkout/components/AddressModal/AddressModal";
 
 export const Addresses = () => {
   const [loading, setLoading] = useState(false);

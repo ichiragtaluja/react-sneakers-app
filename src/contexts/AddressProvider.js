@@ -1,9 +1,17 @@
 import { createContext, useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { addAddressService } from "../services/address-services/addAddressService";
+import { removeAddressService } from "../services/address-services/removeAddressService";
+import { useAuth } from "./AuthProvider";
+import { useUserData } from "./UserDataProvider";
+
 
 const AddressContext = createContext();
 
 export function AddressProvider({ children }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("false");
+  const {dispatch} = useUserData()
   const [addressForm, setAddressForm] = useState({
     _id: "",
     name: "",
@@ -14,11 +22,28 @@ export function AddressProvider({ children }) {
     pincode: "",
     phone: "",
   });
+  const { auth } = useAuth();
 
   const [editAddressIndex, setEditAddressIndex] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
 
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+
+  const deleteAddress = async (address) => {
+    try {
+      setLoading(true);
+      setError("");
+      const response = await removeAddressService(address, auth.token);
+      if (response.status === 200) {
+        setLoading(false);
+        toast.success(`${address.name}'s address deleted successfully!`);
+        dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
 
   return (
     <AddressContext.Provider
@@ -31,6 +56,7 @@ export function AddressProvider({ children }) {
         setIsAddressModalOpen,
         isEdit,
         setIsEdit,
+        deleteAddress,
       }}
     >
       {children}

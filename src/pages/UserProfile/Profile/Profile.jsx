@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
-import { Logout } from "../../auth/Logout/Logout";
+import { Logout } from "../../Auth/Logout/Logout";
 import "./Profile.css";
 
 export const Profile = () => {
@@ -8,7 +8,6 @@ export const Profile = () => {
 
   return (
     <div className="profile-container">
-      {/* <h3>Profile Details</h3> */}
       <div className="profile-details">
         <div className="name">
           <span>Full Name: </span>
@@ -19,7 +18,7 @@ export const Profile = () => {
         </div>
 
         <div className="email">
-          <span>Email: {" "}</span>
+          <span>Email: </span>
           <span> {auth.email} </span>
         </div>
       </div>

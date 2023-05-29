@@ -1,0 +1,46 @@
+.address-container {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.checkout-container .address-card {
+  border: 1px solid rgb(232, 232, 232);
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.address-container .address-card .name {
+  margin-bottom: 5px;
+}
+
+.address-container .address-card .address {
+  font-size: 13px;
+}
+
+.add-new-address-btn-container {
+  text-align: center;
+}
+
+.add-new-address-btn {
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.address-btns {
+  margin-top: 10px;
+}
+
+.address-btns button {
+  margin-right: 10px;
+  padding: 5px 18px;
+  border: none;
+  border-radius: 5px;
+}
+
+.address-card input {
+  margin-right: 10px;
+}

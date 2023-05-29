@@ -1,12 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthProvider";
 import { useUserData } from "../../contexts/UserDataProvider";
 import { removeFromWishlistService } from "../../services/wishlist-services/removeFromWishlist";
 import { BsFillStarFill } from "react-icons/bs";
 import "./Wishlist.css";
 import { useState } from "react";
-import { addToCartService } from "../../services/cart-services/addToCartService";
 import { toast } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 
@@ -15,7 +13,8 @@ export const Wishlist = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { auth } = useAuth();
-  const { userDataState, dispatch, isProductInCart } = useUserData();
+  const { userDataState, dispatch, isProductInCart, addToCartHandler } =
+    useUserData();
 
   const removeFromWishlistHandler = async (product) => {
     try {
@@ -36,35 +35,6 @@ export const Wishlist = () => {
       setLoading(false);
     }
   };
-
-  const addToCartHandler = async (product) => {
-    if (auth.isAuth) {
-      if (!isProductInCart(product)) {
-        try {
-          setLoading(true);
-          setError("");
-          const response = await addToCartService(product, auth.token);
-          if (response.status === 201) {
-            setLoading(false);
-            toast.success(`${product.name} added to cart successfully!`);
-            dispatch({ type: "SET_CART", payload: response.data.cart });
-          }
-        } catch (error) {
-          setLoading(false);
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        navigate("/cart");
-      }
-    } else {
-      toast("Please login first!");
-      navigate("/login", { state: { from: location } });
-    }
-  };
-
-  const navigate = useNavigate();
 
   return (
     <div>

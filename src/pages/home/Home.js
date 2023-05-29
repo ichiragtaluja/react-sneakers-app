@@ -1,9 +1,9 @@
 import React from "react";
 import { Footer } from "../../components/Footer/Footer";
-import { HeroSection } from "./home-components/hero-section/HeroSection";
-import { CategoriesSection } from "./home-components/categories-section/CategoriesSection";
-import { VideosSection } from "./home-components/videos-section/VideosSection";
-import { HeroVideo } from "./home-components/HeroVideo/HeroVideo";
+import { HeroSection } from "./components/HeroSection/HeroSection";
+import { CategoriesSection } from "./components/CategoriesSection/CategoriesSection";
+import { VideosSection } from "./components/VideosSection/VideosSection";
+import { HeroVideo } from "./components/HeroVideo/HeroVideo";
 
 export const Home = () => {
   return (

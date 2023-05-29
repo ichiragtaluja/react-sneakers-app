@@ -1,0 +1,16 @@
+.product-details-image img {
+  width: 90vw;
+  object-fit: cover;
+  height: 65vw;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+  .product-details-image img {
+    width: 50vw;
+    object-fit: cover;
+    height: 500px;
+    margin-top: -70px;
+  }
+}
