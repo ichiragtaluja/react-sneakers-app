@@ -4,18 +4,21 @@ import { HeroSection } from "./components/HeroSection/HeroSection";
 import { CategoriesSection } from "./components/CategoriesSection/CategoriesSection";
 import { VideosSection } from "./components/VideosSection/VideosSection";
 import { HeroVideo } from "./components/HeroVideo/HeroVideo";
+import { useData } from "../../contexts/DataProvider";
 
 export const Home = () => {
+  const { loading } = useData();
   return (
-    <div className="home-page">
-      <div className="hero">
-        <HeroVideo />
-        <HeroSection />
-        <VideosSection />
-
-        <CategoriesSection />
-        <Footer />
+    !loading && (
+      <div className="home-page">
+        <div className="hero">
+          <HeroVideo />
+          <HeroSection />
+          <VideosSection />
+          <CategoriesSection />
+          <Footer />
+        </div>
       </div>
-    </div>
+    )
   );
 };

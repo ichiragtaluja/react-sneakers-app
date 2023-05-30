@@ -1,10 +1,10 @@
 .cart-price-container {
   border-radius: 10px;
   padding: 20px;
-  border: 1px solid rgb(234, 234, 234);
   display: flex;
   flex-flow: column nowrap;
   margin: 10px 0 0 0;
+  background-color: rgb(242, 242, 242);
 }
 
 .cart-price-container a {
@@ -16,21 +16,26 @@
   border-radius: 10px;
   font-weight: 600;
   font-size: 1rem;
+  margin-top: 40px;
 }
 .cart-price-container .total {
   font-weight: 700;
   font-size: 35px;
+  color: black;
+}
+.cart-price-container h1 {
+  color: black;
 }
 
 .cart-price-container > * {
   margin-bottom: 10px;
-  /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
+  color: grey;
 }
 
 .total-discount-container {
-  color: rgb(62, 159, 18);
+  color: rgb(55, 134, 18);
 }
 
 @media (min-width: 768px) {
@@ -40,8 +45,8 @@
     margin: 0 0 0 15px;
     align-self: flex-start;
     border-radius: 10px;
-    padding: 20px;
-    border: 1px solid rgb(234, 234, 234);
+    padding: 25px;
+    /* border: 1px solid rgb(234, 234, 234); */
     display: flex;
     flex-flow: column nowrap;
   }

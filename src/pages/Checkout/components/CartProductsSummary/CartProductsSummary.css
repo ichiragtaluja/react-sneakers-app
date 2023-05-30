@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin: -5px;
 }
 
 .ordered-product-card:first-child {
@@ -18,14 +18,21 @@
 }
 
 .ordered-product-card img {
-  width: 80px;
+  width: 75px;
   border-radius: 7px;
   background-color: rgb(241, 241, 241);
 }
 
 .product-details-container {
   padding: 15px;
-  margin: 15px;
+  margin:  15px 15px  0 15px ;
+  color: grey
+}
+
+.product-details-container h1 {
+  text-align: center;
+  font-size: 40px;
+  color: black
 }
 
 @media (min-width: 768px) {

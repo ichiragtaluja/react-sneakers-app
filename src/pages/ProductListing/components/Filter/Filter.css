@@ -124,7 +124,7 @@
 }
 
 .input-range input {
-  accent-color: rgb(153, 153, 56);
+  accent-color: var(--primary-color);
   background-color: transparent;
 }
 

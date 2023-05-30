@@ -9,17 +9,20 @@ import { ProductDescription } from "./components/ProductDescription/ProductDescr
 export const ProductDetails = () => {
   const { state } = useData();
   const { productId } = useParams();
+  const { loading } = useData();
 
   const selectedProduct = state.allProductsFromApi?.find(
     ({ id }) => Number(id) === Number(productId)
   );
 
   return (
-    <>
-      <div className="products-page-container">
-        <ProductImage selectedProduct={selectedProduct} />
-        <ProductDescription selectedProduct={selectedProduct} />
-      </div>
-    </>
+    !loading && (
+      <>
+        <div className="products-page-container">
+          <ProductImage selectedProduct={selectedProduct} />
+          <ProductDescription selectedProduct={selectedProduct} />
+        </div>
+      </>
+    )
   );
 };

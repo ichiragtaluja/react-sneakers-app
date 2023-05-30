@@ -3,27 +3,23 @@ import { useUserData } from "../../contexts/UserDataProvider";
 import { BsFillStarFill } from "react-icons/bs";
 import "./Wishlist.css";
 import { useNavigate } from "react-router-dom";
-import { SyncLoader } from "react-spinners";
+import { useData } from "../../contexts/DataProvider";
 
 export const Wishlist = () => {
   const navigate = useNavigate();
 
   const {
-    loading,
     userDataState,
     isProductInCart,
     addToCartHandler,
     removeFromWishlistHandler,
   } = useUserData();
 
-  const override = {
-    position: "absolute",
-    top: "50vh",
-    left: "50vw",
-  };
+  const { loading } = useData();
 
-  return !loading ? (
-    userDataState.wishlistProducts.length ? (
+  return (
+    !loading &&
+    (userDataState.wishlistProducts.length ? (
       <div>
         <h1 className="page-heading">Wishlist</h1>
         <div className="wishlist-products-container">
@@ -80,8 +76,6 @@ export const Wishlist = () => {
         <h2 className="page-heading">Wishlist is Empty</h2>
         <button onClick={() => navigate("/product-listing")}>Explore</button>
       </div>
-    )
-  ) : (
-    <SyncLoader cssOverride={override} loading={loading} color="black" />
+    ))
   );
 };

@@ -53,9 +53,7 @@ export const ProductListingSection = () => {
           is_stock,
           rating,
           reviews,
-          description,
           trending,
-          size,
           img,
         } = product;
 

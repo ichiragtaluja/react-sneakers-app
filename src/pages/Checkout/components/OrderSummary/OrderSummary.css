@@ -1,5 +1,7 @@
 .order-details-container {
-  border: 1px solid rgb(227, 227, 227);
+  color: rgb(0, 0, 0);
+  background-color: rgb(242, 242, 242);
+
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
@@ -9,8 +11,8 @@
 
 @media (min-width: 768px) {
   .order-details-container {
-    width: 100vw;
-    width: 70vw;
+
+    width: 50vw;
     flex-grow: 1;
     margin: 15px 15px 15px 0;
   }

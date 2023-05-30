@@ -17,6 +17,7 @@
 .address-card .name {
   font-weight: 600;
   margin-bottom: 10px;
+  font-size: larger;
 }
 .profile-address-container {
   display: flex;

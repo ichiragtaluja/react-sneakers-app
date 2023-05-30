@@ -2,11 +2,12 @@ import "./App.css";
 import { Header } from "./components/Header/Header";
 import { Toaster } from "react-hot-toast";
 import { NavRoutes } from "./routes/NavRoutes";
-import { useUserData } from "./contexts/UserDataProvider";
 import { SyncLoader } from "react-spinners";
+import { useData } from "./contexts/DataProvider";
+import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
-  const { loading } = useUserData();
+  const { loading } = useData();
 
   const override = {
     position: "absolute",
@@ -20,9 +21,13 @@ function App() {
         <SyncLoader cssOverride={override} loading={loading} color="black" />
       )}
       <NavRoutes />
+      <ScrollToTop />
       <Toaster
-        position="top-center"
+        position="bottom-center"
         reverseOrder={false}
+        toastOptions={{
+          success: { duration: 1500 },
+        }}
         containerStyle={{
           top: "6rem",
         }}

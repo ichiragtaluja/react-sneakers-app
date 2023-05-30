@@ -45,7 +45,7 @@ export const CartAmountSummary = ({ couponSelected }) => {
 
   return (
     <div className="cart-price-container">
-      <h2>Summary</h2>
+      <h1>Summary</h1>
       <div className="subtotal-container">
         <span>Sub-total: </span>
         <span>${totalOriginalPrice}</span>

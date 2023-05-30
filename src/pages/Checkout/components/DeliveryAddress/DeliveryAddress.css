@@ -7,20 +7,19 @@
 .delivery-address-description {
   display: flex;
   flex-direction: column;
+  color:grey;
 }
 .delivery-address-description .name {
-  font-weight: 700;
   margin-bottom: 15px;
+ 
 }
 
 .delivery-address-description .address {
   margin-bottom: 10px;
 }
 
-.delivery-address-description .contact {
-}
-
-.delivery-address-container h3 {
-  text-align: center;
+.delivery-address-container p {
+  color: grey;
   margin-bottom: 15px;
+  font-weight: bolder;
 }

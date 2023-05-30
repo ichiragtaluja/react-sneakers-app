@@ -240,16 +240,28 @@ export function UserProvider({ children }) {
 
   const getAddressList = async () => {
     try {
+      setLoading(true);
       const response = await getAddressListService(auth.token);
-      dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });
-    } catch (error) {}
+      if (response.status === 200) {
+        setLoading(false);
+        console.log("address", response.data);
+        dispatch({
+          type: "SET_ADDRESS",
+          payload: response.data.addressList,
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     getWishlistProducts();
     getCartProducts();
     getAddressList();
-  }, []);
+  }, [auth]);
 
   return (
     <UserDataContext.Provider

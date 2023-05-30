@@ -1,7 +1,8 @@
 .coupons-section {
+  background-color: rgb(242, 242, 242);
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(224, 224, 224);
+  /* border: 1px solid rgb(224, 224, 224); */
   border-radius: 10px;
   padding: 25px 20px;
 }
@@ -33,6 +34,7 @@
 
 .coupon-card .description {
   font-size: 12px;
+  color: grey;
 }
 
 @media (min-width: 768px) {

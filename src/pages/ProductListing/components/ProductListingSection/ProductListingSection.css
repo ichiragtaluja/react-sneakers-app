@@ -51,9 +51,16 @@
   flex-grow: 1;
   z-index: -1;
 }
+
 .product-card-details > p {
   color: rgb(108, 108, 108);
   font-size: 0.8em;
+
+  display: flex;
+  align-items: center;
+}
+.product-card-details > p > * {
+  margin-right: 5px;
 }
 
 .product-card-details > h3 {

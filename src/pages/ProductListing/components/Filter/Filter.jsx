@@ -9,7 +9,7 @@ import { useData } from "../../../../contexts/DataProvider";
 export const Filter = () => {
   const { dispatch, state } = useData();
   const [isFilterMenuOn, setIsFilterMenuOn] = useState(false);
-  
+
   return (
     <div>
       <div
@@ -34,24 +34,22 @@ export const Filter = () => {
           </span>
           <h2>Filters</h2>
 
-          
-            <button
-              className={isFilterMenuOn ? "reset-btn" : "reset-btn-hide"}
-              onClick={() =>
-                dispatch({
-                  type: "RESET",
-                  payload: {
-                    rating: "",
-                    categories: [],
-                    price: [],
-                    sort: "",
-                  },
-                })
-              }
-            >
-              Reset
-            </button>
-          
+          <button
+            className={isFilterMenuOn ? "reset-btn" : "reset-btn-hide"}
+            onClick={() =>
+              dispatch({
+                type: "RESET",
+                payload: {
+                  rating: "",
+                  categories: [],
+                  price: [],
+                  sort: "",
+                },
+              })
+            }
+          >
+            Reset
+          </button>
         </div>
 
         <div
@@ -144,7 +142,7 @@ export const Filter = () => {
                 <option label="2.5" value="2.5">
                   2.5
                 </option>
-                <option label="5" value="5">
+                <option label="5.0" value="5">
                   5
                 </option>
               </datalist>
@@ -156,11 +154,11 @@ export const Filter = () => {
                     payload: Number(e.target.value),
                   })
                 }
-                list="markers"
+                // list="markers"
                 id="price"
                 type="range"
                 min="0"
-                max="5"
+                max="5.0"
                 value={state.filters.rating}
               />
             </div>
@@ -197,6 +195,7 @@ export const Filter = () => {
               <label htmlFor="high-to-low">
                 Price-high to low
                 <input
+                  checked={state.filters.sort === "highToLow"}
                   onChange={() =>
                     dispatch({ type: "ADD_SORT", payload: "highToLow" })
                   }
@@ -209,6 +208,7 @@ export const Filter = () => {
               <label htmlFor="low-to-high">
                 Price-low to high
                 <input
+                  checked={state.filters.sort === "lowToHigh"}
                   onChange={() =>
                     dispatch({ type: "ADD_SORT", payload: "lowToHigh" })
                   }

@@ -53,6 +53,7 @@ export const AddressModal = () => {
 
   const addAddress = async (address) => {
     try {
+     
       setLoading(true);
       setError("");
       const response = await addAddressService(address, auth.token);

@@ -62,9 +62,16 @@
   font-size: 0.9rem;
   margin-top: -20px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.ratings-reviews>*{
+  margin-right: 5px;
 }
 
 .ratings-reviews > :first-child {
+ 
   font-weight: bold;
 }
 .ratings-reviews .review {

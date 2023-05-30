@@ -8,7 +8,6 @@ export const BillingSummary = () => {
 
   return (
     <div className="billing-container">
-      <h3>Billing</h3>
       <div className="price-details-container">
         <div>
           <span className="subtotal">Subtotal</span>

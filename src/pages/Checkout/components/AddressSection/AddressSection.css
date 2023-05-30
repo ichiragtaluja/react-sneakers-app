@@ -10,13 +10,17 @@
   border-radius: 10px;
   display: flex;
   flex-direction: row;
+  align-items: baseline;
 }
 .address-container .address-card .name {
   margin-bottom: 5px;
+  font-size: larger;
 }
 
 .address-container .address-card .address {
-  font-size: 13px;
+  font-size: 15px;
+  margin-right: 5px;
+  color: grey;
 }
 
 .add-new-address-btn-container {
