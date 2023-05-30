@@ -4,9 +4,13 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const encodedToken = localStorage.getItem("token");
+  const firstName = localStorage.getItem("firstName");
+  const lastName = localStorage.getItem("lastName");
+  const email = localStorage.getItem("email");
+
   const [auth, setAuth] = useState(
     encodedToken
-      ? { token: encodedToken, isAuth: true }
+      ? { token: encodedToken, isAuth: true, firstName, lastName, email }
       : { token: "", isAuth: false }
   );
 

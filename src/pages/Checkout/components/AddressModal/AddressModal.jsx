@@ -13,16 +13,16 @@ export const AddressModal = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("false");
   const { auth } = useAuth();
-  const { userDataState, dispatch } = useUserData();
+  const { dispatch } = useUserData();
 
   const dummyAddress = {
     name: "Chirag",
-    street: "abc",
-    city: "Toronto",
+    street: "3874 Manitoba Street",
+    city: "Bracebridge",
     state: "Ontario",
     country: "Canada",
-    pincode: "135001",
-    phone: "+1789345823",
+    pincode: "P1L 2B7",
+    phone: "705-645-5637",
   };
 
   const {

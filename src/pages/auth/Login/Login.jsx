@@ -1,12 +1,12 @@
 import React from "react";
 import "./Login.css";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { useState } from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
 import { loginService } from "../../../services/auth-services/loginService";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export const Login = () => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -49,6 +49,10 @@ export const Login = () => {
 
         localStorage.setItem("token", encodedToken);
         localStorage.setItem("isAuth", true);
+        localStorage.setItem("firstName", firstName);
+        localStorage.setItem("lastName", lastName);
+        localStorage.setItem("email", email);
+
         navigate(location?.state?.from.pathname || "/");
       }
     } catch (error) {
@@ -126,7 +130,7 @@ export const Login = () => {
           <input value="Login" type="submit" />
           <button
             onClick={(e) => {
-              loginHandler(e, "adarshbalika@gmail.com", "adarshbalika");
+              loginHandler(e, "chiragtaluja@apple.com", "chiragtaluja");
             }}
           >
             Login with Test Credentials

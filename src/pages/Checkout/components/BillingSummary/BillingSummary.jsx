@@ -3,7 +3,9 @@ import "./BillingSummary.css";
 import { useUserData } from "../../../../contexts/UserDataProvider";
 
 export const BillingSummary = () => {
+  
   const { userDataState } = useUserData();
+
   return (
     <div className="billing-container">
       <h3>Billing</h3>

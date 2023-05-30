@@ -1,12 +1,12 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
 import { useUserData } from "../../../contexts/UserDataProvider";
 import "./Logout.css";
 
 export const Logout = () => {
-  const { userDataState, initialUserData, dispatch } = useUserData();
+  const { dispatch } = useUserData();
   const navigate = useNavigate();
   const { setAuth } = useAuth();
 

@@ -19,7 +19,6 @@ export const Signup = () => {
 
   const { setAuth } = useAuth();
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const [signupCredential, setSignupCredential] = useState({
@@ -61,6 +60,10 @@ export const Signup = () => {
 
           localStorage.setItem("token", encodedToken);
           localStorage.setItem("isAuth", true);
+          localStorage.setItem("firstName", firstName);
+          localStorage.setItem("lastName", lastName);
+          localStorage.setItem("email", email);
+
           navigate("/");
         }
       }

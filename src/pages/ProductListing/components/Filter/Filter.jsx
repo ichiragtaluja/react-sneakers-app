@@ -9,6 +9,7 @@ import { useData } from "../../../../contexts/DataProvider";
 export const Filter = () => {
   const { dispatch, state } = useData();
   const [isFilterMenuOn, setIsFilterMenuOn] = useState(false);
+  
   return (
     <div>
       <div

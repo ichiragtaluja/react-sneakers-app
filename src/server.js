@@ -71,12 +71,12 @@ export function makeServer({ environment = "development" } = {}) {
             {
               _id: uuid(),
               name: "Chirag Taluja",
-              street: "ModelTown",
-              city: "Yamunanagar",
-              state: "Haryana",
-              country: "India",
-              pincode: "135001",
-              phone: "9800000007",
+              street: "4254 Central Pkwy",
+              city: "Port Credit",
+              state: "Ontario",
+              country: "Canada",
+              pincode: "L5G 1K2",
+              phone: "905-278-0724",
             },
           ],
         })

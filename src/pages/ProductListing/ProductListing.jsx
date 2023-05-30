@@ -4,7 +4,6 @@ import { Filter } from "./components/Filter/Filter";
 import { ProductListingSection } from "./components/ProductListingSection/ProductListingSection";
 import { SyncLoader } from "react-spinners";
 import { useData } from "../../contexts/DataProvider";
-import { AuthProvider } from "../../contexts/AuthProvider";
 
 export const ProductListing = () => {
   const override = {
