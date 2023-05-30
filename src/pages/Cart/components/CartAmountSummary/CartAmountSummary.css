@@ -18,6 +18,12 @@
   font-size: 1rem;
   margin-top: 40px;
 }
+
+.cart-price-container a:hover{
+background-color: black;
+cursor: pointer;
+}
+
 .cart-price-container .total {
   font-weight: 700;
   font-size: 35px;

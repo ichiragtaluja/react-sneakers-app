@@ -39,6 +39,11 @@
   font-weight: 600;
   display: inline;
 }
+
+.address-modal-container .submit:hover {
+  cursor: pointer;
+  background-color: black;
+}
 .address-modal-container .btn-container {
   display: flex;
   justify-content: space-between;
@@ -51,6 +56,12 @@
 
   border-radius: 5px;
 }
+
+.address-modal-container .btn-container button:hover {
+  cursor: pointer;
+  background-color: var(--secondary-background-color-onhover);
+}
+
 .address-modal-container .btn-container button:last-child {
   flex-grow: 1;
   margin-left: 10px;

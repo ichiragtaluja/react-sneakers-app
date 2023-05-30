@@ -13,10 +13,6 @@ h2 {
   line-height: 1.4;
 }
 
-p {
-  font-size: 1rem;
-}
-
 @media (min-width: 768px) {
   h1 {
     font-size: 2.5rem;
@@ -34,5 +30,9 @@ p {
 }
 
 :root {
-  --primary-color: rgb(0, 0, 0);
+  --primary-color: rgb(66, 66, 66);
+  --primary-color-onhover: black;
+
+  --secondary-background-color: rgb(232, 232, 232);
+  --secondary-background-color-onhover: rgb(214, 214, 214);
 }

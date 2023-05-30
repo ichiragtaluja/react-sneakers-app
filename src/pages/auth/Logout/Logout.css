@@ -22,3 +22,8 @@
    
  
 }
+
+.logout-container button:hover{
+    cursor: pointer;
+    background-color: black;
+}

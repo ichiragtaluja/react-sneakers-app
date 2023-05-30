@@ -10,6 +10,11 @@
   background-color: var(--primary-color);
   margin-bottom: 15px;
 }
+
+.add-address-btn-container button:hover {
+  cursor: pointer;
+  background-color: black;
+}
 .add-address-btn-container .plus {
   margin-right: 5px;
 }
@@ -50,6 +55,11 @@
   padding: 6px 18px;
   border: none;
   border-radius: 5px;
+}
+
+.address-btn-container > button:hover{
+  cursor: pointer;
+  background-color: var(--secondary-background-color-onhover);
 }
 
 .address-section-container .address-card:not(:first-child) {

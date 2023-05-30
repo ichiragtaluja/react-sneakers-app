@@ -64,21 +64,22 @@
 .login-container .hide-show-password-eye {
   margin-right: 3px;
   color: rgb(127, 127, 127);
+  cursor: pointer;
 }
 
 .remember-me-container {
   display: flex;
   flex-flow: column nowrap;
-
+  cursor: pointer;
   font-size: 0.8rem;
   color: rgb(95, 95, 95);
-
 }
 
 .remember-me-container input {
   border-color: rgb(189, 189, 189);
   margin-right: 7px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 .remember-me-container p {
   color: rgb(179, 179, 179);
@@ -96,7 +97,12 @@
 
   border: none;
 
-  color: rgb(0, 0, 0);
+  color: var(--primary-color);
+}
+
+.login-container .login-btn-container button:hover {
+  background-color: var(--secondary-background-color-onhover);
+  cursor: pointer;
 }
 
 .login-container .login-btn-container input {
@@ -112,12 +118,18 @@
   background-color: var(--primary-color);
 }
 
+.login-container .login-btn-container input:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
 .login-body > a {
   /* border: 1px solid black; */
   margin: 0 auto;
   font-size: 0.8rem;
   color: rgb(144, 144, 144);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .input-container {
@@ -128,10 +140,8 @@
 
 .login-body .error {
   color: red;
-  font-size: .8rem;
+  font-size: 0.8rem;
   padding: 0;
- 
-  
 }
 
 .input-container input {

@@ -25,6 +25,10 @@
   font-size: 1.2rem;
 }
 
+.filter-header-mobile-open .close-tab:hover {
+  cursor: pointer;
+}
+
 .filter-header-mobile-open .reset-btn {
   color: black;
   padding: 0.35rem 1.2rem;
@@ -34,6 +38,13 @@
   font-size: 0.9rem;
   border-radius: 5rem;
   padding: 0.4rem 1.3rem 0.4rem 1.3rem;
+}
+
+.reset-btn:hover {
+  color: white;
+  background-color: rgb(42, 42, 42);
+  border: 1px solid rgb(42, 42, 42);
+  cursor: pointer;
 }
 
 .reset-btn-hide {
@@ -46,6 +57,7 @@
   justify-content: space-evenly;
   padding: 0em;
 }
+
 .filter-header-mobile-closed > h2 {
   margin-left: 1em;
   border: 1px solid black;
@@ -60,6 +72,14 @@
   border-radius: 5rem;
   padding: 0.5rem 2.5rem 0.2rem 1.5rem;
 }
+
+.filter-header-mobile-closed > span:hover {
+  color: white;
+  background-color: rgb(42, 42, 42);
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 .filter-header-mobile-closed > span::after {
   content: "Filter";
   text-align: center;
@@ -155,8 +175,6 @@
 }
 
 .category-input-container input {
-  /* display: inline-block; */
-  /* border: 2px solid yellow; */
   margin-left: auto;
   margin-right: 6px;
 }
@@ -232,6 +250,12 @@
     font-size: 0.9rem;
     border-radius: 5rem;
     padding: 0.4rem 1.3rem 0.4rem 1.3rem;
+  }
+  .reset-btn-hide:hover {
+    color: white;
+    background-color: rgb(42, 42, 42);
+    border: 1px solid black;
+    cursor: pointer;
   }
 
   .filter-header-mobile-closed > h2 {

@@ -18,6 +18,11 @@ div .explore-btn {
   text-align: center;
 }
 
+.no-items-container button {
+  cursor: pointer;
+  background-color: black;
+}
+
 @media (min-width: 768px) {
   .cart-container {
     flex-direction: row;

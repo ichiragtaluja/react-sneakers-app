@@ -111,9 +111,9 @@ export const ProductListingSection = () => {
                   className="wishlist-btn"
                 >
                   {!isProductInWishlist(product) ? (
-                    <AiOutlineHeart color={"black"} size={30} />
+                    <AiOutlineHeart size={30} />
                   ) : (
-                    <AiTwotoneHeart color={"black"} size={30} />
+                    <AiTwotoneHeart size={30} />
                   )}
                 </button>
               </div>

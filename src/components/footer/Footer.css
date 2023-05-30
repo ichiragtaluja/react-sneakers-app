@@ -2,7 +2,7 @@
   color: white;
   text-align: center;
   display: block;
-  background-color: var(--primary-color);
+  background-color: black;
   display: flex;
   flex-flow: column nowrap;
   padding: 0.8rem;

@@ -11,11 +11,15 @@
   display: flex;
   align-items: center;
 }
+.coupon-card .name{
+  cursor: pointer;
+}
 
 .coupon-header h3 {
   display: inline-block;
   margin-left: 10px;
   align-self: flex-start;
+  cursor: pointer;
 }
 .coupon-list-container {
   display: flex;
@@ -25,16 +29,23 @@
   margin-top: 20px;
 }
 
+
+
 .coupon-card {
   display: flex;
 }
+
+
+
 .coupon-card input {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .coupon-card .description {
   font-size: 12px;
   color: grey;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
