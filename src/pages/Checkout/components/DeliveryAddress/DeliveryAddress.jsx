@@ -22,6 +22,7 @@ export const DeliveryAddress = () => {
         <span className="contact">
           Contact: {userDataState.orderDetails?.orderAddress?.phone}
         </span>
+        <button className="place-order-btn">Place Order</button>
       </div>
     </div>
   );

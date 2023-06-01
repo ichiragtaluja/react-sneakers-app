@@ -1,8 +1,7 @@
 import "./Header.css";
-import { GrCart } from "react-icons/gr";
 import { CgHeart } from "react-icons/cg";
 import React from "react";
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
@@ -11,6 +10,7 @@ import { useData } from "../../contexts/DataProvider";
 import { useAuth } from "../../contexts/AuthProvider";
 import { CgShoppingCart } from "react-icons/cg";
 import { useUserData } from "../../contexts/UserDataProvider";
+import {SiTaichilang} from "react-icons/si"
 
 export const Header = () => {
   const { auth } = useAuth();
@@ -40,7 +40,7 @@ export const Header = () => {
     <nav>
       <div className="nav-logo-home-button">
         <NavLink style={getActiveStyle} to="/">
-          Home
+          <SiTaichilang/> DadSneakers
         </NavLink>
       </div>
 
@@ -110,7 +110,7 @@ export const Header = () => {
       </div>
       {showHamburger && (
         <div className="hamburger-icon" onClick={() => setShowHamburger(false)}>
-          <RxHamburgerMenu size={20} color={"white"} />
+          <RxHamburgerMenu size={20} />
         </div>
       )}
       {!showHamburger && (

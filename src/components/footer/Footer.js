@@ -13,13 +13,13 @@ export const Footer = () => {
       <small> &copy; {copyrightYear} Chirag Taluja</small>
       <div className="social-links">
         <Link to="https://twitter.com/ichiragtaluja" target="_blank">
-          <BsTwitter color={"white"}/>
+          <BsTwitter />
         </Link>
         <Link to="https://github.com/ichiragtaluja" target="_blank">
-          <ImGithub color={"white"}/>
+          <ImGithub />
         </Link>
         <Link to="https://www.linkedin.com/in/ichiragtaluja" target="_blank">
-          <SiLinkedin color={"white"}/>
+          <SiLinkedin />
         </Link>
       </div>
     </div>

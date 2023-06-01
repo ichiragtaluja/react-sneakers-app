@@ -22,6 +22,7 @@ export const ProductListingSection = () => {
     isProductInWishlist,
     wishlistHandler,
     addToCartHandler,
+    cartLoading,
   } = useUserData();
 
   const {
@@ -90,7 +91,6 @@ export const ProductListingSection = () => {
                   <p className="original-price">${original_price}</p>
                   <p className="discount-price">${discounted_price}</p>
                 </div>
-                <p></p>
 
                 <p>Gender: {category_name}</p>
                 <div className="info">
@@ -100,7 +100,7 @@ export const ProductListingSection = () => {
               </div>
 
               <div className="product-card-buttons">
-                <button
+                <button disabled={cartLoading}
                   onClick={() => addToCartHandler(product)}
                   className="cart-btn"
                 >

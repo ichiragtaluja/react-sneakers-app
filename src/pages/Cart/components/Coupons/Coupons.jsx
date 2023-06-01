@@ -41,6 +41,8 @@ export const Coupons = ({ couponSelected, setCouponSelected }) => {
     (acc, curr) => acc + curr.discounted_price * curr.qty,
     0
   );
+
+  console.log("coupon", couponSelected);
   return (
     <div className="coupons-section">
       <div className="coupon-header">
@@ -58,6 +60,7 @@ export const Coupons = ({ couponSelected, setCouponSelected }) => {
             return (
               <div key={id} className="coupon-card">
                 <input
+                  checked={couponSelected?.find((coupon) => coupon.id === id)}
                   onChange={(e) => couponHandler(e, coupon)}
                   disabled={totalDiscountedPriceBeforeCoupon <= minimumPurchase}
                   id={name}

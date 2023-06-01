@@ -9,6 +9,7 @@ export const ProductDescription = ({ selectedProduct }) => {
     wishlistHandler,
     isProductInCart,
     isProductInWishlist,
+    cartLoading
   } = useUserData();
 
   return (
@@ -58,13 +59,13 @@ export const ProductDescription = ({ selectedProduct }) => {
         )}
       </div>
       <div className="product-card-buttons-container">
-        <button
+        <button disabled={cartLoading}
           onClick={() => addToCartHandler(selectedProduct)}
           className="add-to-cart-btn"
         >
           {!isProductInCart(selectedProduct) ? "Add to cart" : "Go to cart"}
         </button>
-        <button
+        <button disabled={cartLoading}
           onClick={() => wishlistHandler(selectedProduct)}
           className="add-to-wishlist-btn"
         >

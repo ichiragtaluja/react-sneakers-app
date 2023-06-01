@@ -7,7 +7,6 @@
   flex-flow: column nowrap;
   padding: 0.8rem;
   justify-content: space-between;
- 
 }
 .footer > * {
   margin: 0.5rem;
@@ -25,6 +24,10 @@
 
 .social-links > * {
   padding: 0 1rem;
+  color: rgb(175, 175, 175);
+}
+.social-links > *:hover {
+  color: white;
 }
 
 @media (min-width: 768px) {

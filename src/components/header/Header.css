@@ -18,11 +18,17 @@ nav {
 .nav-logo-home-button a {
   outline: none;
   border: none;
-  color: white;
+  color: rgb(175, 175, 175);
   text-decoration: none;
   font-weight: 400;
-  /* letter-spacing: 0.75px; */
+  display: flex;
+  align-items: center;
 }
+
+.nav-logo-home-button a:hover {
+  color: white;
+}
+
 a:active {
   outline: none;
   border: none;
@@ -34,6 +40,11 @@ a:focus {
 .hamburger-icon {
   align-self: center;
   cursor: pointer;
+  color: rgb(175, 175, 175);
+}
+
+.hamburger-icon:hover {
+  color: white;
 }
 
 .nav-link-container {
@@ -49,7 +60,8 @@ input:focus {
   position: relative;
 }
 .nav-link-container > *:hover {
-  background-color: var(--secondary-background-color);
+  background-color: rgb(242, 242, 242);
+  border: 1px solid rgb(242, 242, 242);
 }
 
 .nav-link-container-mobile {
@@ -145,13 +157,9 @@ input:focus {
     color: white;
     font-size: 1.2em;
     font-weight: 400;
-
     text-decoration: none;
     letter-spacing: 0.2px;
-    /* border: 1px solid black; */
   }
-
-  /* .cart-count{position: relative;} */
 
   nav {
     z-index: 3;
@@ -168,9 +176,15 @@ input:focus {
     flex-flow: row nowrap;
     align-items: center;
   }
+
+  .nav-link-container > * {
+    color: rgb(176, 175, 175);
+  }
   .nav-link-container > *:hover {
     background-color: black;
     cursor: pointer;
+    color: white;
+    border: none;
   }
 
   .cart-count {

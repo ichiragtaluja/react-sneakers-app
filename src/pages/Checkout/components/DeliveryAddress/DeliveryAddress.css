@@ -7,11 +7,10 @@
 .delivery-address-description {
   display: flex;
   flex-direction: column;
-  color:grey;
+  color: grey;
 }
 .delivery-address-description .name {
   margin-bottom: 15px;
- 
 }
 
 .delivery-address-description .address {
@@ -22,4 +21,20 @@
   color: grey;
   margin-bottom: 15px;
   font-weight: bolder;
+}
+
+.place-order-btn {
+  border: none;
+  color: white;
+  background-color: var(--primary-color);
+  padding: 12px 36px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 50px;
+}
+
+.place-order-btn:hover {
+  cursor: pointer;
+  background-color: black;
 }

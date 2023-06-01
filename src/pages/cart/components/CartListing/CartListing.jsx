@@ -13,6 +13,7 @@ export const CartListing = () => {
     removeFromCartHandler,
     wishlistHandler,
     cartCountHandler,
+    cartLoading,
   } = useUserData();
 
   return (
@@ -30,6 +31,7 @@ export const CartListing = () => {
           <div className="button-section">
             <div className="count-btn-container">
               <button
+                disabled={cartLoading}
                 className="counter-btn"
                 onClick={() => cartCountHandler(product, "decrement")}
               >
@@ -37,6 +39,7 @@ export const CartListing = () => {
               </button>
               <span>{product.qty}</span>
               <button
+                disabled={cartLoading}
                 className="counter-btn"
                 onClick={() => cartCountHandler(product, "increment")}
               >

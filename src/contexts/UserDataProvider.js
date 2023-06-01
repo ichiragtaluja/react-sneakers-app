@@ -21,7 +21,7 @@ import { userDataReducer, initialUserData } from "../reducer/userDataReducer";
 const UserDataContext = createContext();
 
 export function UserProvider({ children }) {
-  const [loading, setLoading] = useState(false);
+  const [cartLoading, setCartLoading] = useState(false);
   const [error, setError] = useState("");
   const [userDataState, dispatch] = useReducer(
     userDataReducer,
@@ -37,19 +37,19 @@ export function UserProvider({ children }) {
     if (auth.isAuth) {
       if (!isProductInCart(product)) {
         try {
-          setLoading(true);
+          setCartLoading(true);
           setError("");
           const response = await addToCartService(product, auth.token);
           if (response.status === 201) {
-            setLoading(false);
+            setCartLoading(false);
             toast.success(`${product.name} added to cart successfully!`);
             dispatch({ type: "SET_CART", payload: response.data.cart });
           }
         } catch (error) {
-          setLoading(false);
+          setCartLoading(false);
           console.log(error);
         } finally {
-          setLoading(false);
+          setCartLoading(false);
         }
       } else {
         navigate("/cart");
@@ -74,30 +74,30 @@ export function UserProvider({ children }) {
 
   const removeFromCartHandler = async (product) => {
     try {
-      setLoading(true);
+      setCartLoading(true);
       setError("");
       const response = await removeFromCartService(product._id, auth.token);
       if (response.status === 200) {
-        setLoading(false);
+        setCartLoading(false);
         toast.success(`${product.name} successfully removed from the cart `);
         dispatch({ type: "SET_CART", payload: response.data.cart });
       }
     } catch (error) {
-      setLoading(false);
+      setCartLoading(false);
       console.log(error);
     } finally {
-      setLoading(false);
+      setCartLoading(false);
     }
   };
 
   const cartCountHandler = async (product, type) => {
     try {
-      setLoading(true);
+      setCartLoading(true);
       setError("");
       if (type === "decrement" && product.qty === 1) {
         const response = await removeFromCartService(product._id, auth.token);
         if (response.status === 200) {
-          setLoading(false);
+          setCartLoading(false);
           toast.success(`${product.name} succesfully removed from the cart`);
           dispatch({ type: "SET_CART", payload: response.data.cart });
         }
@@ -109,7 +109,7 @@ export function UserProvider({ children }) {
         );
 
         if (response.status === 200) {
-          setLoading(false);
+          setCartLoading(false);
           if (type === "decrement") {
             toast.success(`Removed one ${product.name} from the cart!`);
           } else {
@@ -127,42 +127,42 @@ export function UserProvider({ children }) {
     if (auth.isAuth) {
       if (!isProductInWishlist(product)) {
         try {
-          setLoading(true);
+          setCartLoading(true);
           setError("");
           const response = await addToWishlistService(product, auth.token);
           if (response.status === 201) {
-            setLoading(false);
+            setCartLoading(false);
             toast.success(
               `${product.name} added to the wishlist successfully!`
             );
             dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
           }
         } catch (error) {
-          setLoading(false);
+          setCartLoading(false);
           console.log(error);
         } finally {
-          setLoading(false);
+          setCartLoading(false);
         }
       } else {
         try {
-          setLoading(true);
+          setCartLoading(true);
           setError("");
           const response = await removeFromWishlistService(
             product._id,
             auth.token
           );
           if (response.status === 200) {
-            setLoading(false);
+            setCartLoading(false);
             toast.success(
               `${product.name} removed from the wishlist successfully!`
             );
             dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
           }
         } catch (error) {
-          setLoading(false);
+          setCartLoading(false);
           console.log(error);
         } finally {
-          setLoading(false);
+          setCartLoading(false);
         }
       }
     } else {
@@ -180,21 +180,21 @@ export function UserProvider({ children }) {
 
   const removeFromWishlistHandler = async (product) => {
     try {
-      setLoading(true);
+      setCartLoading(true);
       setError("");
       const response = await removeFromWishlistService(product._id, auth.token);
       if (response.status === 200) {
-        setLoading(false);
+        setCartLoading(false);
         toast.success(
           `${product.name} removed from the wishlist successfully!`
         );
         dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
       }
     } catch (error) {
-      setLoading(false);
+      setCartLoading(false);
       console.log(error);
     } finally {
-      setLoading(false);
+      setCartLoading(false);
     }
   };
 
@@ -240,20 +240,19 @@ export function UserProvider({ children }) {
 
   const getAddressList = async () => {
     try {
-      setLoading(true);
+      setCartLoading(true);
       const response = await getAddressListService(auth.token);
       if (response.status === 200) {
-        setLoading(false);
-        console.log("address", response.data);
+        setCartLoading(false);
         dispatch({
           type: "SET_ADDRESS",
           payload: response.data.addressList,
         });
       }
     } catch (error) {
-      setLoading(false);
+      setCartLoading(false);
     } finally {
-      setLoading(false);
+      setCartLoading(false);
     }
   };
 
@@ -280,7 +279,7 @@ export function UserProvider({ children }) {
         initialUserData,
         wishlistHandler,
         cartCountHandler,
-        loading,
+        cartLoading,
       }}
     >
       {children}
