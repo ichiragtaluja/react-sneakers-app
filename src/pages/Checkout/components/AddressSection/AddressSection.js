@@ -42,7 +42,7 @@ export const AddressSection = () => {
               id={_id}
               type="radio"
             />
-            <label for={_id}>
+            <label htmlFor={_id}>
               <p className="name">{name}</p>
               <p className="address">
                 {street}, {city},{state}, {country} {pincode} - {phone}

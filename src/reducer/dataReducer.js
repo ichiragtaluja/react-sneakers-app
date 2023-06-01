@@ -10,6 +10,8 @@ export const initialState = {
   },
 };
 
+
+
 export const dataReducer = (state, action) => {
   switch (action.type) {
     case "GET_ALL_PRODUCTS_FROM_API":

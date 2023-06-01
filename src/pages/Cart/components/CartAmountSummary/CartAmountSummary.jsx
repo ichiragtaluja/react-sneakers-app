@@ -20,8 +20,7 @@ export const CartAmountSummary = ({ couponSelected }) => {
   );
 
   const totalDiscountedPriceAfterCoupon = (
-    totalDiscountedPriceBeforeCoupon.toFixed(2) -
-    totalCouponDiscount?.toFixed(2)
+    totalDiscountedPriceBeforeCoupon - totalCouponDiscount
   ).toFixed(2);
 
   const totalOriginalPrice = userDataState.cartProducts?.reduce(

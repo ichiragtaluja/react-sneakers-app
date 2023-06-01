@@ -42,7 +42,6 @@ export const Coupons = ({ couponSelected, setCouponSelected }) => {
     0
   );
 
-  console.log("coupon", couponSelected);
   return (
     <div className="coupons-section">
       <div className="coupon-header">
