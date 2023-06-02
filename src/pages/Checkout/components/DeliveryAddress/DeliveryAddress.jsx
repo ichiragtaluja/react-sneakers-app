@@ -29,12 +29,11 @@ export const DeliveryAddress = () => {
     ({ _id }) => _id === orderAddress._id
   )?.phone;
 
-  const { auth } = useAuth();
+  const { auth, setCurrentPage } = useAuth();
 
   const successHandler = (response) => {
     const paymentId = response.razorpay_payment_id;
     const orderId = uuid();
-
     const order = {
       paymentId,
       orderId,
@@ -45,7 +44,7 @@ export const DeliveryAddress = () => {
 
     dispatch({ type: "SET_ORDERS", payload: order });
     clearCartHandler(auth.token);
-
+    setCurrentPage("orders");
     navigate("/profile/orders");
   };
 

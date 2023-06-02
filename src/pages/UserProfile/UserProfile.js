@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useData } from "../../contexts/DataProvider";
 import { useState } from "react";
 
 import "./UserProfile.css";
+import { useAuth } from "../../contexts/AuthProvider";
 
 export const UserProfile = () => {
-  const [currentPage, setCurrentPage] = useState("profile");
   const { loading } = useData();
+  const { currentPage, setCurrentPage } = useAuth();
 
   return (
     !loading && (

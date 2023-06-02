@@ -18,7 +18,6 @@ export const Logout = () => {
     dispatch({ type: "SET_CART", payload: [] });
     dispatch({ type: "SET_WISHLIST", payload: [] });
     dispatch({ type: "SET_ORDERS", payload: [] });
-
     navigate("/");
   };
   return (

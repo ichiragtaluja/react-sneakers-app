@@ -6,6 +6,8 @@ import { loginService } from "../services/auth-services/loginService";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [currentPage, setCurrentPage] = useState("profile");
+  
   const [loginCredential, setLoginCredential] = useState({
     email: "",
     password: "",
@@ -78,6 +80,8 @@ export const AuthProvider = ({ children }) => {
         setLoginLoading,
         loginCredential,
         setLoginCredential,
+        setCurrentPage,
+        currentPage
       }}
     >
       {children}
