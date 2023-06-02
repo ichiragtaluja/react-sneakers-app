@@ -135,13 +135,13 @@ input:focus {
   cursor: pointer;
 }
 .cart-count {
+  font-size: .7rem;
   position: relative;
   display: inline-block;
-  padding: 0 7px;
+  padding: 2.5px 6px;
   border-radius: 30px;
   left: -5px;
   bottom: 15px;
-  /* background-color: rgb(255, 137, 137); */
   background-color: rgb(250, 103, 103);
   color: white;
   border: none;
@@ -197,11 +197,10 @@ input:focus {
   .cart-count {
     position: absolute;
     display: block;
-    padding: 0 7px;
+    padding: 2.5px 6px;
     border-radius: 30px;
     left: 15px;
     bottom: 20px;
-    /* background-color: rgb(255, 137, 137); */
     background-color: rgb(253, 87, 87);
     color: white;
     border: none;
