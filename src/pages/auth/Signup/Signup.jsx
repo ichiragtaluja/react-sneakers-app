@@ -12,12 +12,11 @@ import { useData } from "../../../contexts/DataProvider";
 
 export const Signup = () => {
   const { loading } = useData();
-  const [signUpLoading, setSignUpLoading] = useState(false);
-  const [error, setError] = useState("");
+
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
-
-  const { setAuth } = useAuth();
+  const [signUpLoading, setSignUpLoading] = useState(false);
+  const { setAuth, loginHandler, error, setError } = useAuth();
 
   const navigate = useNavigate();
 
@@ -204,7 +203,13 @@ export const Signup = () => {
 
           <div className="signup-btn-container">
             <input value="Sign Up" type="submit" />
-            <button>Login with Test Credentials</button>
+            <button
+              onClick={(e) => {
+                loginHandler(e, "chiragtaluja@apple.com", "chiragtaluja");
+              }}
+            >
+              Login with Test Credentials
+            </button>
           </div>
           <Link to="/login">Already have an account?</Link>
         </form>

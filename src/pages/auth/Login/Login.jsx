@@ -1,69 +1,59 @@
 import React from "react";
 import "./Login.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
 import { useState } from "react";
 import { useAuth } from "../../../contexts/AuthProvider";
-import { loginService } from "../../../services/auth-services/loginService";
-import toast from "react-hot-toast";
 import { useData } from "../../../contexts/DataProvider";
 
 export const Login = () => {
   const { loading } = useData();
   const [hidePassword, setHidePassword] = useState(true);
-  const { auth, setAuth } = useAuth();
-  const [error, setError] = useState("");
-  const [loginLoading, setLoginLoading] = useState(false);
+  const { error, loginCredential, setLoginCredential, loginHandler } =
+    useAuth();
 
-  const [loginCredential, setLoginCredential] = useState({
-    email: "",
-    password: "",
-  });
   const { email, password } = loginCredential;
 
-  const location = useLocation();
-  const navigate = useNavigate();
+  // const loginHandler = async (e, email, password) => {
+  //   e.preventDefault();
+  //   try {
+  //     setLoginLoading(true);
+  //     setError("");
+  //     setLoginCredential({ email, password });
+  //     const response = await loginService(email, password);
 
-  const loginHandler = async (e, email, password) => {
-    e.preventDefault();
-    try {
-      setLoginLoading(true);
-      setError("");
-      setLoginCredential({ email, password });
-      const response = await loginService(email, password);
+  //     if (response.status === 200) {
+  //       setLoginLoading(false);
+  //       toast.success(`Welcome back, ${response.data.foundUser.firstName}!`);
+  //       const encodedToken = response.data.encodedToken;
+  //       const firstName = response.data.foundUser.firstName;
+  //       const lastName = response.data.foundUser.lastName;
+  //       const email = response.data.foundUser.email;
 
-      if (response.status === 200) {
-        setLoginLoading(false);
-        toast.success(`Welcome back, ${response.data.foundUser.firstName}!`);
-        const encodedToken = response.data.encodedToken;
-        const firstName = response.data.foundUser.firstName;
-        const lastName = response.data.foundUser.lastName;
-        const email = response.data.foundUser.email;
+  //       setAuth({
+  //         token: encodedToken,
+  //         isAuth: true,
+  //         firstName,
+  //         lastName,
+  //         email,
+  //       });
 
-        setAuth({
-          token: encodedToken,
-          isAuth: true,
-          firstName,
-          lastName,
-          email,
-        });
+  //       localStorage.setItem("token", encodedToken);
+  //       localStorage.setItem("isAuth", true);
+  //       localStorage.setItem("firstName", firstName);
+  //       localStorage.setItem("lastName", lastName);
+  //       localStorage.setItem("email", email);
 
-        localStorage.setItem("token", encodedToken);
-        localStorage.setItem("isAuth", true);
-        localStorage.setItem("firstName", firstName);
-        localStorage.setItem("lastName", lastName);
-        localStorage.setItem("email", email);
-
-        navigate(location?.state?.from.pathname || "/");
-      }
-    } catch (error) {
-      setLoginLoading(false);
-      setError(error.response.data.errors[0]);
-    } finally {
-      setLoginLoading(false);
-    }
-  };
+  //       navigate(location?.state?.from.pathname || "/");
+  //     }
+  //   } catch (error) {
+  //     setLoginLoading(false);
+  //     setError(error.response.data.errors[0]);
+  //   } finally {
+  //     setLoginLoading(false);
+  //   }
+  // };
 
   return (
     !loading && (
