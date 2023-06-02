@@ -13,6 +13,7 @@ export const Wishlist = () => {
     isProductInCart,
     addToCartHandler,
     removeFromWishlistHandler,
+    cartCountHandler,
   } = useUserData();
 
   const { loading } = useData();
@@ -56,9 +57,13 @@ export const Wishlist = () => {
               <div className="wishlist-btn-container">
                 <button
                   className="cart-wishlist-btn"
-                  onClick={() => addToCartHandler(product)}
+                  onClick={() =>
+                    !isProductInCart(product)
+                      ? addToCartHandler(product)
+                      : cartCountHandler(product, "increment")
+                  }
                 >
-                  {!isProductInCart(product) ? "Add to Cart" : "Go to Cart"}
+                  {!isProductInCart(product) ? "Add to Cart" : `Added to Cart`}
                 </button>
                 <button
                   className="remove-from-wishlist-btn"
