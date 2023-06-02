@@ -53,7 +53,6 @@ export const AddressModal = () => {
 
   const addAddress = async (address) => {
     try {
-     
       setLoading(true);
       setError("");
       const response = await addAddressService(address, auth.token);
@@ -168,6 +167,7 @@ export const AddressModal = () => {
               setAddressForm({ ...addressForm, phone: e.target.value })
             }
             placeholder="Enter Phone"
+            minLength="8"
           />
           <input className="submit" type="submit" value="Save" />
         </form>

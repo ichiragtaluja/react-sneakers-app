@@ -58,13 +58,13 @@ export const Wishlist = () => {
                   className="cart-wishlist-btn"
                   onClick={() => addToCartHandler(product)}
                 >
-                  {!isProductInCart(product) ? "Add to cart" : "Go to cart"}
+                  {!isProductInCart(product) ? "Add to Cart" : "Go to Cart"}
                 </button>
                 <button
                   className="remove-from-wishlist-btn"
                   onClick={() => removeFromWishlistHandler(product)}
                 >
-                  Remove from wishlist
+                  Remove from Wishlist
                 </button>
               </div>
             </div>

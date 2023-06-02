@@ -47,10 +47,10 @@ export const AddressSection = () => {
               <p className="address">
                 {street}, {city},{state}, {country} {pincode} - {phone}
               </p>
-              <div className="address-btns">
+              {/* <div className="address-btns">
                 <button onClick={() => editButtonHandler(address)}>Edit</button>
                 <button onClick={() => deleteAddress(address)}>Delete</button>
-              </div>
+              </div> */}
             </label>
           </div>
         );
