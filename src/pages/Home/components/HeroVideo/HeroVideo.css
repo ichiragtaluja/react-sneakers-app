@@ -2,17 +2,20 @@
   display: flex;
   flex-flow: column nowrap;
   position: relative;
-  height: 850px;
+  height: 650px;
+  background-color: black;
 }
 
 .hero-video {
   height: 100%;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
+  opacity: 0.4;
+ 
 }
 
 .hero-video-container video {
   object-fit: cover;
-  opacity: 0.5;
+
 }
 
 .hero-text {
@@ -20,10 +23,12 @@
   color: white;
   top: 10em;
   text-align: center;
+  align-self: center;
 }
 
 .hero-text h1 {
   font-size: 3.5em;
+  align-self: center;
 }
 .hero-text h2 {
   margin-top: 40px;
@@ -35,7 +40,7 @@
   opacity: 0.9;
   font-weight: bolder;
   position: absolute;
-  bottom: 5rem;
+  bottom: 10rem;
   align-self: center;
   font-size: 2rem;
   font-weight: 900;
@@ -58,10 +63,11 @@
 
 @media (min-width: 768px) {
   .hero-video-container {
-    height: 1200px;
+    height: 810px;
   }
   .hero-text h1 {
-    font-size: 8em;
+    font-size: 6em;
+    align-self: center;
   }
   .hero-text h2 {
     margin-top: 40px;

@@ -28,6 +28,9 @@ h2 {
     font-size: 2rem;
   }
 }
+button {
+  cursor: pointer;
+}
 
 :root {
   --primary-color: rgb(66, 66, 66);

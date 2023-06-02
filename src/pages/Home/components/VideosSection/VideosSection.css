@@ -16,6 +16,7 @@
   position: relative;
   border-radius: 25px;
   box-shadow: 0px -1px 84px -16px rgba(117, 117, 117, 1);
+  cursor: pointer;
 }
 
 .video-container .notch {
@@ -74,8 +75,18 @@
 }
 
 @media (min-width: 768px) {
+
+  .video-container{
+    justify-content: center;
+  }
   .video-container .video-card {
-    height: 51.1vw;
+    height: 38vw;
+    width: 18vw;
+    
+  }
+
+  .video-container .notch{
+    height: 1.3vw;
   }
 
   .video-container .video-card h3 {

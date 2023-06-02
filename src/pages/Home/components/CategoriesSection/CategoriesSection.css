@@ -3,7 +3,13 @@
   width: 100%;
   justify-content: space-evenly;
   flex-flow: column nowrap;
-  margin: 10rem 0 5rem 0;
+  margin: 10rem auto 5rem auto;
+}
+.categories-heading {
+  font-size: 4rem;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: -60px;
 }
 
 .category-card img {
@@ -34,16 +40,22 @@
   color: rgb(0, 0, 0);
   background-color: rgb(207, 207, 207);
 }
-.category-card h3:hover{
+.category-card h3:hover {
   background-color: white;
 }
 
 @media (min-width: 768px) {
   .categories-container {
     flex-flow: row nowrap;
-    width: 100vw;
-    height: 700px;
+    width: 95vw;
+    height: 600px;
     justify-content: space-between;
+  }
+  .categories-heading {
+    font-size: 7rem;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: -100px;
   }
 
   .category-card {

@@ -36,24 +36,28 @@ export function UserProvider({ children }) {
 
   const addToCartHandler = async (product) => {
     if (auth.isAuth) {
-      if (!isProductInCart(product)) {
-        try {
-          setCartLoading(true);
-          setError("");
-          const response = await addToCartService(product, auth.token);
-          if (response.status === 201) {
-            setCartLoading(false);
-            toast.success(`${product.name} added to cart successfully!`);
-            dispatch({ type: "SET_CART", payload: response.data.cart });
-          }
-        } catch (error) {
-          setCartLoading(false);
-          console.log(error);
-        } finally {
-          setCartLoading(false);
-        }
+      if (!product.is_stock) {
+        toast.error(`Sorry, ${product.name} is not in stock.`);
       } else {
-        navigate("/cart");
+        if (!isProductInCart(product)) {
+          try {
+            setCartLoading(true);
+            setError("");
+            const response = await addToCartService(product, auth.token);
+            if (response.status === 201) {
+              setCartLoading(false);
+              toast.success(`${product.name} added to cart successfully!`);
+              dispatch({ type: "SET_CART", payload: response.data.cart });
+            }
+          } catch (error) {
+            setCartLoading(false);
+            console.log(error);
+          } finally {
+            setCartLoading(false);
+          }
+        } else {
+          navigate("/cart");
+        }
       }
     } else {
       toast("Please login first!");

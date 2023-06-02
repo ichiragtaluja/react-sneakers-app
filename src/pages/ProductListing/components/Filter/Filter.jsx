@@ -133,7 +133,7 @@ export const Filter = () => {
           </div>
 
           <div className="ratings-container ratings-container-mobile">
-            <h3>Ratings</h3>
+            <h3>Ratings (min)</h3>
             <div className="input-range">
               <datalist id="markers">
                 <option label="0" value="0">

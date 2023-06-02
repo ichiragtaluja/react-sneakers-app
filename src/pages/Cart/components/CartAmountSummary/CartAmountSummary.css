@@ -46,7 +46,7 @@ cursor: pointer;
 
 @media (min-width: 768px) {
   .cart-price-container {
-    width: 40vw;
+    width: 50vw;
     flex-flow: column nowrap;
     margin: 0 0 0 15px;
     align-self: flex-start;

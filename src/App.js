@@ -23,10 +23,11 @@ function App() {
       <NavRoutes />
       <ScrollToTop />
       <Toaster
-        position="bottom-center"
+        position="top-right"
         reverseOrder={false}
         toastOptions={{
           success: { duration: 1500 },
+          error: { duration: 1500 },
         }}
         containerStyle={{
           top: "6rem",

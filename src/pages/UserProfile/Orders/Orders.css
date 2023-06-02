@@ -1,13 +1,12 @@
 .orders-container {
   padding: 30px;
-
 }
 
 .ordered-items-card {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 30px;
-  border-bottom:1px solid rgb(231, 231, 231);
+  border-bottom: 1px solid rgb(231, 231, 231);
 }
 .ordered-items-card > * {
   margin-bottom: 6px;
@@ -17,14 +16,14 @@
   font-weight: 600;
 }
 
-.ordered-items-card .payment-id-container{
-    font-size: small;
+.ordered-items-card .payment-id-container {
+  font-size: small;
 }
 .payment-id-container {
   color: grey;
 }
 
-.price-container {
+orders-container .price-container {
   color: grey;
   font-size: small;
 }

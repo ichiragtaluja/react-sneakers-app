@@ -53,11 +53,17 @@
   border-radius: 6px;
 }
 
-.address-btns button:hover{
-cursor: pointer;
-background-color: var(--secondary-background-color-onhover);
+.address-btns button:hover {
+  cursor: pointer;
+  background-color: var(--secondary-background-color-onhover);
 }
 
 .address-card input {
   margin-right: 10px;
+}
+
+@media (min-width: 768px) {
+  .address-container {
+    width: 50vw;
+  }
 }
