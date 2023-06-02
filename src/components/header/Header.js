@@ -10,7 +10,7 @@ import { useData } from "../../contexts/DataProvider";
 import { useAuth } from "../../contexts/AuthProvider";
 import { CgShoppingCart } from "react-icons/cg";
 import { useUserData } from "../../contexts/UserDataProvider";
-import {SiTaichilang} from "react-icons/si"
+import { SiTaichilang } from "react-icons/si";
 
 export const Header = () => {
   const { auth } = useAuth();
@@ -19,7 +19,7 @@ export const Header = () => {
   const { userDataState } = useUserData();
   const [showHamburger, setShowHamburger] = useState(true);
   const getActiveStyle = ({ isActive }) => {
-    return { border: isActive ? "" : "" };
+    return { color: isActive ? "white" : "" };
   };
 
   const totalProductsInCart = userDataState.cartProducts?.reduce(
@@ -40,7 +40,7 @@ export const Header = () => {
     <nav>
       <div className="nav-logo-home-button">
         <NavLink style={getActiveStyle} to="/">
-          <SiTaichilang/> DadSneakers
+          <SiTaichilang /> DadSneakers
         </NavLink>
       </div>
 

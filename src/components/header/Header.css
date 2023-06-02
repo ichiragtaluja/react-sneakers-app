@@ -140,7 +140,8 @@ input:focus {
   border-radius: 30px;
   left: -5px;
   bottom: 15px;
-  background-color: rgb(255, 137, 137);
+  /* background-color: rgb(255, 137, 137); */
+  background-color: rgb(250, 103, 103);
   color: white;
   border: none;
 }
@@ -194,7 +195,8 @@ input:focus {
     border-radius: 30px;
     left: 15px;
     bottom: 20px;
-    background-color: rgb(255, 137, 137);
+    /* background-color: rgb(255, 137, 137); */
+    background-color: rgb(253, 87, 87);
     color: white;
     border: none;
     border: 1px solid var(--primary-color);

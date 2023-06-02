@@ -1,6 +1,7 @@
 export const userDataReducer = (state, action) => {
   switch (action.type) {
     case "SET_CART": {
+      console.log("i was here");
       return { ...state, cartProducts: [...action.payload] };
     }
 

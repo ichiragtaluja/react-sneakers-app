@@ -53,13 +53,21 @@ export const NavRoutes = () => {
       />
       <Route path="/profile" element={<UserProfile />}>
         <Route
-          path="/profile"
+          path="/profile/"
           element={
             <RequiresAuth>
               <Profile />
             </RequiresAuth>
           }
         />
+        {/* <Route
+          path="/profile/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        /> */}
         <Route path="/profile/orders" element={<Orders />} />
         <Route path="/profile/addresses" element={<Addresses />} />
       </Route>

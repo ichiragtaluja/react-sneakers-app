@@ -68,9 +68,21 @@ export function UserProvider({ children }) {
 
   const getCartProducts = async () => {
     try {
-      const response = await getCartService(auth.token);
-      dispatch({ type: "SET_CART", payload: response.data.cart });
-    } catch (error) {}
+      if (auth.isAuth) {
+        setCartLoading(true);
+        setError("");
+        const response = await getCartService(auth.token);
+        if (response.status === 200) {
+          dispatch({ type: "SET_CART", payload: response.data.cart });
+          setCartLoading(false);
+        }
+      }
+    } catch (error) {
+      setCartLoading(false);
+      console.error(error);
+    } finally {
+      setCartLoading(false);
+    }
   };
 
   const removeFromCartHandler = async (product) => {
@@ -271,6 +283,8 @@ export function UserProvider({ children }) {
     getCartProducts();
     getAddressList();
   }, [auth]);
+
+  console.log("cart", userDataState.cartProducts);
 
   return (
     <UserDataContext.Provider

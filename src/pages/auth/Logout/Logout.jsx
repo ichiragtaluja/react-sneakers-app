@@ -2,11 +2,11 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthProvider";
-import { useData } from "../../../contexts/DataProvider";
+import { useUserData } from "../../../contexts/UserDataProvider";
 import "./Logout.css";
 
 export const Logout = () => {
-  const { dispatch } = useData();
+  const { dispatch } = useUserData();
   const navigate = useNavigate();
   const { setAuth } = useAuth();
 
