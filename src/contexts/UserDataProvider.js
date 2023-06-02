@@ -284,8 +284,6 @@ export function UserProvider({ children }) {
     getAddressList();
   }, [auth]);
 
-  console.log("cart", userDataState.cartProducts);
-
   return (
     <UserDataContext.Provider
       value={{

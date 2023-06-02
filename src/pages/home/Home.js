@@ -12,6 +12,9 @@ export const Home = () => {
     !loading && (
       <div className="home-page">
         <div className="hero">
+          <div>
+            <p>Hello</p>
+          </div>
           <HeroVideo />
           <HeroSection />
           <VideosSection />
