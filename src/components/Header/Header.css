@@ -60,8 +60,8 @@ input:focus {
   position: relative;
 }
 .nav-link-container > *:hover {
-  background-color: rgb(242, 242, 242);
-  border: 1px solid rgb(242, 242, 242);
+  background-color: rgb(42, 42, 42);
+  border: 1px solid rgb(42, 42, 42);
 }
 
 .nav-link-container-mobile {
@@ -79,18 +79,19 @@ input:focus {
   background-color: rgb(255, 255, 255);
   align-items: stretch;
   z-index: 1;
-  background-color: rgb(251, 251, 251);
+  background-color: rgb(0, 0, 0);
   box-shadow: 0px 0px 46px -4px rgb(176, 175, 175);
 }
 .nav-link-container-mobile > * {
   color: var(--primary-color);
   margin-bottom: 10px;
-  border: 1px solid rgb(230, 230, 230);
+  border: 1px solid rgb(24, 24, 24);
   margin-right: 0px;
   text-align: center;
   text-decoration: none;
   padding: 30px;
   border-radius: 10px;
+  background-color: rgb(24, 24, 24);
 }
 
 .cross-tab-icon {
@@ -151,6 +152,9 @@ input:focus {
   top: 5px;
   left: 10px;
 }
+.nav-logo-home-button .brand-name {
+  display: none;
+}
 
 @media (min-width: 768px) {
   nav a {
@@ -160,6 +164,9 @@ input:focus {
     font-weight: 400;
     text-decoration: none;
     letter-spacing: 0.2px;
+  }
+  .nav-logo-home-button .brand-name {
+    display: inline;
   }
 
   nav {
@@ -172,7 +179,6 @@ input:focus {
     display: none;
   }
   .nav-link-container {
-    /* border: 1px solid black; */
     display: flex;
     flex-flow: row nowrap;
     align-items: center;

@@ -11,9 +11,6 @@ export const HeroVideo = () => {
       <div className="hero-video">
         <ReactPlayer
           url={`${process.env.PUBLIC_URL}/assets/videos/video-3.mp4`}
-          // url="https://www.youtube.com/watch?v=5hR8f3eF31A"
-  
-        
           playing
           playbackRate={1.5}
           muted
@@ -38,18 +35,3 @@ export const HeroVideo = () => {
     </div>
   );
 };
-
-{
-  /* <div className="hero-video">
-        <ReactPlayer
-          url={`${process.env.PUBLIC_URL}/assets/videos/video-1.mp4`}
-          playing
-          playbackRate={1.25}
-          muted
-          loop
-          width={"100%"}
-          height={"100%"}
-          controls={false}
-        />
-      </div> */
-}
