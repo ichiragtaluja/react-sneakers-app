@@ -14,12 +14,10 @@
 
 .ordered-items-card .order-id-container {
   font-weight: 600;
-
 }
 
 .ordered-items-card .payment-id-container {
   font-size: small;
-
 }
 .payment-id-container {
   color: grey;
@@ -28,7 +26,6 @@
 .orders-container .price-container {
   color: grey;
   font-size: small;
-
 }
 
 .orders-container .products-card {

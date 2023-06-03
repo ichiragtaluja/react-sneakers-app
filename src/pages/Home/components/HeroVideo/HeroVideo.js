@@ -1,6 +1,6 @@
 import "./HeroVideo.css";
 import ReactPlayer from "react-player";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import React from "react";
 

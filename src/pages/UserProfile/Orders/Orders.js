@@ -5,7 +5,6 @@ import "./Orders.css";
 export const Orders = () => {
   const { userDataState } = useUserData();
 
-  console.log("orders", userDataState.orders);
   return !userDataState.orders?.length ? (
     <div className="orders-container">No Orders</div>
   ) : (
@@ -42,7 +41,7 @@ export const Orders = () => {
               {orderedProducts.map(
                 ({ id, img, name, discounted_price, qty }) => (
                   <div className="products-card" key={id}>
-                    <img src={img} />
+                    <img src={img} alt={name} />
                     <div className="description">
                       <span className="name">Name: {name}</span>
                       <span className="qty">Qty: {qty}</span>

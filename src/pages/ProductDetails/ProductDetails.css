@@ -12,7 +12,6 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;
-    /* height: 195vw; */
     justify-content: space-evenly;
   }
 }

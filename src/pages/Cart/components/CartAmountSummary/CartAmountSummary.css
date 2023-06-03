@@ -52,7 +52,6 @@ cursor: pointer;
     align-self: flex-start;
     border-radius: 10px;
     padding: 25px;
-    /* border: 1px solid rgb(234, 234, 234); */
     display: flex;
     flex-flow: column nowrap;
   }

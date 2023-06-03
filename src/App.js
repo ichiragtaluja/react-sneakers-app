@@ -2,24 +2,17 @@ import "./App.css";
 import { Header } from "./components/Header/Header";
 import { Toaster } from "react-hot-toast";
 import { NavRoutes } from "./routes/NavRoutes";
-import { SyncLoader } from "react-spinners";
 import { useData } from "./contexts/DataProvider";
 import { ScrollToTop } from "./components/ScrollToTop/ScrollToTop";
+import { Loader } from "./components/Loader/Loader";
 
 function App() {
   const { loading } = useData();
 
-  const override = {
-    position: "absolute",
-    top: "50vh",
-    left: "50vw",
-  };
   return (
     <div className="App">
       <Header />
-      {loading && (
-        <SyncLoader cssOverride={override} loading={loading} color="black" />
-      )}
+      {loading && <Loader />}
       <NavRoutes />
       <ScrollToTop />
       <Toaster

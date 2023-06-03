@@ -8,19 +8,7 @@ import { AddressModal } from "../AddressModal/AddressModal";
 export const AddressSection = () => {
   const { userDataState, dispatch } = useUserData();
 
-  const {
-    setAddressForm,
-    isAddressModalOpen,
-    setIsAddressModalOpen,
-    setIsEdit,
-    deleteAddress,
-  } = useAddress();
-
-  const editButtonHandler = (address) => {
-    setIsAddressModalOpen(true);
-    setAddressForm(address);
-    setIsEdit(true);
-  };
+  const { isAddressModalOpen, setIsAddressModalOpen } = useAddress();
 
   return (
     <div className="address-container">
@@ -47,10 +35,6 @@ export const AddressSection = () => {
               <p className="address">
                 {street}, {city},{state}, {country} {pincode} - {phone}
               </p>
-              {/* <div className="address-btns">
-                <button onClick={() => editButtonHandler(address)}>Edit</button>
-                <button onClick={() => deleteAddress(address)}>Delete</button>
-              </div> */}
             </label>
           </div>
         );

@@ -1,29 +1,18 @@
-
-
-
 .logout-container {
-  
-    text-align: center;
+  text-align: center;
 }
 
-
-
-.logout-container button{
-    color:white;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 5px;
-    background-color: var(--primary-color);
-    font-weight: 600;
-    margin: 15px 0 0px 0;
-    
-
-    
-   
- 
+.logout-container button {
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  font-weight: 600;
+  margin: 15px 0 0px 0;
 }
 
-.logout-container button:hover{
-    cursor: pointer;
-    background-color: black;
+.logout-container button:hover {
+  cursor: pointer;
+  background-color: black;
 }

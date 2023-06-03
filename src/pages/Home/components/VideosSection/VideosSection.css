@@ -71,21 +71,18 @@
   color: white;
   position: absolute;
   top: 5rem;
-  /* border: 1px solid white; */
 }
 
 @media (min-width: 768px) {
-
-  .video-container{
+  .video-container {
     justify-content: center;
   }
   .video-container .video-card {
     height: 38vw;
     width: 18vw;
-    
   }
 
-  .video-container .notch{
+  .video-container .notch {
     height: 1.3vw;
   }
 

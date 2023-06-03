@@ -18,7 +18,6 @@
 .social-links {
   display: flex;
   flex-grow: 1;
-  /* border: 1px solid black; */
   justify-content: center;
 }
 

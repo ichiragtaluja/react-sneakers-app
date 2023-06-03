@@ -7,7 +7,6 @@ import { ProductListing } from "../pages/ProductListing/ProductListing";
 import { ProductDetails } from "../pages/ProductDetails/ProductDetails";
 import { RequiresAuth } from "../components/requires-auth/RequiresAuth";
 import { Signup } from "../pages/Auth/Signup/Signup";
-import MockAPI from "../components/Mockman/Mockman";
 import { Logout } from "../pages/Auth/Logout/Logout";
 import { Checkout } from "../pages/Checkout/Checkout";
 import { Wishlist } from "../pages/Wishlist/Wishlist";
@@ -63,7 +62,6 @@ export const NavRoutes = () => {
         <Route path="/profile/orders" element={<Orders />} />
         <Route path="/profile/addresses" element={<Addresses />} />
       </Route>
-      <Route path="/mock-api" element={<MockAPI />} />
     </Routes>
   );
 };

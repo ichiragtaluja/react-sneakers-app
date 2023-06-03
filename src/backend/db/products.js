@@ -1,10 +1,5 @@
 import { v4 as uuid } from "uuid";
 
-/**
- * Product Database can be added here.
- * You can add products of your wish with different attributes
- * */
-
 export const products = [
   {
     _id: uuid(),
@@ -337,36 +332,7 @@ export const products = [
     size: 7,
     img: "/assets/images/products-images/image-men-1.png",
   },
-  // {
-  //   _id: uuid(),
-  //   name: "Stellar Maxima",
-  //   original_price: 1499,
-  //   discounted_price: 1399,
-  //   category_name: "men",
-  //   is_stock: true,
-  //   rating: 2.5,
-  //   reviews: 198,
-  //   description:
-  //     "Engineered for urban runners, these high-performance running shoes boast advanced cushioning, responsive technology, and a sleek urban design.",
-  //   trending: false,
-  //   size: 9,
-  //   img: "/assets/images/products-images/image-men-2.png",
-  // },
-  // {
-  //   _id: uuid(),
-  //   name: "Accelerate Prime",
-  //   original_price: 1599,
-  //   discounted_price: 1499,
-  //   category_name: "men",
-  //   is_stock: false,
-  //   rating: 4.3,
-  //   reviews: 199,
-  //   description:
-  //     "These slip-on sneakers offer a seamless blend of urban style and convenience with their elastic band closure, premium materials, and sleek design.",
-  //   trending: true,
-  //   size: 6,
-  //   img: "/assets/images/products-images/image-men-3.png",
-  // },
+
   {
     _id: uuid(),
     name: "Innovate Optima",
@@ -862,21 +828,7 @@ export const products = [
     size: 5,
     img: "/assets/images/products-images/image-women-2.png",
   },
-  // {
-  //   _id: uuid(),
-  //   name: "Elite Reactor Pro",
-  //   original_price: 189,
-  //   discounted_price: 159,
-  //   category_name: "women",
-  //   is_stock: true,
-  //   rating: 4.3,
-  //   reviews: 88,
-  //   description:
-  //     "These oxford booties exude urban charm with their polished leather, lace-up closure, and a versatile design that effortlessly transitions from day to night.",
-  //   trending: false,
-  //   size: 6,
-  //   img: "/assets/images/products-images/image-women-3.png",
-  // },
+
   {
     _id: uuid(),
     name: "Catalyst Apex X",
@@ -937,21 +889,7 @@ export const products = [
     size: 5,
     img: "/assets/images/products-images/image-women-7.png",
   },
-  // {
-  //   _id: uuid(),
-  //   name: "Stellar Velocity",
-  //   original_price: 149,
-  //   discounted_price: 99,
-  //   category_name: "women",
-  //   is_stock: false,
-  //   rating: 4.8,
-  //   reviews: 87,
-  //   description:
-  //     "These lace-up booties offer an edgy urban vibe with their premium materials, chunky heel, and unique design details that make a statement wherever you go.",
-  //   trending: false,
-  //   size: 6,
-  //   img: "/assets/images/products-images/image-women-8.png",
-  // },
+
   {
     _id: uuid(),
     name: "Accelerate Equinox",
@@ -1072,21 +1010,7 @@ export const products = [
     size: 10,
     img: "/assets/images/products-images/image-women-16.png",
   },
-  // {
-  //   _id: uuid(),
-  //   name: "Quantum Empower X",
-  //   original_price: 1999,
-  //   discounted_price: 1899,
-  //   category_name: "women",
-  //   is_stock: true,
-  //   rating: 3.6,
-  //   reviews: 77,
-  //   description:
-  //     "These pointed-toe flats offer a modern urban twist with their sleek silhouette, premium materials, and a stylish design that adds a touch of sophistication to your everyday looks.",
-  //   trending: false,
-  //   size: 9,
-  //   img: "/assets/images/products-images/image-women-17.png",
-  // },
+
   {
     _id: uuid(),
     name: "Momentum Elite",
@@ -1117,36 +1041,7 @@ export const products = [
     size: 7,
     img: "/assets/images/products-images/image-women-19.png",
   },
-  // {
-  //   _id: uuid(),
-  //   name: "Propel Fusion X",
-  //   original_price: 1599,
-  //   discounted_price: 1499,
-  //   category_name: "women",
-  //   is_stock: false,
-  //   rating: 2.4,
-  //   reviews: 46,
-  //   description:
-  //     "These slingback sandals combine urban chic with warm-weather comfort, featuring premium leather, an adjustable strap, and a versatile design that transitions effortlessly from day to night.",
-  //   trending: false,
-  //   size: 5,
-  //   img: "/assets/images/products-images/image-women-20.png",
-  // },
-  // {
-  //   _id: uuid(),
-  //   name: "Dynamo Vanguard",
-  //   original_price: 1699,
-  //   discounted_price: 1599,
-  //   category_name: "women",
-  //   is_stock: true,
-  //   rating: 3.4,
-  //   reviews: 979,
-  //   description:
-  //     "These sneaker wedges blend urban style with a touch of sporty sophistication, featuring a hidden wedge heel, premium materials, and a sleek design that adds height and fashion-forward appeal.",
-  //   trending: true,
-  //   size: 6,
-  //   img: "/assets/images/products-images/image-women-21.png",
-  // },
+
   {
     _id: uuid(),
     name: "Enigma Nova X",
