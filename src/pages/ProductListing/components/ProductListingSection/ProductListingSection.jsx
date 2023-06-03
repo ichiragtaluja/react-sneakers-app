@@ -44,7 +44,9 @@ export const ProductListingSection = () => {
   return (
     <div className="product-card-container">
       {!sortedProducts.length ? (
-        <h2 className="no-products-found">Sorry, there are no matching products!</h2>
+        <h2 className="no-products-found">
+          Sorry, there are no matching products!
+        </h2>
       ) : (
         sortedProducts.map((product) => {
           const {

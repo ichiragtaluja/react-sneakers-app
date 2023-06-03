@@ -783,21 +783,7 @@ export const products = [
     size: 9,
     img: "/assets/images/products-images/image-men-33.png",
   },
-  {
-    _id: uuid(),
-    name: "Momentum Empower X",
-    original_price: 79,
-    discounted_price: 69,
-    category_name: "men",
-    is_stock: true,
-    rating: 5.0,
-    reviews: 987,
-    description:
-      "These ballet flats offer urban elegance and comfort with their slip-on style, premium materials, and a sleek silhouette that complements any look.",
-    trending: false,
-    size: 8,
-    img: "/assets/images/products-images/image-men-34.png",
-  },
+
   {
     _id: uuid(),
     name: "Optimum Elite",
