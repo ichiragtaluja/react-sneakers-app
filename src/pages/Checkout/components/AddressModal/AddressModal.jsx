@@ -39,6 +39,7 @@ export const AddressModal = () => {
       setError("");
       const response = await updateAddressService(address, auth.token);
       if (response.status === 200) {
+        console.log("edit address", response);
         setLoading(false);
         toast.success(` ${address.name}'s address updated successfully!`);
         dispatch({ type: "SET_ADDRESS", payload: response.data.addressList });

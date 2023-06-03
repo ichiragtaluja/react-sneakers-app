@@ -25,8 +25,8 @@ export const DeliveryAddress = () => {
 
   const navigate = useNavigate();
 
-  const userContact = addressList.find(
-    ({ _id }) => _id === orderAddress._id
+  const userContact = addressList?.find(
+    ({ _id }) => _id === orderAddress?._id
   )?.phone;
 
   const { auth, setCurrentPage } = useAuth();
@@ -55,7 +55,7 @@ export const DeliveryAddress = () => {
     name: "DadSneakers",
     description: "Order for products",
     prefill: {
-      name: orderAddress.name,
+      name: auth.firstName,
       email: auth.email,
       contact: userContact,
     },
@@ -76,6 +76,7 @@ export const DeliveryAddress = () => {
   return (
     <div className="delivery-address-container">
       <p>Delivering To</p>
+
       <div className="delivery-address-description">
         <span className="name">
           Name: {userDataState.orderDetails?.orderAddress?.name}

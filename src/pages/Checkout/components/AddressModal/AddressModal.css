@@ -10,9 +10,8 @@
   position: absolute;
   inset: 0;
   background-color: rgb(255, 255, 255);
-
   margin: auto;
-  width: 390px;
+  width: 290px;
   height: 520px;
   text-align: center;
   border-radius: 10px;
@@ -65,4 +64,11 @@
 .address-modal-container .btn-container button:last-child {
   flex-grow: 1;
   margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .address-modal-container .address-input-container{
+    width: 390px;
+  }
+
 }

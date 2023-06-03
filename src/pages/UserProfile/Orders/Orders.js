@@ -33,12 +33,12 @@ export const Orders = () => {
             <div className="price-container">
               <span>Delivery-Address:</span>
               <span>
-                {deliveryAddress.street} {deliveryAddress.state}{" "}
-                {deliveryAddress.country}
+                {deliveryAddress?.street} {deliveryAddress?.state}{" "}
+                {deliveryAddress?.country}
               </span>
             </div>
             <div className="products-container">
-              {orderedProducts.map(
+              {orderedProducts?.map(
                 ({ id, img, name, discounted_price, qty }) => (
                   <div className="products-card" key={id}>
                     <img src={img} alt={name} />

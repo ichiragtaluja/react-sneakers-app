@@ -9,6 +9,12 @@
   margin: 15px;
 }
 
+.no-address{
+  color: red;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 @media (min-width: 768px) {
   .order-details-container {
 

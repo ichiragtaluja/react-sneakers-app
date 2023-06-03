@@ -130,7 +130,7 @@ export function UserProvider({ children }) {
           if (type === "decrement") {
             toast.success(`Removed one ${product.name} from the cart!`);
           } else {
-            toast.success(`Added onother ${product.name} to the cart!`);
+            toast.success(`Added another ${product.name} to the cart!`);
           }
           dispatch({ type: "SET_CART", payload: response.data.cart });
         }
