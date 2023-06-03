@@ -83,7 +83,7 @@ input:focus {
   box-shadow: 0px 0px 46px -4px rgb(176, 175, 175);
 }
 .nav-link-container-mobile > * {
-  color: var(--primary-color);
+  color: rgb(165, 165, 165);
   margin-bottom: 10px;
   border: 1px solid rgb(24, 24, 24);
   margin-right: 0px;
