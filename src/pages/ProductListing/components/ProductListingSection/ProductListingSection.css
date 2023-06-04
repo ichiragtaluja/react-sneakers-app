@@ -35,7 +35,7 @@
 .product-card-image img {
   height: 230px;
   bottom: -2em;
-  width: 150%;
+  width: 140%;
   object-fit: cover;
   margin-left: -3em;
 }
