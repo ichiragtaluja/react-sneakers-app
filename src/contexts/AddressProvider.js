@@ -39,7 +39,7 @@ export function AddressProvider({ children }) {
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error(error);
     }
   };
 

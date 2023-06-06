@@ -36,6 +36,7 @@ export function DataProvider({ children }) {
       }
     } catch (error) {
       setError(true);
+      console.error(error)
     } finally {
       setLoading(false);
     }
@@ -50,7 +51,9 @@ export function DataProvider({ children }) {
           payload: response.data.categories,
         });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   useEffect(() => {

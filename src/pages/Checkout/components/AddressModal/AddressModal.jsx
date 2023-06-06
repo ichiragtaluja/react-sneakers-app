@@ -46,7 +46,7 @@ export const AddressModal = () => {
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,7 @@ export const AddressModal = () => {
       }
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }

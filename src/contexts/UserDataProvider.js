@@ -51,7 +51,7 @@ export function UserProvider({ children }) {
             }
           } catch (error) {
             setCartLoading(false);
-            console.log(error);
+            console.error(error);
           } finally {
             setCartLoading(false);
           }
@@ -101,7 +101,7 @@ export function UserProvider({ children }) {
       }
     } catch (error) {
       setCartLoading(false);
-      console.log(error);
+      console.error(error);
     } finally {
       setCartLoading(false);
     }
@@ -136,7 +136,7 @@ export function UserProvider({ children }) {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -156,7 +156,7 @@ export function UserProvider({ children }) {
           }
         } catch (error) {
           setCartLoading(false);
-          console.log(error);
+          console.error(error);
         } finally {
           setCartLoading(false);
         }
@@ -177,7 +177,7 @@ export function UserProvider({ children }) {
           }
         } catch (error) {
           setCartLoading(false);
-          console.log(error);
+          console.error(error);
         } finally {
           setCartLoading(false);
         }
@@ -192,7 +192,9 @@ export function UserProvider({ children }) {
     try {
       const response = await getWishlistService(auth.token);
       dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const removeFromWishlistHandler = async (product) => {
@@ -209,7 +211,7 @@ export function UserProvider({ children }) {
       }
     } catch (error) {
       setCartLoading(false);
-      console.log(error);
+      console.error(error);
     } finally {
       setCartLoading(false);
     }
@@ -261,7 +263,9 @@ export function UserProvider({ children }) {
       if (response.status === 201) {
         dispatch({ type: "SET_CART", payload: [] });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const getAddressList = async () => {
@@ -277,6 +281,7 @@ export function UserProvider({ children }) {
       }
     } catch (error) {
       setCartLoading(false);
+      console.error(error);
     } finally {
       setCartLoading(false);
     }
