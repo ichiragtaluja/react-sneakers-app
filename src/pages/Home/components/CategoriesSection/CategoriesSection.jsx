@@ -23,7 +23,7 @@ export const CategoriesSection = () => {
           >
             <h3>{categoryName}'s</h3>
             <div className="img-cont">
-              <img src={img} alt="category" />
+              <img src={img} alt={categoryName} />
             </div>
           </Link>
         ))}

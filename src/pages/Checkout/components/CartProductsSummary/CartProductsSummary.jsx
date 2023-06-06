@@ -12,7 +12,7 @@ export const CartProductsSummary = () => {
         {userDataState.cartProducts?.map(
           ({ id, img, name, qty, discounted_price }) => (
             <div key={id} className="ordered-product-card">
-              <img src={img} />
+              <img src={img} alt={name}/>
               <span>
                 <span>{name} - </span>
                 <span>{qty}</span>

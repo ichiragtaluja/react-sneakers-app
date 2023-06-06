@@ -19,9 +19,9 @@ export const CartListing = () => {
   return (
     <div className="cart-products-container">
       {userDataState.cartProducts.map((product) => (
-        <div className="cart-product-card" key={product.name}>
+        <div className="cart-product-card" key={product.id}>
           <div>
-            <img className="cart-img" src={product.img} />
+            <img className="cart-img" alt={product.name} src={product.img} />
           </div>
           <div className="product-description">
             <h3>{product.name}</h3>

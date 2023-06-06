@@ -13,7 +13,7 @@ export const ProductImage = ({ selectedProduct }) => {
       className="product-details-image"
     >
       {" "}
-      <img src={selectedProduct?.img} />
+      <img src={selectedProduct?.img} alt={selectedProduct.name}/>
     </Tilt>
   );
 };
