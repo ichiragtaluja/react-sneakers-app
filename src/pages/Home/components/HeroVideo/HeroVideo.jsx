@@ -10,7 +10,8 @@ export const HeroVideo = () => {
     <div className="hero-video-container">
       <div className="hero-video">
         <ReactPlayer
-          url={`${process.env.PUBLIC_URL}/assets/videos/video-3.mp4`}
+          // url={`${process.env.PUBLIC_URL}/assets/videos/video-3.mp4`}
+          url="https://res.cloudinary.com/darwtgzlk/video/upload/v1687841755/Ecommerce-app/video-3_bvxghi.mp4"
           playing
           playbackRate={1.5}
           muted
